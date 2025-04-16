@@ -50,21 +50,25 @@
             background-color: rgba(255, 255, 255, 0.2);
             transform: translateX(5px);
         }
-        
+
         .dropdown-item.francais {
             background-color: rgba(46, 204, 64, 0.7); /* Vert */
         }
-        
+
         .dropdown-item.divers {
             background-color: rgba(255, 65, 54, 0.7); /* Rouge */
         }
-        
+
         .dropdown-item.culture {
             background-color: rgba(255, 133, 27, 0.7); /* Orange */
         }
-        
+
         .dropdown-item.sciences {
             background-color: rgba(0, 116, 217, 0.7); /* Bleu */
+        }
+
+        .dropdown-item.ia {
+            background-color: rgba(136, 14, 79, 0.7); /* Violet */
         }
 
         .dropdown-btn {
@@ -77,7 +81,7 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         /* Styles spécifiques à l'index */
         .hero {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
@@ -692,7 +696,7 @@
         <button class="nav-btn calendar-btn">📅 Calendrier</button>
         <button class="nav-btn autres-btn">🔍 Autres</button>
         <button class="nav-btn chatbot-btn">🤖 Chatbot</button>
-        
+
         <div class="dropdown">
             <button class="nav-btn dropdown-btn">📋 Sélectionner <i class="fas fa-chevron-down"></i></button>
             <div class="dropdown-content">
@@ -700,9 +704,10 @@
                 <button class="dropdown-item divers" data-page="divers">DIVERS</button>
                 <button class="dropdown-item culture" data-page="culture">CULTURE</button>
                 <button class="dropdown-item sciences" data-page="sciences">SCIENCES</button>
+                <button class="dropdown-item ia" data-page="ai">INTELLIGENCE ARTIFICIELLE</button>
             </div>
         </div>
-        
+
         <button class="theme-toggle">🌓</button>
     </nav>
 
@@ -969,31 +974,31 @@
         document.addEventListener('DOMContentLoaded', function() {
             const dropdown = document.querySelector('.dropdown');
             const dropdownItems = document.querySelectorAll('.dropdown-item');
-            
+
             // Toggle dropdown sur mobile
             dropdown.querySelector('.dropdown-btn').addEventListener('click', function(e) {
                 dropdown.classList.toggle('active');
                 e.stopPropagation();
             });
-            
+
             // Fermer le dropdown quand on clique ailleurs
             document.addEventListener('click', function() {
                 dropdown.classList.remove('active');
             });
-            
+
             // Action sur les éléments du dropdown
             dropdownItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const selectedOption = this.textContent;
                     const pageTarget = this.dataset.page;
                     console.log(`Option sélectionnée: ${selectedOption}`);
-                    
+
                     // Redirection vers la page correspondante
                     window.location.href = `/selectionner/${pageTarget}.html`;
                 });
             });
         });
-    
+
         // Ajout d'effet de défilement fluide pour le bouton scroll-down
         document.getElementById('scroll-down').addEventListener('click', () => {
             document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
