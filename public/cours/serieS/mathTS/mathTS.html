@@ -1,172 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mathématiques Terminale S - Site Éducatif</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathématiques Série S - EDUCMAD</title>
     <link rel="stylesheet" href="/styles.css">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #6c5ce7, #8257e6);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        main {
+        .math-container {
+            background: linear-gradient(135deg, #4e54c8, #8f45c7);
             padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .course-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .course-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .course-description {
-            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            text-align: left;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 900px;
+            color: white;
+        }
+
+        .math-title {
+            color: #ffffff;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .math-description {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
             line-height: 1.6;
-            flex: 1;
+            text-align: justify;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
-        
-        .course-description ul {
-            margin-left: 20px;
+
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
-        .course-description li {
-            margin: 10px 0;
+
+        .download-button:hover {
+            background: linear-gradient(45deg, #FF4B2B, #FF416C);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         }
-        
-        .download-section {
-            margin-top: 30px;
+
+        .btn-container {
             text-align: center;
         }
-        
-        .file-name {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to right, #ff5353, #ff3377);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 51, 83, 0.3);
-            transition: all 0.3s ease;
-            width: 80%;
-            max-width: 300px;
-            margin: 0 auto;
-            left: 50%;
-            position: relative;
-            transform: translateX(-50%);
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 51, 83, 0.4);
-        }
-        
-        .back-btn {
-            background: rgba(0, 0, 0, 0.3);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 30px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .back-btn:hover {
-            background: rgba(0, 0, 0, 0.5);
-        }
 
-        /* Styles pour le mode plein écran */
-        .fullscreen-course {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .nav-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .course-title {
-                font-size: 1.8rem;
-                margin-bottom: 20px;
-            }
-            
-            .course-description {
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-            
-            .file-name {
-                font-size: 1.2rem;
-            }
-            
-            .download-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-                width: 100%;
-            }
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, #ffffff, transparent);
+            margin: 30px 0;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
     <nav>
         <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
-        <button class="nav-btn exercises-btn" onclick="window.location.href='/exercices/exercice.html'">📚 Exercices</button>
-        <button class="nav-btn courses-btn" onclick="window.location.href='/cours/cours.html'">📖 Cours</button>
-        <button class="nav-btn pdf-btn" onclick="window.location.href='/fichierPdf.html'">📁 Fichiers PDF</button>
-        <button class="nav-btn bacc-btn" onclick="window.location.href='/sujet.html'">📑 Sujet Bacc</button>
-        <button class="nav-btn contact-btn" onclick="window.location.href='/contact.html'">📧 Contact</button>
+        <button class="nav-btn exercises-btn" onclick="window.location.href='/exercices'">📚 Exercices</button>
+        <button class="nav-btn contest-btn">🏆 Concours</button>
+        <button class="nav-btn courses-btn" onclick="window.location.href='/cours'">📖 Cours</button>
+        <button class="nav-btn pdf-btn" onclick="window.location.href='/fichierPdf'">📁 Fichiers PDF</button>
+        <button class="nav-btn bacc-btn" onclick="window.location.href='/sujet'">📑 Sujet Bacc</button>
+        <button class="nav-btn contact-btn" onclick="window.location.href='/contact'">📧 Contactez-nous</button>
         <button class="theme-toggle">🌓</button>
     </nav>
 
-    <main class="fullscreen-course">
-        <div class="course-content">
-            <h2 class="course-title">Mathématiques - Terminale S</h2>
-            
-            <div class="course-description">
+    <main>
+        <div class="math-container">
+            <h1 class="math-title">Mathématiques - Terminale S</h1>
+
+            <div class="math-description">
                 <p>Bienvenue dans le cours de Mathématiques pour la Terminale S. Les mathématiques constituent une discipline fondamentale pour les élèves de la série scientifique, ouvrant la voie vers de nombreuses filières d'études supérieures.</p>
-                
+
                 <p>Ce cours couvre l'ensemble du programme officiel et comprend :</p>
-                
                 <ul>
                     <li>Les fonctions et leurs limites</li>
                     <li>Les suites numériques</li>
@@ -175,32 +95,23 @@
                     <li>La géométrie dans l'espace</li>
                     <li>Les probabilités et statistiques</li>
                 </ul>
-                
+
                 <p>Chaque chapitre est accompagné d'exemples détaillés et d'exercices corrigés pour vous aider à maîtriser les concepts essentiels.</p>
             </div>
-            
-            <div class="download-section" style="text-align: center;">
-                <h3 class="file-name">Fichier: Lesona-Maths-TS.pdf</h3>
-                <a href="/Attachement/cours/mathTS/Lesona Maths-TS.pdf" class="download-btn" download="Lesona Maths-TS.pdf">📥 Télécharger le cours complet (PDF)</a>
-            </div>
-            
-            <div style="text-align: center; width: 100%;">
-                <button class="back-btn" onclick="window.location.href='/cours/serieS/Cours_serie_S.html'" style="margin: 30px auto;">Retour</button>
+
+            <div class="section-divider"></div>
+
+            <div class="btn-container">
+                <p style="text-align: center; font-weight: bold; color: white; margin-bottom: 10px; font-size: 1.2rem;">
+                    Fichier: Lesona-Maths-TS.pdf
+                </p>
+                <a href="/Attachement/cours/mathTS/Lesona Maths-TS.pdf" class="download-button" download>
+                    📥 Télécharger le cours complet (PDF)
+                </a>
             </div>
         </div>
     </main>
 
     <script src="/script.js"></script>
-    <script>
-        // Ajuster la hauteur sur les appareils mobiles
-        function adjustFullscreenHeight() {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-        
-        // Exécuter au chargement et au redimensionnement
-        window.addEventListener('load', adjustFullscreenHeight);
-        window.addEventListener('resize', adjustFullscreenHeight);
-    </script>
 </body>
 </html>
