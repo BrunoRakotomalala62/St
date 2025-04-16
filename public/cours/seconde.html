@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours - Seconde</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(76, 175, 255, 0.3);
+            padding: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .subject-btn {
+            background: rgba(84, 58, 183, 0.6);
+            color: white;
+            border: none;
+            padding: 25px 15px;
+            border-radius: 12px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .subject-btn:hover {
+            background: rgba(84, 58, 183, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .return-btn {
+            margin-top: 50px;
+            padding: 12px 25px;
+            background: rgba(128, 128, 128, 0.5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .return-btn:hover {
+            background: rgba(128, 128, 128, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <button class="nav-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn" onclick="window.location.href='/cours'">📚 Retour</button>
+        <button class="nav-btn" onclick="window.location.href='/exercices'">📝 Exercices</button>
+        <button class="nav-btn" onclick="window.location.href='/contact'">📞 Contact</button>
+    </div>
+
+    <main>
+        <h1>Matières - Seconde</h1>
+        
+        <div class="subject-grid">
+            <a href="/cours/malagasy2nde/malagasy2nd.html" class="subject-btn">Malagasy</a>
+            <a href="/cours/mathematiques2nde" class="subject-btn">Mathématiques</a>
+            <a href="/cours/physique2nde" class="subject-btn">Physique-chimie</a>
+            <a href="/cours/francais2nde" class="subject-btn">Français</a>
+            <a href="/cours/histoire2nde" class="subject-btn">Histoire et Géographie</a>
+        </div>
+        
+        <button class="return-btn" onclick="window.location.href='/cours'">Retour</button>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>

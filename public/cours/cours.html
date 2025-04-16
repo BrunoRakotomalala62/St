@@ -68,9 +68,11 @@
 
     <script>
         let currentLevel = '';
-        
+
         function handleMalagasyClick() {
-            if (currentLevel === 'sixieme') {
+            if (currentLevel === 'seconde') {
+                window.location.href = '/cours/malagasy2nde'; // Added route for Malagasy in Seconde
+            } else if (currentLevel === 'sixieme') {
                 window.location.href = '/cours/malagasy6eme';
             } else if (currentLevel === 'troisieme') {
                 window.location.href = '/cours/malagasy3eme';
@@ -122,6 +124,7 @@
         }
 
         function showLyceeSubjects(level) {
+            currentLevel = level; // Added to set currentLevel for Malagasy in Seconde
             document.getElementById('lycee-levels').style.display = 'none';
             document.getElementById('subjects-container').style.display = 'block';
             const levelNames = {
