@@ -309,6 +309,36 @@ app.get('/ai21', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'selectionner', 'ai', 'ai21.html'));
 }); // Added route for ai21.html
 
+// Route directe pour l'API AI21 (pour les tests)
+app.get('/api/ai21/test', async (req, res) => {
+  try {
+    const { prompt, uid } = req.query;
+    
+    if (!prompt) {
+      return res.status(400).json({ error: 'Le prompt est requis' });
+    }
+    
+    // ID de conversation (utiliser celui fourni ou en générer un nouveau)
+    const conversationId = uid || Date.now().toString();
+    
+    // Appel à l'API AI21
+    const response = await axios.post(`https://ai21.vercel.app/ai21`, {
+      prompt: prompt,
+      uid: conversationId
+    });
+    
+    // Renvoyer la réponse au client
+    res.json(response.data);
+    
+  } catch (error) {
+    console.error('Erreur lors de l\'appel à l\'API AI21:', error);
+    res.status(500).json({ 
+      error: 'Une erreur s\'est produite lors de la communication avec l\'API AI21',
+      message: 'Désolé, je n\'ai pas pu traiter votre demande. Veuillez réessayer plus tard.'
+    });
+  }
+});
+
 
 const PORT = 5000;
 app.listen(PORT, '0.0.0.0', () => {
