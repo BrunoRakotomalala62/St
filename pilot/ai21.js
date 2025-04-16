@@ -63,32 +63,30 @@ router.get('/ai21', async (req, res) => {
 
             // Si aucune correspondance trouvée, utiliser une réponse générique
             if (!message) {
-                message = "Intéressant ! Pourriez-vous m'en dire plus ? Je suis là pour vous aider dans vos recherches et répondre à vos questions.";
-            }
+                // Appel à l'API externe
+                try {
+                    console.log(`Tentative d'appel API à: https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`);
+                    const externalResponse = await axios({
+                        method: 'get',
+                        url: `https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        timeout: 30000 // Timeout après 30 secondes
+                    });
 
-            /*
-            // Code de l'API externe temporairement commenté
-            try {
-                const externalResponse = await axios({
-                    method: 'get',
-                    url: `https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`,
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    timeout: 30000 // Timeout après 30 secondes
-                });
-
-                if (externalResponse.data && externalResponse.data.message) {
-                    message = externalResponse.data.message;
-                } else {
-                    message = "Je ne suis pas sûr de comprendre votre demande. Pourriez-vous reformuler?";
+                    console.log("Réponse API externe:", externalResponse.data);
+                    if (externalResponse.data && externalResponse.data.message) {
+                        message = externalResponse.data.message;
+                    } else {
+                        message = "Je ne suis pas sûr de comprendre votre demande. Pourriez-vous reformuler?";
+                    }
+                } catch (apiError) {
+                    console.error("Erreur API externe:", apiError.message);
+                    message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
                 }
-            } catch (apiError) {
-                console.error("Erreur API externe:", apiError.message);
-                message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
             }
-            */
         }
 
         // Renvoyer la réponse au client
@@ -167,32 +165,30 @@ router.post('/ai21', async (req, res) => {
 
             // Si aucune correspondance trouvée, utiliser une réponse générique
             if (!message) {
-                message = "Intéressant ! Pourriez-vous m'en dire plus ? Je suis là pour vous aider dans vos recherches et répondre à vos questions.";
-            }
+                // Appel à l'API externe
+                try {
+                    console.log(`Tentative d'appel API POST à: https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`);
+                    const externalResponse = await axios({
+                        method: 'get',
+                        url: `https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        timeout: 30000 // Timeout après 30 secondes
+                    });
 
-            /*
-            // Code de l'API externe temporairement commenté
-            try {
-                const externalResponse = await axios({
-                    method: 'get',
-                    url: `https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`,
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    timeout: 30000 // Timeout après 30 secondes
-                });
-
-                if (externalResponse.data && externalResponse.data.message) {
-                    message = externalResponse.data.message;
-                } else {
-                    message = "Je ne suis pas sûr de comprendre votre demande. Pourriez-vous reformuler?";
+                    console.log("Réponse API externe (POST):", externalResponse.data);
+                    if (externalResponse.data && externalResponse.data.message) {
+                        message = externalResponse.data.message;
+                    } else {
+                        message = "Je ne suis pas sûr de comprendre votre demande. Pourriez-vous reformuler?";
+                    }
+                } catch (apiError) {
+                    console.error("Erreur API externe:", apiError.message);
+                    message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
                 }
-            } catch (apiError) {
-                console.error("Erreur API externe:", apiError.message);
-                message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
             }
-            */
         }
 
         // Renvoyer la réponse au client

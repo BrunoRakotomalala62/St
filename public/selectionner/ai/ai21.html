@@ -230,7 +230,7 @@
 
                 try {
                     // Appel à notre API locale
-                    const response = await fetch(`/pilot/ai21?prompt=${encodeURIComponent(message)}&uid=${uid}`);
+                    const response = await fetch(`/api/ai21?prompt=${encodeURIComponent(message)}&uid=${uid}`);
                     const data = await response.json();
                     
                     console.log("Réponse AI21:", data);
