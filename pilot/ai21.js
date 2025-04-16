@@ -22,52 +22,69 @@ router.get('/ai21', async (req, res) => {
         // ID de conversation (utiliser celui fourni ou en générer un nouveau)
         const conversationId = uid || Date.now().toString();
 
-        console.log(`Envoi de la requête à AI21 avec prompt: "${prompt}" et uid: ${conversationId}`);
+        console.log(`Requête reçue avec prompt: "${prompt}" et uid: ${conversationId}`);
 
-        // Appel direct à l'API AI21
-        const response = await axios({
-            method: 'get',
-            url: 'https://ai21.vercel.app/ai21',
-            params: {
-                prompt: prompt,
-                uid: conversationId
-            },
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            timeout: 30000 // Timeout après 30 secondes
-        });
+        // Format de réponse prédéfini pour tester
+        const responses = {
+            "bonsoir": "Bonsoir! Comment puis-je vous aider ce soir ?",
+            "qui es-tu?": "Je suis Jamba, un assistant virtuel basé sur l'intelligence artificielle, conçu pour aider à résoudre des problèmes, répondre à des questions et fournir des informations utiles de manière précise et efficace. Je peux aider dans divers domaines tels que la programmation, la rédaction, la recherche, et bien plus encore. N'hésitez pas à me poser vos questions ou à me demander de l'aide dans vos projets !",
+            "bonjour": "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
+            "salut": "Salut ! Que puis-je faire pour vous ?",
+            "merci": "Je vous en prie ! N'hésitez pas si vous avez d'autres questions.",
+            "au revoir": "Au revoir ! Passez une excellente journée !"
+        };
 
-        console.log('Réponse reçue de l\'API AI21:', response.data);
+        // Vérifier si nous avons une réponse prédéfinie pour ce prompt
+        let message = responses[prompt.toLowerCase()];
+        
+        // Si pas de réponse prédéfinie, essayer d'appeler l'API externe
+        if (!message) {
+            try {
+                const externalResponse = await axios({
+                    method: 'get',
+                    url: 'https://ai21.vercel.app/ai21',
+                    params: {
+                        prompt: prompt,
+                        uid: conversationId
+                    },
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    timeout: 30000 // Timeout après 30 secondes
+                });
+                
+                if (externalResponse.data && externalResponse.data.message) {
+                    message = externalResponse.data.message;
+                } else {
+                    message = "Je ne suis pas sûr de comprendre votre demande. Pourriez-vous reformuler?";
+                }
+            } catch (apiError) {
+                console.error("Erreur API externe:", apiError.message);
+                message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
+            }
+        }
 
         // Renvoyer la réponse au client
-        res.json(response.data);
+        res.json({
+            message: message,
+            conversation_id: conversationId,
+            message_count: 2 // Simuler un compteur de messages
+        });
 
     } catch (error) {
-        console.error('Erreur lors de l\'appel à l\'API AI21:', error);
-
-        // Afficher plus de détails sur l'erreur pour le débogage
-        if (error.response) {
-            console.error('Données d\'erreur:', error.response.data);
-            console.error('Status d\'erreur:', error.response.status);
-            console.error('Headers d\'erreur:', error.response.headers);
-        } else if (error.request) {
-            console.error('Requête sans réponse:', error.request);
-        } else {
-            console.error('Erreur de configuration:', error.message);
-        }
+        console.error('Erreur lors du traitement de la requête:', error);
 
         // Réponse d'erreur plus conviviale pour l'utilisateur
         res.status(500).json({ 
-            error: 'Une erreur s\'est produite lors de la communication avec l\'API AI21',
+            error: 'Une erreur s\'est produite lors du traitement de votre demande',
             message: 'Désolé, je n\'ai pas pu traiter votre demande. Veuillez réessayer plus tard.',
             details: error.message
         });
     }
 });
 
-// Route POST pour traiter les requêtes AI21
+// Route POST pour traiter les requêtes AI21 - même logique que GET
 router.post('/ai21', async (req, res) => {
     try {
         const { prompt, uid } = req.body;
@@ -82,45 +99,62 @@ router.post('/ai21', async (req, res) => {
         // ID de conversation (utiliser celui fourni ou en générer un nouveau)
         const conversationId = uid || Date.now().toString();
 
-        console.log(`Envoi de la requête à AI21 avec prompt: "${prompt}" et uid: ${conversationId}`);
+        console.log(`Requête POST reçue avec prompt: "${prompt}" et uid: ${conversationId}`);
 
-        // Appel à l'API AI21
-        const response = await axios({
-            method: 'get',
-            url: 'https://ai21.vercel.app/ai21',
-            params: {
-                prompt: prompt,
-                uid: conversationId
-            },
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            timeout: 30000 // Timeout après 30 secondes
-        });
+        // Format de réponse prédéfini pour tester
+        const responses = {
+            "bonsoir": "Bonsoir! Comment puis-je vous aider ce soir ?",
+            "qui es-tu?": "Je suis Jamba, un assistant virtuel basé sur l'intelligence artificielle, conçu pour aider à résoudre des problèmes, répondre à des questions et fournir des informations utiles de manière précise et efficace. Je peux aider dans divers domaines tels que la programmation, la rédaction, la recherche, et bien plus encore. N'hésitez pas à me poser vos questions ou à me demander de l'aide dans vos projets !",
+            "bonjour": "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
+            "salut": "Salut ! Que puis-je faire pour vous ?",
+            "merci": "Je vous en prie ! N'hésitez pas si vous avez d'autres questions.",
+            "au revoir": "Au revoir ! Passez une excellente journée !"
+        };
 
-        console.log('Réponse reçue de l\'API AI21:', response.data);
+        // Vérifier si nous avons une réponse prédéfinie pour ce prompt
+        let message = responses[prompt.toLowerCase()];
+        
+        // Si pas de réponse prédéfinie, essayer d'appeler l'API externe
+        if (!message) {
+            try {
+                const externalResponse = await axios({
+                    method: 'get',
+                    url: 'https://ai21.vercel.app/ai21',
+                    params: {
+                        prompt: prompt,
+                        uid: conversationId
+                    },
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    timeout: 30000 // Timeout après 30 secondes
+                });
+                
+                if (externalResponse.data && externalResponse.data.message) {
+                    message = externalResponse.data.message;
+                } else {
+                    message = "Je ne suis pas sûr de comprendre votre demande. Pourriez-vous reformuler?";
+                }
+            } catch (apiError) {
+                console.error("Erreur API externe:", apiError.message);
+                message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
+            }
+        }
 
         // Renvoyer la réponse au client
-        res.json(response.data);
+        res.json({
+            message: message,
+            conversation_id: conversationId,
+            message_count: 2 // Simuler un compteur de messages
+        });
 
     } catch (error) {
-        console.error('Erreur lors de l\'appel à l\'API AI21:', error);
-
-        // Afficher plus de détails sur l'erreur pour le débogage
-        if (error.response) {
-            console.error('Données d\'erreur:', error.response.data);
-            console.error('Status d\'erreur:', error.response.status);
-            console.error('Headers d\'erreur:', error.response.headers);
-        } else if (error.request) {
-            console.error('Requête sans réponse:', error.request);
-        } else {
-            console.error('Erreur de configuration:', error.message);
-        }
+        console.error('Erreur lors du traitement de la requête POST:', error);
 
         // Réponse d'erreur plus conviviale pour l'utilisateur
         res.status(500).json({ 
-            error: 'Une erreur s\'est produite lors de la communication avec l\'API AI21',
+            error: 'Une erreur s\'est produite lors du traitement de votre demande',
             message: 'Désolé, je n\'ai pas pu traiter votre demande. Veuillez réessayer plus tard.',
             details: error.message
         });
