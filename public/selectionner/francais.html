@@ -274,6 +274,10 @@
                 texteOriginal.textContent = texte;
 
                 try {
+                    // Récupérer la langue sélectionnée
+                    const langueSelect = document.getElementById('langue-select');
+                    const langue = langueSelect ? langueSelect.value : 'fr';
+                    
                     const response = await fetch('/api/grammar/correct', {
                         method: 'POST',
                         headers: {
