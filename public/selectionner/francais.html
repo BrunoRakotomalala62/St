@@ -263,7 +263,7 @@
             const texteCorrige = document.getElementById('texte-corrige');
             const langueDetectee = document.getElementById('langue-detectee');
 
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const texte = document.getElementById('texte-input').value;
@@ -271,23 +271,39 @@
 
                 if (!texte) return;
 
-                // Pour la démo, on simule une correction
                 texteOriginal.textContent = texte;
 
-                // Simulation d'une correction
-                let correction = texte;
-                if (texte.includes('sui')) {
-                    correction = texte.replace('sui', 'suis');
-                }
-                if (texte.includes('je est')) {
-                    correction = texte.replace('je est', 'je suis');
-                }
+                try {
+                    const response = await fetch('/api/grammar/correct', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ text: texte, language: langue })
+                    });
 
-                texteCorrige.textContent = correction;
-                resultCard.style.display = 'block';
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
-                // Faire défiler jusqu'au résultat
-                resultCard.scrollIntoView({ behavior: 'smooth' });
+                    const result = await response.json();
+                    
+                    // Utilisation des résultats de l'API
+                    texteCorrige.textContent = result.corrected;
+
+                    langueDetectee.textContent = langue === 'fr' ? 'Français' :
+                        langue === 'en' ? 'Anglais' :
+                        langue === 'es' ? 'Espagnol' :
+                        langue === 'de' ? 'Allemand' : 'Italien';
+
+                    resultCard.style.display = 'block';
+                    resultCard.scrollIntoView({ behavior: 'smooth' });
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    texteCorrige.textContent = `Erreur: ${error.message}`;
+                    resultCard.style.display = 'block';
+                    resultCard.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
     </script>
