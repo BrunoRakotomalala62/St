@@ -313,6 +313,33 @@ app.get('/ai21', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'selectionner', 'ai', 'ai21.html'));
 }); // Added route for ai21.html
 
+// Import du module AI21
+const ai21Module = require('./pilot/ai21');
+
+// Route pour l'API AI21
+app.get('/api/ai21', async (req, res) => {
+  try {
+    const { prompt, uid } = req.query;
+    
+    if (!prompt) {
+      return res.status(400).json({ error: 'Le prompt est requis' });
+    }
+    
+    // Utiliser le module AI21 pour obtenir une réponse
+    const response = await ai21Module.getAI21Response(prompt, uid);
+    
+    // Renvoyer la réponse au client
+    res.json(response);
+    
+  } catch (error) {
+    console.error('Erreur lors de l\'appel à l\'API AI21:', error);
+    res.status(500).json({ 
+      error: 'Une erreur s\'est produite lors de la communication avec l\'API AI21',
+      message: 'Désolé, je n\'ai pas pu traiter votre demande. Veuillez réessayer plus tard.'
+    });
+  }
+});
+
 // Route directe pour l'API AI21 (pour les tests)
 app.get('/api/ai21/test', async (req, res) => {
   try {
@@ -339,6 +366,7 @@ app.get('/api/ai21/test', async (req, res) => {
     res.status(500).json({ 
       error: 'Une erreur s\'est produite lors de la communication avec l\'API AI21',
       message: 'Désolé, je n\'ai pas pu traiter votre demande. Veuillez réessayer plus tard.'
+    });
     });
   }
 });

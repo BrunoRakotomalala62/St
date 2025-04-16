@@ -242,6 +242,9 @@
                     if (data && data.message) {
                         // Afficher la réponse du bot
                         addMessage(data.message, false);
+                    } else if (data && data.error) {
+                        // Afficher le message d'erreur si présent
+                        addMessage(data.message || "Une erreur s'est produite. Veuillez réessayer plus tard.", false);
                     } else {
                         // Gérer le cas où la réponse ne contient pas de message
                         addMessage("Désolé, je n'ai pas pu comprendre votre demande. Pourriez-vous reformuler?", false);
