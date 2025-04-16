@@ -239,8 +239,8 @@
                 try {
                     console.log(`Envoi de la requête: ${message} avec uid ${uid}`);
 
-                    // Utiliser notre propre API locale qui fait le relais vers l'API externe
-                    const response = await fetch(`/api/ai21?prompt=${encodeURIComponent(message)}&uid=${uid}`, {
+                    // Faire une requête directe à l'API externe
+                    const response = await fetch(`https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(message)}&uid=${uid}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json'
@@ -253,12 +253,15 @@
                     // Masquer l'indicateur de saisie
                     typingIndicator.classList.remove('active');
 
-                    if (data.error) {
+                    if (data.message) {
+                        // Afficher directement le message texte de la réponse
+                        addMessage(data.message, false);
+                    } else if (data.error) {
                         // Afficher le message d'erreur
                         addMessage(`Erreur: ${data.message || data.error}`, false);
                     } else {
-                        // Afficher la réponse du bot
-                        addMessage(data.message, false);
+                        // Cas où il n'y a ni message ni erreur
+                        addMessage("Désolé, je n'ai pas pu comprendre la réponse du serveur.", false);
                     }
                 } catch (error) {
                     console.error('Erreur lors de l\'envoi du message:', error);

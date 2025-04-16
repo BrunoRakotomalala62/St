@@ -34,7 +34,8 @@ router.get('/ai21', async (req, res) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            timeout: 10000 // Timeout après 10 secondes
         });
 
         console.log('Réponse reçue de l\'API AI21:', response.data);
