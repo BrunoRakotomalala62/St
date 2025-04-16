@@ -84,8 +84,11 @@
             box-shadow: 0 4px 15px rgba(255, 51, 83, 0.3);
             transition: all 0.3s ease;
             width: 80%;
-            max-width: 400px;
+            max-width: 300px;
             margin: 0 auto;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
         }
         
         .download-btn:hover {
@@ -176,12 +179,14 @@
                 <p>Chaque chapitre est accompagné d'exemples détaillés et d'exercices corrigés pour vous aider à maîtriser les concepts essentiels.</p>
             </div>
             
-            <div class="download-section">
+            <div class="download-section" style="text-align: center;">
                 <h3 class="file-name">Fichier: Lesona-Maths-TS.pdf</h3>
                 <a href="/Attachement/cours/mathTS/Lesona Maths-TS.pdf" class="download-btn" download="Lesona Maths-TS.pdf">📥 Télécharger le cours complet (PDF)</a>
             </div>
             
-            <button class="back-btn" onclick="window.location.href='/cours/serieS/Cours_serie_S.html'">Retour</button>
+            <div style="text-align: center; width: 100%;">
+                <button class="back-btn" onclick="window.location.href='/cours/serieS/Cours_serie_S.html'" style="margin: 30px auto;">Retour</button>
+            </div>
         </div>
     </main>
 
