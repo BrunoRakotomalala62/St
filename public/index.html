@@ -7,6 +7,60 @@
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown.active .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-item {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            background: transparent;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         /* Styles spécifiques à l'index */
         .hero {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
@@ -621,6 +675,17 @@
         <button class="nav-btn calendar-btn">📅 Calendrier</button>
         <button class="nav-btn autres-btn">🔍 Autres</button>
         <button class="nav-btn chatbot-btn">🤖 Chatbot</button>
+        
+        <div class="dropdown">
+            <button class="nav-btn dropdown-btn">📋 Sélectionner <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-content">
+                <button class="dropdown-item">FRANCAIS</button>
+                <button class="dropdown-item">DIVERS</button>
+                <button class="dropdown-item">CULTURE</button>
+                <button class="dropdown-item">SCIENCES</button>
+            </div>
+        </div>
+        
         <button class="theme-toggle">🌓</button>
     </nav>
 
@@ -883,6 +948,51 @@
 
     <script src="/script.js"></script>
     <script>
+        // Configuration du dropdown dynamique
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            
+            // Toggle dropdown sur mobile
+            dropdown.querySelector('.dropdown-btn').addEventListener('click', function(e) {
+                dropdown.classList.toggle('active');
+                e.stopPropagation();
+            });
+            
+            // Fermer le dropdown quand on clique ailleurs
+            document.addEventListener('click', function() {
+                dropdown.classList.remove('active');
+            });
+            
+            // Action sur les éléments du dropdown
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const selectedOption = this.textContent;
+                    console.log(`Option sélectionnée: ${selectedOption}`);
+                    
+                    // Vous pouvez ajouter ici des actions spécifiques pour chaque option
+                    switch(selectedOption) {
+                        case 'FRANCAIS':
+                            // Action pour FRANCAIS
+                            alert('Section FRANCAIS sélectionnée');
+                            break;
+                        case 'DIVERS':
+                            // Action pour DIVERS
+                            alert('Section DIVERS sélectionnée');
+                            break;
+                        case 'CULTURE':
+                            // Action pour CULTURE
+                            alert('Section CULTURE sélectionnée');
+                            break;
+                        case 'SCIENCES':
+                            // Action pour SCIENCES
+                            alert('Section SCIENCES sélectionnée');
+                            break;
+                    }
+                });
+            });
+        });
+    
         // Ajout d'effet de défilement fluide pour le bouton scroll-down
         document.getElementById('scroll-down').addEventListener('click', () => {
             document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
