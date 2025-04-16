@@ -6,6 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathématiques Terminale S - Site Éducatif</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6c5ce7, #8257e6);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+        
+        main {
+            padding: 20px;
+        }
+        
+        .course-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .course-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .course-description {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        
+        .course-description ul {
+            margin-left: 20px;
+        }
+        
+        .course-description li {
+            margin: 10px 0;
+        }
+        
+        .download-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .file-name {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #ff5353, #ff3377);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 51, 83, 0.3);
+            transition: all 0.3s ease;
+            width: 80%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 51, 83, 0.4);
+        }
+        
+        .back-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -21,13 +114,28 @@
 
     <main>
         <div class="course-content">
-            <h2>Mathématiques - Terminale S</h2>
-            <p>Contenu du cours de mathématiques pour la Terminale S.</p>
+            <h2 class="course-title">Mathématiques - Terminale S</h2>
+            
+            <div class="course-description">
+                <p>Bienvenue dans le cours de Mathématiques pour la Terminale S. Les mathématiques constituent une discipline fondamentale pour les élèves de la série scientifique, ouvrant la voie vers de nombreuses filières d'études supérieures.</p>
+                
+                <p>Ce cours couvre l'ensemble du programme officiel et comprend :</p>
+                
+                <ul>
+                    <li>Les fonctions et leurs limites</li>
+                    <li>Les suites numériques</li>
+                    <li>Le calcul intégral</li>
+                    <li>Les nombres complexes</li>
+                    <li>La géométrie dans l'espace</li>
+                    <li>Les probabilités et statistiques</li>
+                </ul>
+                
+                <p>Chaque chapitre est accompagné d'exemples détaillés et d'exercices corrigés pour vous aider à maîtriser les concepts essentiels.</p>
+            </div>
             
             <div class="download-section">
-                <h3>Télécharger le cours</h3>
-                <p>Cliquez sur le bouton ci-dessous pour télécharger le cours complet au format PDF.</p>
-                <a href="/Attachement/cours/mathTS/Lesona Maths-TS.pdf" class="download-btn" download="Lesona Maths-TS.pdf">Télécharger Lesona Maths-TS.pdf</a>
+                <h3 class="file-name">Fichier: Lesona-Maths-TS.pdf</h3>
+                <a href="/Attachement/cours/mathTS/Lesona Maths-TS.pdf" class="download-btn" download="Lesona Maths-TS.pdf">📥 Télécharger le cours complet (PDF)</a>
             </div>
             
             <button class="back-btn" onclick="window.location.href='/cours/serieS/Cours_serie_S.html'">Retour</button>
