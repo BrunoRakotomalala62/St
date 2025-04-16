@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Artificielle</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: beige;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ai-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .ai-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .ai-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #9900cc, transparent);
+        }
+        
+        .ai-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .ai-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .ai-card {
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .ai-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ai-card-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+        }
+        
+        .ai-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ai-card-title {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .ai-card-body {
+            padding: 1.5rem;
+            text-align: left;
+        }
+        
+        .ai-card-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .ai-card-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .ai-card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        /* Animation spécifique pour le Chatbot */
+        .chatbot-card .ai-card-icon {
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        /* Animation spécifique pour Jamba Large */
+        .jamba-card .ai-card-header {
+            background: linear-gradient(135deg, #FF4500, #FFA500);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jamba-card .ai-card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-container">
+        <h1 class="ai-title">Intelligence Artificielle</h1>
+        <div class="ai-description">
+            Explorez nos outils d'intelligence artificielle avancés pour vous aider dans vos études et vos recherches.
+        </div>
+        
+        <div class="ai-options">
+            <div class="ai-card chatbot-card">
+                <div class="ai-card-header">
+                    <div class="ai-card-icon">🤖</div>
+                    <h2 class="ai-card-title">Chatbot</h2>
+                </div>
+                <div class="ai-card-body">
+                    <div class="ai-card-description">
+                        Notre chatbot intelligent est conçu pour répondre à vos questions, vous aider dans vos devoirs et vous fournir des explications claires sur différents sujets scolaires. Il utilise une technologie avancée pour comprendre vos besoins et vous offrir une assistance personnalisée.
+                    </div>
+                    <button class="ai-card-btn" id="chatbot-btn">Discuter avec le Chatbot</button>
+                </div>
+            </div>
+            
+            <div class="ai-card jamba-card">
+                <div class="ai-card-header">
+                    <div class="ai-card-icon">✨</div>
+                    <h2 class="ai-card-title">Jamba Large</h2>
+                </div>
+                <div class="ai-card-body">
+                    <div class="ai-card-description">
+                        Jamba Large est notre assistant IA avancé, spécialement conçu pour vous aider dans vos tâches d'analyse complexes, de rédaction et de résolution de problèmes. Il utilise des modèles de langage de pointe pour vous offrir des réponses détaillées et personnalisées.
+                    </div>
+                    <button class="ai-card-btn" id="jamba-btn">Explorer Jamba Large</button>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/selectionner/index.html" class="back-btn">← Retour à la sélection</a>
+    </div>
+    
+    <script>
+        document.getElementById('chatbot-btn').addEventListener('click', function() {
+            window.location.href = '/Chatbot/chatbot.html';
+        });
+        
+        document.getElementById('jamba-btn').addEventListener('click', function() {
+            window.location.href = '/selectionner/ai/ai21.html';
+        });
+    </script>
+</body>
+</html>

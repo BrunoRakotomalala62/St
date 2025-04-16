@@ -1,7 +1,6 @@
 const express = require('express');
-const path = require('path');
-const multer = require('multer');
 const app = express();
+const ai21Router = require('./pilot/ai21'); // Added AI21 route
 const gemini = require('./pilot/gemini');
 const horoscopeRouter = require('./pilot/horoscope');
 const tempmailRouter = require('./pilot/tempmail');
@@ -19,6 +18,7 @@ app.use('/api/ohabolana', ohabolanaRouter);
 app.use('/api/translation', translationRouter);
 app.use('/api/tononkira', tononkiraRouter);
 app.use('/api/grammar', grammarRouter); // Added grammar route
+app.use('/api/ai21', ai21Router); // Added AI21 route
 const handleChat = gemini.handleChat;
 
 const upload = multer({
@@ -298,6 +298,14 @@ app.get('/physiqueTA', (req, res) => {
 app.get('/pdfPCTA', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pdfPCTA.html'));
 });
+
+app.get('/ai', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'ai.html'));
+}); // Added route for ai.html
+
+app.get('/ai21', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'selectionner', 'ai', 'ai21.html'));
+}); // Added route for ai21.html
 
 
 const PORT = 5000;

@@ -67,6 +67,30 @@
             background-color: rgba(0, 116, 217, 0.7); /* Bleu */
         }
         
+        .selection-card.ai {
+            background-color: rgba(153, 50, 204, 0.7); /* Violet */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .selection-card.ai::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: pulse 4s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+        
         .selection-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -134,6 +158,11 @@
             <a href="/selectionner/sciences.html" class="selection-card sciences">
                 <div class="selection-icon">🔬</div>
                 <div class="selection-title">SCIENCES</div>
+            </a>
+            
+            <a href="/selectionner/ai.html" class="selection-card ai">
+                <div class="selection-icon">🤖</div>
+                <div class="selection-title"><strong style="color: red;">INTELLIGENCE ARTIFICIELLE</strong></div>
             </a>
         </div>
         
