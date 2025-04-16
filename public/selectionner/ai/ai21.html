@@ -4,237 +4,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jamba Large - IA Avancée</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Jamba Large - Assistant IA</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #8A2BE2, #4B0082);
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
             color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
+            overflow: hidden;
+            height: 100vh;
         }
         
         .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+            position: fixed;
             top: 0;
             left: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out;
-            opacity: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjtvcGFjaXR5OjAuMzt9PC9zdHlsZT48L2RlZnM+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSI1MCIgY3k9IjUwIiByPSIwLjUiLz48L3N2Zz4=');
+            animation: twinkle 10s linear infinite;
         }
         
         @keyframes twinkle {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
         }
         
         .jamba-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-            flex: 1;
+            padding: 20px;
+            height: 100%;
             display: flex;
             flex-direction: column;
         }
         
         .jamba-header {
             text-align: center;
-            padding: 2rem 0;
-            animation: fadeInDown 1s ease-out;
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         
         .jamba-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #FFC107, #FF5722);
+            margin: 0;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #ffffff, #b3e0ff);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
         .jamba-subtitle {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            opacity: 0.9;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.5;
         }
         
         .jamba-chat {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: rgba(30, 30, 40, 0.7);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-out 0.5s both;
-            margin-bottom: 2rem;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         
         .chat-messages {
             flex: 1;
-            padding: 2rem;
             overflow-y: auto;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            min-height: 300px;
-            max-height: 500px;
+            gap: 10px;
         }
         
         .message {
-            padding: 1rem;
-            border-radius: 15px;
             max-width: 80%;
-            animation: fadeIn 0.5s ease-out;
+            padding: 12px 16px;
+            border-radius: 18px;
+            animation: fadeIn 0.3s ease-out;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .user-message {
-            background: rgba(255, 255, 255, 0.2);
+            background-color: #2979ff;
+            color: white;
             align-self: flex-end;
-            margin-left: auto;
+            border-bottom-right-radius: 5px;
         }
         
         .bot-message {
-            background: rgba(255, 255, 255, 0.1);
+            background-color: #424242;
+            color: white;
             align-self: flex-start;
-            margin-right: auto;
+            border-bottom-left-radius: 5px;
         }
         
         .chat-input {
             display: flex;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.2);
-            gap: 1rem;
-            align-items: center;
+            padding: 15px;
+            background: rgba(20, 20, 30, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .message-input {
             flex: 1;
-            padding: 1rem 1.5rem;
+            padding: 12px 15px;
             border: none;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             font-size: 1rem;
             outline: none;
-            transition: all 0.3s;
+            transition: background 0.3s;
         }
         
         .message-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.5);
         }
         
         .message-input:focus {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
         
-        .send-btn {
-            padding: 1rem 2rem;
+        .send-button {
+            margin-left: 10px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             border: none;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #FFC107, #FF5722);
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         
-        .send-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+        .send-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
         
-        .send-icon {
-            font-size: 1.2rem;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            align-self: center;
-            transition: all 0.3s;
-            margin-top: auto;
-        }
-        
-        .back-btn:hover {
-            background: rgba(0, 0, 0, 0.5);
-            transform: translateY(-3px);
+        .send-button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
         }
         
         .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-left: 10px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            display: none;
+            align-self: flex-start;
+            background-color: #424242;
+            padding: 10px 15px;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+            margin-bottom: 10px;
         }
         
         .typing-indicator.active {
-            opacity: 1;
+            display: flex;
         }
         
         .typing-dot {
             width: 8px;
             height: 8px;
-            background: white;
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
+            margin: 0 3px;
+            animation: typingAnimation 1.5s infinite ease-in-out;
         }
         
         .typing-dot:nth-child(1) {
-            animation: bounce 1s infinite 0.1s;
+            animation-delay: 0s;
         }
         
         .typing-dot:nth-child(2) {
-            animation: bounce 1s infinite 0.2s;
+            animation-delay: 0.3s;
         }
         
         .typing-dot:nth-child(3) {
-            animation: bounce 1s infinite 0.3s;
+            animation-delay: 0.6s;
         }
         
-        @keyframes bounce {
+        @keyframes typingAnimation {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* Lien de retour vers la page AI principale */
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover {
+            color: white;
+        }
+        
+        /* Version mobile responsive */
+        @media (max-width: 768px) {
+            .jamba-container {
+                padding: 10px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
         }
     </style>
 </head>
@@ -254,129 +249,101 @@
                 </div>
             </div>
             
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+            
             <div class="chat-input">
-                <input type="text" class="message-input" id="message-input" placeholder="Posez votre question ici...">
-                <div class="typing-indicator" id="typing-indicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-                <button class="send-btn" id="send-btn">
-                    <span>Envoyer</span>
-                    <span class="send-icon">➤</span>
+                <input type="text" class="message-input" id="message-input" placeholder="Posez votre question ici..." autofocus>
+                <button class="send-button" id="send-button">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
                 </button>
             </div>
         </div>
         
-        <a href="/selectionner/ai.html" class="back-btn">← Retour aux options d'IA</a>
+        <a href="/selectionner/ai.html" class="back-link">← Retour aux options d'IA</a>
     </div>
     
     <script>
-        // Génération des étoiles animées pour le fond
         document.addEventListener('DOMContentLoaded', function() {
-            const stars = document.querySelector('.stars');
-            const starCount = 100;
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            const chatMessages = document.getElementById('chat-messages');
+            const typingIndicator = document.getElementById('typing-indicator');
             
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Taille aléatoire
-                const size = Math.random() * 3 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                
-                // Position aléatoire
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                
-                // Durée d'animation aléatoire
-                const duration = `${Math.random() * 3 + 2}s`;
-                star.style.setProperty('--duration', duration);
-                
-                // Délai de départ aléatoire
-                star.style.animationDelay = `${Math.random() * 5}s`;
-                
-                stars.appendChild(star);
+            // Generer un ID de conversation unique
+            let uid = Date.now().toString();
+            
+            // Fonction pour ajouter un message à la conversation
+            function addMessage(content, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', isUser ? 'user-message' : 'bot-message');
+                messageDiv.textContent = content;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-        });
-        
-        // Logique de chat
-        const messageInput = document.getElementById('message-input');
-        const sendBtn = document.getElementById('send-btn');
-        const chatMessages = document.getElementById('chat-messages');
-        const typingIndicator = document.getElementById('typing-indicator');
-        
-        // ID de conversation unique
-        let uid = Date.now().toString();
-        
-        // Fonction pour ajouter un message à la conversation
-        function addMessage(content, isUser = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', isUser ? 'user-message' : 'bot-message');
-            messageDiv.textContent = content;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-        
-        // Fonction pour envoyer un message à l'API et afficher la réponse
-        async function sendMessage() {
-            const message = messageInput.value.trim();
-            if (!message) return;
             
-            // Ajouter le message de l'utilisateur
-            addMessage(message, true);
-            messageInput.value = '';
-            
-            // Afficher l'indicateur de saisie
-            typingIndicator.classList.add('active');
-            
-            try {
-                console.log(`Envoi de la requête: ${message} avec uid ${uid}`);
+            // Fonction pour envoyer un message à l'API et afficher la réponse
+            async function sendMessage() {
+                const message = messageInput.value.trim();
+                if (!message) return;
                 
-                // Envoyer la requête à l'API en utilisant POST
-                const response = await fetch(`/api/ai21/ai21`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        prompt: message,
-                        uid: uid
-                    })
-                });
+                // Ajouter le message de l'utilisateur
+                addMessage(message, true);
+                messageInput.value = '';
                 
-                console.log('Statut de la réponse:', response.status);
-                const data = await response.json();
-                console.log('Données reçues:', data);
+                // Afficher l'indicateur de saisie
+                typingIndicator.classList.add('active');
                 
-                // Mettre à jour l'ID de conversation si nécessaire
-                if (data.conversation_id) {
-                    uid = data.conversation_id;
+                try {
+                    console.log(`Envoi de la requête: ${message} avec uid ${uid}`);
+                    
+                    // Envoyer la requête à l'API en utilisant POST
+                    const response = await fetch('/api/ai21/ai21', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            prompt: message,
+                            uid: uid
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    console.log('Réponse reçue:', data);
+                    
+                    // Masquer l'indicateur de saisie
+                    typingIndicator.classList.remove('active');
+                    
+                    if (data.error) {
+                        // Afficher le message d'erreur
+                        addMessage(`Erreur: ${data.message || data.error}`, false);
+                    } else {
+                        // Afficher la réponse du bot
+                        addMessage(data.message, false);
+                    }
+                    
+                } catch (error) {
+                    console.error('Erreur lors de l\'envoi du message:', error);
+                    typingIndicator.classList.remove('active');
+                    addMessage("Désolé, une erreur s'est produite lors de la communication avec le serveur. Veuillez réessayer plus tard.", false);
                 }
-                
-                // Masquer l'indicateur de saisie
-                typingIndicator.classList.remove('active');
-                
-                // Ajouter la réponse du bot
-                addMessage(data.message);
-                
-            } catch (error) {
-                console.error('Erreur:', error);
-                typingIndicator.classList.remove('active');
-                addMessage('Désolé, une erreur s\'est produite lors de la communication avec l\'API: ' + error.message, false);
-                // Affichage d'instructions de dépannage
-                addMessage('Vérifiez la console pour plus de détails. Assurez-vous que le serveur fonctionne correctement.', false);
             }
-        }
-        
-        // Écouteurs d'événements
-        sendBtn.addEventListener('click', sendMessage);
-        
-        messageInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+            
+            // Envoyer le message lorsque l'utilisateur clique sur le bouton d'envoi
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Envoyer le message lorsque l'utilisateur appuie sur Entrée
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
         });
     </script>
 </body>
