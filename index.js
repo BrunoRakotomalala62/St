@@ -9,6 +9,8 @@ const quizRouter = require('./pilot/quiz');
 const ohabolanaRouter = require('./pilot/ohabolana');
 const translationRouter = require('./pilot/translation');
 const tononkiraRouter = require('./pilot/tononkira');
+const grammarRouter = require('./pilot/grammar'); // Added grammar route
+
 
 app.use('/api/horoscope', horoscopeRouter);
 app.use('/api/tempmail', tempmailRouter);
@@ -16,6 +18,7 @@ app.use('/api/quiz', quizRouter);
 app.use('/api/ohabolana', ohabolanaRouter);
 app.use('/api/translation', translationRouter);
 app.use('/api/tononkira', tononkiraRouter);
+app.use('/api/grammar', grammarRouter); // Added grammar route
 const handleChat = gemini.handleChat;
 
 const upload = multer({
@@ -57,36 +60,6 @@ app.get('/educmad', (req, res) => {
 });
 
 app.get('/cours', (req, res) => {
-
-app.get('/exercices/exercice/baccBlanc.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccBlanc.html'));
-});
-
-app.get('/exercices/exercice/baccblanc/mathematiques.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/mathematiques.html'));
-});
-
-app.get('/exercices/exercice/baccblanc/physique.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/physique.html'));
-});
-
-app.get('/exercices/exercice/baccblanc/physique2.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/physique2.html'));
-});
-
-app.get('/exercices/exercice/baccblanc/mathematiques2.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/mathematiques2.html'));
-});
-
-app.get('/exercices/exercice/bepcBlanc.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/bepcBlanc.html'));
-});
-
-app.get('/exercices/exercice/bepcBlanc/physique.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/bepcBlanc/physique.html'));
-});
-
-
   res.sendFile(path.join(__dirname, 'public', 'cours/cours.html'));
 });
 
@@ -152,6 +125,34 @@ app.get('/cours/malagasy3eme', (req, res) => {
 
 app.get('/cours/malagasy4eme', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours', 'malagasy4eme', 'malagasy4eme.html'));
+});
+
+app.get('/exercices/exercice/baccBlanc.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccBlanc.html'));
+});
+
+app.get('/exercices/exercice/baccblanc/mathematiques.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/mathematiques.html'));
+});
+
+app.get('/exercices/exercice/baccblanc/physique.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/physique.html'));
+});
+
+app.get('/exercices/exercice/baccblanc/physique2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/physique2.html'));
+});
+
+app.get('/exercices/exercice/baccblanc/mathematiques2.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/baccblanc/mathematiques2.html'));
+});
+
+app.get('/exercices/exercice/bepcBlanc.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/bepcBlanc.html'));
+});
+
+app.get('/exercices/exercice/bepcBlanc/physique.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercices/exercice/bepcBlanc/physique.html'));
 });
 
 
