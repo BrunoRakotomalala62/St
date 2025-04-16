@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section SCIENCES</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .science-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .science-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .science-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .science-header {
+            background: rgba(0, 116, 217, 0.7); /* Bleu - couleur SCIENCES */
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .science-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .science-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .science-body {
+            padding: 1.5rem;
+        }
+        
+        .science-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .science-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #0083B0, #00B4DB);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .science-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Section SCIENCES</h1>
+            <div class="subtitle">Explorez l'univers des sciences et des technologies</div>
+        </div>
+        
+        <div class="science-grid">
+            <div class="science-card">
+                <div class="science-header">
+                    <div class="science-icon">🧪</div>
+                    <h2 class="science-title">Physique-Chimie</h2>
+                </div>
+                <div class="science-body">
+                    <div class="science-description">
+                        Découvrez nos ressources en physique et chimie pour tous les niveaux, du collège au lycée avec des exercices interactifs.
+                    </div>
+                    <a href="/cours/3eme/coursPhysique3eme.html" class="science-btn">Explorer</a>
+                </div>
+            </div>
+            
+            <div class="science-card">
+                <div class="science-header">
+                    <div class="science-icon">🧮</div>
+                    <h2 class="science-title">Mathématiques</h2>
+                </div>
+                <div class="science-body">
+                    <div class="science-description">
+                        Apprenez les mathématiques de manière ludique et intuitive avec nos cours et exercices adaptés à tous les niveaux.
+                    </div>
+                    <a href="/cours/serieS/mathTS/mathTS.html" class="science-btn">Explorer</a>
+                </div>
+            </div>
+            
+            <div class="science-card">
+                <div class="science-header">
+                    <div class="science-icon">💻</div>
+                    <h2 class="science-title">Informatique</h2>
+                </div>
+                <div class="science-body">
+                    <div class="science-description">
+                        Initiez-vous à la programmation et aux sciences informatiques avec nos tutoriels et projets pratiques.
+                    </div>
+                    <button class="science-btn">Bientôt disponible</button>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="back-btn">← Retour à l'accueil</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service de Correction - FRANCAIS</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            width: 600px;
+            margin: 2rem;
+            animation: fadeIn 1s ease-out;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #f9d423, #e14fad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .service-description {
+            opacity: 0.8;
+        }
+        
+        .correction-form {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        input, select, button, textarea {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        select {
+            background-color: white;
+            color: #333;
+        }
+        
+        button {
+            background: linear-gradient(to right, #f857a6, #ff5858);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .result-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .label {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .text-box {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+            text-align: left;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        
+        .nav-link {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.4);
+            font-weight: bold;
+        }
+        
+        .sparkle {
+            position: relative;
+        }
+        
+        .sparkle::before, .sparkle::after {
+            content: "✨";
+            position: absolute;
+            font-size: 1.5rem;
+        }
+        
+        .sparkle::before {
+            top: -10px;
+            left: -15px;
+            animation: sparkleAnimation 2s infinite;
+        }
+        
+        .sparkle::after {
+            bottom: -10px;
+            right: -15px;
+            animation: sparkleAnimation 3s infinite 1s;
+        }
+        
+        @keyframes sparkleAnimation {
+            0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+            100% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .back-btn {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="sparkle">✨ Correction de Texte Français ✨</h1>
+        
+        <div class="nav-links">
+            <a href="/selectionner/francais.html" class="nav-link active">Correction de Texte</a>
+            <a href="/selectionner/grammaire.html" class="nav-link">Correction Grammaticale</a>
+        </div>
+        
+        <div class="correction-form">
+            <form id="correction-form">
+                <textarea id="texte-input" placeholder="Entrez votre texte à corriger" required></textarea>
+                <select id="langue-select">
+                    <option value="fr" selected>Français</option>
+                    <option value="en">Anglais</option>
+                    <option value="es">Espagnol</option>
+                    <option value="de">Allemand</option>
+                    <option value="it">Italien</option>
+                </select>
+                <button type="submit">Corriger le texte</button>
+            </form>
+        </div>
+        
+        <div id="result-card" class="result-card">
+            <div class="label">Langue détectée</div>
+            <div id="langue-detectee" class="language-badge">Français</div>
+            
+            <div class="label">Texte original</div>
+            <div id="texte-original" class="text-box"></div>
+            
+            <div class="label">Texte corrigé</div>
+            <div id="texte-corrige" class="text-box"></div>
+        </div>
+        
+        <a href="/" class="back-btn">Retour à l'accueil</a>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('correction-form');
+            const resultCard = document.getElementById('result-card');
+            const texteOriginal = document.getElementById('texte-original');
+            const texteCorrige = document.getElementById('texte-corrige');
+            const langueDetectee = document.getElementById('langue-detectee');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const texte = document.getElementById('texte-input').value;
+                const langue = document.getElementById('langue-select').value;
+                
+                if (!texte) return;
+                
+                // Pour la démo, on simule une correction
+                texteOriginal.textContent = texte;
+                
+                // Simulation d'une correction
+                let correction = texte;
+                if (texte.includes('sui')) {
+                    correction = texte.replace('sui', 'suis');
+                }
+                if (texte.includes('je est')) {
+                    correction = texte.replace('je est', 'je suis');
+                }
+                
+                texteCorrige.textContent = correction;
+                resultCard.style.display = 'block';
+                
+                // Faire défiler jusqu'au résultat
+                resultCard.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

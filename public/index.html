@@ -42,12 +42,29 @@
             width: 100%;
             cursor: pointer;
             font-size: 14px;
+            font-weight: bold;
             transition: all 0.2s;
         }
 
         .dropdown-item:hover {
             background-color: rgba(255, 255, 255, 0.2);
             transform: translateX(5px);
+        }
+        
+        .dropdown-item.francais {
+            background-color: rgba(46, 204, 64, 0.7); /* Vert */
+        }
+        
+        .dropdown-item.divers {
+            background-color: rgba(255, 65, 54, 0.7); /* Rouge */
+        }
+        
+        .dropdown-item.culture {
+            background-color: rgba(255, 133, 27, 0.7); /* Orange */
+        }
+        
+        .dropdown-item.sciences {
+            background-color: rgba(0, 116, 217, 0.7); /* Bleu */
         }
 
         .dropdown-btn {
@@ -679,10 +696,10 @@
         <div class="dropdown">
             <button class="nav-btn dropdown-btn">📋 Sélectionner <i class="fas fa-chevron-down"></i></button>
             <div class="dropdown-content">
-                <button class="dropdown-item">FRANCAIS</button>
-                <button class="dropdown-item">DIVERS</button>
-                <button class="dropdown-item">CULTURE</button>
-                <button class="dropdown-item">SCIENCES</button>
+                <button class="dropdown-item francais" data-page="francais">FRANCAIS</button>
+                <button class="dropdown-item divers" data-page="divers">DIVERS</button>
+                <button class="dropdown-item culture" data-page="culture">CULTURE</button>
+                <button class="dropdown-item sciences" data-page="sciences">SCIENCES</button>
             </div>
         </div>
         
@@ -968,27 +985,11 @@
             dropdownItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const selectedOption = this.textContent;
+                    const pageTarget = this.dataset.page;
                     console.log(`Option sélectionnée: ${selectedOption}`);
                     
-                    // Vous pouvez ajouter ici des actions spécifiques pour chaque option
-                    switch(selectedOption) {
-                        case 'FRANCAIS':
-                            // Action pour FRANCAIS
-                            alert('Section FRANCAIS sélectionnée');
-                            break;
-                        case 'DIVERS':
-                            // Action pour DIVERS
-                            alert('Section DIVERS sélectionnée');
-                            break;
-                        case 'CULTURE':
-                            // Action pour CULTURE
-                            alert('Section CULTURE sélectionnée');
-                            break;
-                        case 'SCIENCES':
-                            // Action pour SCIENCES
-                            alert('Section SCIENCES sélectionnée');
-                            break;
-                    }
+                    // Redirection vers la page correspondante
+                    window.location.href = `/selectionner/${pageTarget}.html`;
                 });
             });
         });

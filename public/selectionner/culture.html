@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section CULTURE</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .culture-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .culture-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .culture-header {
+            background: rgba(255, 133, 27, 0.7); /* Orange - couleur CULTURE */
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .culture-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .culture-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .culture-body {
+            padding: 1.5rem;
+        }
+        
+        .culture-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .culture-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #ff8a00, #e52e71);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .culture-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Section CULTURE</h1>
+            <div class="subtitle">Explorez la richesse culturelle malgache et internationale</div>
+        </div>
+        
+        <div class="culture-grid">
+            <div class="culture-card">
+                <div class="culture-header">
+                    <div class="culture-icon">🎭</div>
+                    <h2 class="culture-title">Art et Traditions</h2>
+                </div>
+                <div class="culture-body">
+                    <div class="culture-description">
+                        Découvrez les traditions, l'art et l'artisanat malgache à travers notre collection d'articles et de ressources.
+                    </div>
+                    <a href="/autres/Kabary/kabary.html" class="culture-btn">Explorer</a>
+                </div>
+            </div>
+            
+            <div class="culture-card">
+                <div class="culture-header">
+                    <div class="culture-icon">🎵</div>
+                    <h2 class="culture-title">Musique et Chansons</h2>
+                </div>
+                <div class="culture-body">
+                    <div class="culture-description">
+                        Plongez dans l'univers musical malgache avec notre bibliothèque de chansons et paroles traditionnelles.
+                    </div>
+                    <a href="/autres/tononkira/tononkira.html" class="culture-btn">Écouter</a>
+                </div>
+            </div>
+            
+            <div class="culture-card">
+                <div class="culture-header">
+                    <div class="culture-icon">📚</div>
+                    <h2 class="culture-title">Littérature et Poésie</h2>
+                </div>
+                <div class="culture-body">
+                    <div class="culture-description">
+                        Explorez la richesse de la littérature malgache à travers des œuvres emblématiques et des analyses littéraires.
+                    </div>
+                    <button class="culture-btn">Bientôt disponible</button>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="back-btn">← Retour à l'accueil</a>
+    </div>
+</body>
+</html>
