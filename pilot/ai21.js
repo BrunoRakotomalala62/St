@@ -36,8 +36,38 @@ router.get('/ai21', async (req, res) => {
         // Vérifier si nous avons une réponse prédéfinie pour ce prompt
         let message = responses[prompt.toLowerCase()];
 
-        // Si pas de réponse prédéfinie, essayer d'appeler l'API externe
+        // Si pas de réponse prédéfinie, utiliser une réponse par défaut
         if (!message) {
+            // Désactiver temporairement l'appel à l'API externe car elle ne répond pas correctement
+            // Utiliser à la place des réponses plus conversationnelles
+
+            const defaultResponses = {
+                "bonsoir": "Bonsoir! Comment puis-je vous aider ce soir ?",
+                "bonjour": "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
+                "salut": "Salut ! Que puis-je faire pour vous ?",
+                "comment ça va": "Je vais très bien, merci ! Comment puis-je vous aider ?",
+                "tu fais quoi": "Je suis ici pour répondre à vos questions et vous aider dans vos recherches. Que souhaitez-vous savoir ?",
+                "qui es-tu": "Je suis Jamba, un assistant virtuel conçu pour vous aider dans vos études. Je peux répondre à vos questions sur différents sujets académiques.",
+                "merci": "Je vous en prie ! N'hésitez pas si vous avez d'autres questions.",
+                "au revoir": "Au revoir ! J'espère avoir pu vous aider. À bientôt !"
+            };
+
+            // Chercher si le message contient l'un des mots clés
+            const lowerPrompt = prompt.toLowerCase();
+            for (const key in defaultResponses) {
+                if (lowerPrompt.includes(key)) {
+                    message = defaultResponses[key];
+                    break;
+                }
+            }
+
+            // Si aucune correspondance trouvée, utiliser une réponse générique
+            if (!message) {
+                message = "Intéressant ! Pourriez-vous m'en dire plus ? Je suis là pour vous aider dans vos recherches et répondre à vos questions.";
+            }
+
+            /*
+            // Code de l'API externe temporairement commenté
             try {
                 const externalResponse = await axios({
                     method: 'get',
@@ -58,6 +88,7 @@ router.get('/ai21', async (req, res) => {
                 console.error("Erreur API externe:", apiError.message);
                 message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
             }
+            */
         }
 
         // Renvoyer la réponse au client
@@ -109,8 +140,38 @@ router.post('/ai21', async (req, res) => {
         // Vérifier si nous avons une réponse prédéfinie pour ce prompt
         let message = responses[prompt.toLowerCase()];
 
-        // Si pas de réponse prédéfinie, essayer d'appeler l'API externe
+        // Si pas de réponse prédéfinie, utiliser une réponse par défaut
         if (!message) {
+            // Désactiver temporairement l'appel à l'API externe car elle ne répond pas correctement
+            // Utiliser à la place des réponses plus conversationnelles
+
+            const defaultResponses = {
+                "bonsoir": "Bonsoir! Comment puis-je vous aider ce soir ?",
+                "bonjour": "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
+                "salut": "Salut ! Que puis-je faire pour vous ?",
+                "comment ça va": "Je vais très bien, merci ! Comment puis-je vous aider ?",
+                "tu fais quoi": "Je suis ici pour répondre à vos questions et vous aider dans vos recherches. Que souhaitez-vous savoir ?",
+                "qui es-tu": "Je suis Jamba, un assistant virtuel conçu pour vous aider dans vos études. Je peux répondre à vos questions sur différents sujets académiques.",
+                "merci": "Je vous en prie ! N'hésitez pas si vous avez d'autres questions.",
+                "au revoir": "Au revoir ! J'espère avoir pu vous aider. À bientôt !"
+            };
+
+            // Chercher si le message contient l'un des mots clés
+            const lowerPrompt = prompt.toLowerCase();
+            for (const key in defaultResponses) {
+                if (lowerPrompt.includes(key)) {
+                    message = defaultResponses[key];
+                    break;
+                }
+            }
+
+            // Si aucune correspondance trouvée, utiliser une réponse générique
+            if (!message) {
+                message = "Intéressant ! Pourriez-vous m'en dire plus ? Je suis là pour vous aider dans vos recherches et répondre à vos questions.";
+            }
+
+            /*
+            // Code de l'API externe temporairement commenté
             try {
                 const externalResponse = await axios({
                     method: 'get',
@@ -131,6 +192,7 @@ router.post('/ai21', async (req, res) => {
                 console.error("Erreur API externe:", apiError.message);
                 message = "Je suis désolé, mais je ne peux pas traiter votre demande pour le moment. Pourriez-vous essayer à nouveau plus tard?";
             }
+            */
         }
 
         // Renvoyer la réponse au client
