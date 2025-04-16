@@ -30,10 +30,9 @@
     {
       "src": "/script.js",
       "dest": "/public/script.js"
-    },
-    {
-      "src": "/public/(.*)",
-      "dest": "/public/autres/$1"
+    },{
+      "src": "/autres/quiz.html",
+      "dest": "/public/autres/quiz.html"
     },
     {
       "src": "/profil2.jpg",
