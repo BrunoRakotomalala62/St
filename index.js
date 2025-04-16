@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const multer = require('multer');
+const path = require('path');
 const ai21Router = require('./pilot/ai21'); // Added AI21 route
 const gemini = require('./pilot/gemini');
 const horoscopeRouter = require('./pilot/horoscope');
