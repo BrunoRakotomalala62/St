@@ -1,19 +1,21 @@
-
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-// Fonction pour récupérer une réponse de l'API AI21
-async function getAI21Response(prompt, uid) {
+// Fonction pour appeler l'API AI21
+async function fetchAI21Response(prompt, uid) {
   try {
     // Appel à l'API AI21
-    const response = await axios.get(`https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${uid || '123'}`);
-    
-    // Renvoyer les données de la réponse
+    const response = await axios.get(`https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${uid}`);
+
+    // Retourner les données de l'API
     return response.data;
   } catch (error) {
     console.error('Erreur lors de l\'appel à l\'API AI21:', error);
-    throw error;
+    return { 
+      error: "Une erreur s'est produite lors de la communication avec l'API AI21.",
+      details: error.message 
+    };
   }
 }
 
@@ -27,7 +29,7 @@ router.get('/', async (req, res) => {
     }
     
     // Utiliser la fonction pour obtenir une réponse
-    const response = await getAI21Response(prompt, uid);
+    const response = await fetchAI21Response(prompt, uid);
     
     // Renvoyer la réponse au client
     res.json(response);
@@ -41,6 +43,5 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Exporter à la fois le router et la fonction
+// Exporter le router
 module.exports = router;
-module.exports.getAI21Response = getAI21Response;

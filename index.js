@@ -320,17 +320,17 @@ const ai21Module = require('./pilot/ai21');
 app.get('/api/ai21', async (req, res) => {
   try {
     const { prompt, uid } = req.query;
-    
+
     if (!prompt) {
       return res.status(400).json({ error: 'Le prompt est requis' });
     }
-    
+
     // Utiliser le module AI21 pour obtenir une réponse
     const response = await ai21Module.getAI21Response(prompt, uid);
-    
+
     // Renvoyer la réponse au client
     res.json(response);
-    
+
   } catch (error) {
     console.error('Erreur lors de l\'appel à l\'API AI21:', error);
     res.status(500).json({ 
@@ -344,23 +344,23 @@ app.get('/api/ai21', async (req, res) => {
 app.get('/api/ai21/test', async (req, res) => {
   try {
     const { prompt, uid } = req.query;
-    
+
     if (!prompt) {
       return res.status(400).json({ error: 'Le prompt est requis' });
     }
-    
+
     // ID de conversation (utiliser celui fourni ou en générer un nouveau)
     const conversationId = uid || Date.now().toString();
-    
+
     // Appel à l'API AI21
     const response = await axios.post(`https://ai21.vercel.app/ai21`, {
       prompt: prompt,
       uid: conversationId
     });
-    
+
     // Renvoyer la réponse au client
     res.json(response.data);
-    
+
   } catch (error) {
     console.error('Erreur lors de l\'appel à l\'API AI21:', error);
     res.status(500).json({ 
