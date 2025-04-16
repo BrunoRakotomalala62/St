@@ -1,15 +1,16 @@
 
 const express = require('express');
-const axios = require('axios');
 const router = express.Router();
+const axios = require('axios');
 
-// Middleware pour parser le JSON dans les requêtes
+// Configuration du middleware pour parser JSON
 router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
-// Route pour traiter les requêtes AI21 (POST)
-router.post('/ai21', async (req, res) => {
+// Route GET pour traiter les requêtes AI21
+router.get('/ai21', async (req, res) => {
     try {
-        const { prompt, uid } = req.body;
+        const { prompt, uid } = req.query;
         
         if (!prompt) {
             return res.status(400).json({ 
@@ -48,10 +49,10 @@ router.post('/ai21', async (req, res) => {
     }
 });
 
-// Route pour traiter les requêtes AI21 (GET)
-router.get('/ai21', async (req, res) => {
+// Route POST pour traiter les requêtes AI21
+router.post('/ai21', async (req, res) => {
     try {
-        const { prompt, uid } = req.query;
+        const { prompt, uid } = req.body;
         
         if (!prompt) {
             return res.status(400).json({ 
@@ -65,7 +66,7 @@ router.get('/ai21', async (req, res) => {
         
         console.log(`Envoi de la requête à AI21 avec prompt: "${prompt}" et uid: ${conversationId}`);
         
-        // Appel direct à l'API AI21 avec les bons paramètres
+        // Appel à l'API AI21
         const response = await axios.get('https://ai21.vercel.app/ai21', {
             params: {
                 prompt: prompt,
