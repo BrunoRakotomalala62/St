@@ -45,7 +45,7 @@ router.post('/check', async (req, res) => {
         
         // Traitement de la réponse de l'API
         if (apiResponse.data && apiResponse.data.status) {
-            const errors = apiResponse.data.errors || [];
+            const errors = apiResponse.data.response?.errors || [];
             
             // Construction de la réponse formatée
             let correctedText = text;
@@ -53,14 +53,17 @@ router.post('/check', async (req, res) => {
             
             // Traitement des erreurs et corrections
             errors.forEach(error => {
+                const description = error.description?.en || 'Erreur grammaticale';
+                
                 formattedErrors.push({
-                    message: error.description || 'Erreur grammaticale',
+                    message: description,
                     text: error.bad || '',
                     suggestions: error.better || []
                 });
                 
                 // Application des corrections si disponibles
                 if (error.bad && error.better && error.better.length > 0) {
+                    // Remplacement du texte incorrect par la suggestion
                     correctedText = correctedText.replace(error.bad, error.better[0]);
                 }
             });
