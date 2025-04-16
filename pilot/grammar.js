@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
+// Middleware pour parser le JSON dans les requêtes
+router.use(express.json());
+
 // Endpoint pour vérifier la grammaire d'un texte
 router.post('/check', async (req, res) => {
     try {

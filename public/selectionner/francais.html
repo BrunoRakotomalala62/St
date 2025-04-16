@@ -295,10 +295,11 @@
                     // Utilisation des résultats de l'API
                     texteCorrige.textContent = result.corrected;
 
-                    langueDetectee.textContent = langue === 'fr' ? 'Français' :
-                        langue === 'en' ? 'Anglais' :
-                        langue === 'es' ? 'Espagnol' :
-                        langue === 'de' ? 'Allemand' : 'Italien';
+                    // Afficher la langue correspondant à la valeur sélectionnée
+                    langueDetectee.textContent = result.language === 'fr' ? 'Français' :
+                        result.language === 'en' ? 'Anglais' :
+                        result.language === 'es' ? 'Espagnol' :
+                        result.language === 'de' ? 'Allemand' : 'Italien';
 
                     resultCard.style.display = 'block';
                     resultCard.scrollIntoView({ behavior: 'smooth' });
