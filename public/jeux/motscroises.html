@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mots Croisés - EDUCMAD</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .crossword-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .crossword-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            grid-template-rows: repeat(10, 40px);
+            gap: 1px;
+            margin: 30px auto;
+            width: fit-content;
+        }
+        
+        .cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: white;
+        }
+        
+        .cell.black {
+            background-color: #333;
+        }
+        
+        .cell-number {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .cell input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: transparent;
+        }
+        
+        .clues-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .clues {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+        
+        .clues h3 {
+            border-bottom: 2px solid #2a2a72;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .clue-item {
+            margin-bottom: 10px;
+        }
+        
+        .theme-select {
+            margin-bottom: 20px;
+        }
+        
+        .theme-select select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .game-button {
+            background: linear-gradient(145deg, #2a2a72, #009ffd);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .game-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn back-btn" onclick="window.location.href='/jeux/game.html'">↩️ Jeux</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="crossword-container">
+        <h1>🎮 Mots Croisés Éducatifs</h1>
+        <p>Améliorez votre vocabulaire avec nos grilles de mots croisés thématiques adaptées à tous les niveaux.</p>
+        
+        <div class="theme-select">
+            <label for="theme-dropdown">Choisissez un thème: </label>
+            <select id="theme-dropdown" onchange="changeTheme()">
+                <option value="sciences">Sciences</option>
+                <option value="geographie">Géographie</option>
+                <option value="histoire">Histoire</option>
+                <option value="litterature">Littérature</option>
+            </select>
+        </div>
+        
+        <div id="crossword-grid" class="crossword-grid">
+            <!-- Les cellules seront générées par JavaScript -->
+        </div>
+        
+        <div class="clues-container">
+            <div class="clues" id="horizontal-clues">
+                <h3>Horizontal</h3>
+                <!-- Les indices horizontaux seront générés par JavaScript -->
+            </div>
+            <div class="clues" id="vertical-clues">
+                <h3>Vertical</h3>
+                <!-- Les indices verticaux seront générés par JavaScript -->
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button class="game-button" onclick="checkAnswers()">Vérifier</button>
+            <button class="game-button" onclick="resetGrid()">Réinitialiser</button>
+            <button class="game-button" onclick="showSolution()">Solution</button>
+        </div>
+        
+        <div class="success-message" id="success-message">
+            Félicitations ! Vous avez complété la grille correctement !
+        </div>
+    </main>
+
+    <script>
+        // Définition des thèmes de mots croisés
+        const themes = {
+            sciences: {
+                grid: [
+                    [1, 2, 3, 4, 0, 5, 6, 7, 8, 9],
+                    [10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [11, 0, 0, 0, 12, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [13, 0, 0, 14, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 15, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [16, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [17, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                words: {
+                    horizontal: [
+                        { num: 1, clue: "Changement d'état de la matière du solide au liquide", answer: "FUSION" },
+                        { num: 10, clue: "Particule élémentaire de charge négative", answer: "ELECTRON" },
+                        { num: 11, clue: "Élément chimique de symbole H", answer: "HYDROGENE" },
+                        { num: 13, clue: "Loi fondamentale de la physique F=m×a", answer: "NEWTON" },
+                        { num: 16, clue: "Théorie de l'évolution des espèces", answer: "DARWIN" },
+                        { num: 17, clue: "Corps céleste qui orbite autour d'une planète", answer: "SATELLITE" }
+                    ],
+                    vertical: [
+                        { num: 2, clue: "Science qui étudie les êtres vivants", answer: "BIOLOGIE" },
+                        { num: 5, clue: "Réaction qui produit de l'énergie dans le soleil", answer: "FUSION" },
+                        { num: 7, clue: "Maladie causée par un virus", answer: "VIROSE" },
+                        { num: 12, clue: "Table des éléments chimiques", answer: "MENDELEIEV" },
+                        { num: 14, clue: "Onde invisible pour l'œil humain", answer: "INFRAROUGE" },
+                        { num: 15, clue: "Système stellaire dont fait partie la Terre", answer: "SOLAIRE" }
+                    ]
+                }
+            },
+            geographie: {
+                grid: [
+                    [1, 0, 2, 0, 3, 4, 0, 5, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [6, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 7, 0, 0, 0],
+                    [8, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 9, 0, 0, 0, 0, 0],
+                    [10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [11, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                words: {
+                    horizontal: [
+                        { num: 1, clue: "Capitale de la France", answer: "PARIS" },
+                        { num: 6, clue: "Plus grand océan du monde", answer: "PACIFIQUE" },
+                        { num: 8, clue: "Fleuve d'Afrique", answer: "NIL" },
+                        { num: 10, clue: "Chaîne de montagnes en Europe", answer: "ALPES" },
+                        { num: 11, clue: "L'île rouge (Madagascar)", answer: "MALGACHE" }
+                    ],
+                    vertical: [
+                        { num: 2, clue: "Continent le plus peuplé", answer: "ASIE" },
+                        { num: 3, clue: "Désert le plus chaud du monde", answer: "SAHARA" },
+                        { num: 4, clue: "Capitale de la Russie", answer: "MOSCOU" },
+                        { num: 5, clue: "Pays des pharaons", answer: "EGYPTE" },
+                        { num: 7, clue: "Plus grand pays d'Amérique du Sud", answer: "BRESIL" },
+                        { num: 9, clue: "Point culminant d'Europe", answer: "ELBROUS" }
+                    ]
+                }
+            },
+            histoire: {
+                grid: [
+                    [1, 0, 2, 0, 0, 0, 3, 0, 0, 0],
+                    [0, 0, 0, 0, 4, 0, 0, 0, 0, 0],
+                    [5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [6, 0, 0, 0, 7, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [8, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [9, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                words: {
+                    horizontal: [
+                        { num: 1, clue: "Empereur français né en Corse", answer: "NAPOLEON" },
+                        { num: 5, clue: "Période historique après le Moyen Âge", answer: "RENAISSANCE" },
+                        { num: 6, clue: "Guerre mondiale (1939-1945)", answer: "SECONDE" },
+                        { num: 8, clue: "Révolution industrielle au 18e siècle", answer: "VAPEUR" },
+                        { num: 9, clue: "Acte d'abolition de l'esclavage signé par Lincoln", answer: "EMANCIPATION" }
+                    ],
+                    vertical: [
+                        { num: 2, clue: "Empire africain précolonial à Madagascar", answer: "MERINA" },
+                        { num: 3, clue: "Conquérant mongol", answer: "GENGHIS" },
+                        { num: 4, clue: "Système politique de l'Antiquité", answer: "DEMOCRATIE" },
+                        { num: 7, clue: "Mouvement d'indépendance malgache en 1947", answer: "REVOLT" }
+                    ]
+                }
+            },
+            litterature: {
+                grid: [
+                    [1, 0, 0, 0, 2, 0, 0, 0, 3, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [4, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 5, 0, 0, 0],
+                    [6, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [7, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [8, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                words: {
+                    horizontal: [
+                        { num: 1, clue: "Auteur des Misérables", answer: "HUGO" },
+                        { num: 4, clue: "Genre littéraire avec des rimes", answer: "POESIE" },
+                        { num: 6, clue: "Écrivain malgache de 'L'Interférence'", answer: "RABEARIVELO" },
+                        { num: 7, clue: "Roman de science-fiction", answer: "DYSTOPIE" },
+                        { num: 8, clue: "Contes regroupés dans 'Les Mille et Une Nuits'", answer: "ARABES" }
+                    ],
+                    vertical: [
+                        { num: 2, clue: "Dramaturge anglais, auteur de Hamlet", answer: "SHAKESPEARE" },
+                        { num: 3, clue: "Épopée de Homère sur Troie", answer: "ILIADE" },
+                        { num: 5, clue: "Courant littéraire du 19e siècle", answer: "ROMANTISME" }
+                    ]
+                }
+            }
+        };
+        
+        let currentTheme = 'sciences';
+        let currentGrid = [];
+        
+        // Fonction pour changer de thème
+        function changeTheme() {
+            currentTheme = document.getElementById('theme-dropdown').value;
+            renderCrossword();
+        }
+        
+        // Fonction pour générer la grille de mots croisés
+        function renderCrossword() {
+            const gridContainer = document.getElementById('crossword-grid');
+            const horizontalClues = document.getElementById('horizontal-clues');
+            const verticalClues = document.getElementById('vertical-clues');
+            
+            // Vider la grille et les indices
+            gridContainer.innerHTML = '';
+            horizontalClues.innerHTML = '<h3>Horizontal</h3>';
+            verticalClues.innerHTML = '<h3>Vertical</h3>';
+            
+            // Récupérer les données du thème actuel
+            const themeData = themes[currentTheme];
+            currentGrid = themeData.grid;
+            
+            // Générer les cellules de la grille
+            for (let i = 0; i < currentGrid.length; i++) {
+                for (let j = 0; j < currentGrid[i].length; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    
+                    if (currentGrid[i][j] === 0) {
+                        cell.classList.add('black');
+                    } else {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.maxLength = 1;
+                        input.dataset.row = i;
+                        input.dataset.col = j;
+                        cell.appendChild(input);
+                        
+                        // Ajouter le numéro de la cellule si nécessaire
+                        if (currentGrid[i][j] > 0) {
+                            const cellNumber = document.createElement('span');
+                            cellNumber.className = 'cell-number';
+                            cellNumber.textContent = currentGrid[i][j];
+                            cell.appendChild(cellNumber);
+                        }
+                    }
+                    
+                    gridContainer.appendChild(cell);
+                }
+            }
+            
+            // Générer les indices horizontaux
+            themeData.words.horizontal.forEach(word => {
+                const clueItem = document.createElement('div');
+                clueItem.className = 'clue-item';
+                clueItem.innerHTML = `<strong>${word.num}.</strong> ${word.clue}`;
+                horizontalClues.appendChild(clueItem);
+            });
+            
+            // Générer les indices verticaux
+            themeData.words.vertical.forEach(word => {
+                const clueItem = document.createElement('div');
+                clueItem.className = 'clue-item';
+                clueItem.innerHTML = `<strong>${word.num}.</strong> ${word.clue}`;
+                verticalClues.appendChild(clueItem);
+            });
+        }
+        
+        // Fonction pour vérifier les réponses
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('.cell input');
+            let allCorrect = true;
+            
+            // Vérifier chaque mot horizontal
+            themes[currentTheme].words.horizontal.forEach(word => {
+                // Trouver la position de départ du mot
+                let startRow = -1;
+                let startCol = -1;
+                
+                for (let i = 0; i < currentGrid.length; i++) {
+                    for (let j = 0; j < currentGrid[i].length; j++) {
+                        if (currentGrid[i][j] === word.num) {
+                            startRow = i;
+                            startCol = j;
+                            break;
+                        }
+                    }
+                    if (startRow !== -1) break;
+                }
+                
+                // Vérifier chaque lettre du mot
+                for (let i = 0; i < word.answer.length; i++) {
+                    const input = document.querySelector(`.cell input[data-row="${startRow}"][data-col="${startCol + i}"]`);
+                    if (input) {
+                        if (input.value.toUpperCase() !== word.answer[i]) {
+                            allCorrect = false;
+                            input.style.color = 'red';
+                        } else {
+                            input.style.color = 'green';
+                        }
+                    }
+                }
+            });
+            
+            // Vérifier chaque mot vertical
+            themes[currentTheme].words.vertical.forEach(word => {
+                // Trouver la position de départ du mot
+                let startRow = -1;
+                let startCol = -1;
+                
+                for (let i = 0; i < currentGrid.length; i++) {
+                    for (let j = 0; j < currentGrid[i].length; j++) {
+                        if (currentGrid[i][j] === word.num) {
+                            startRow = i;
+                            startCol = j;
+                            break;
+                        }
+                    }
+                    if (startRow !== -1) break;
+                }
+                
+                // Vérifier chaque lettre du mot
+                for (let i = 0; i < word.answer.length; i++) {
+                    const input = document.querySelector(`.cell input[data-row="${startRow + i}"][data-col="${startCol}"]`);
+                    if (input) {
+                        if (input.value.toUpperCase() !== word.answer[i]) {
+                            allCorrect = false;
+                            input.style.color = 'red';
+                        } else {
+                            input.style.color = 'green';
+                        }
+                    }
+                }
+            });
+            
+            // Afficher le message de succès si toutes les réponses sont correctes
+            const successMessage = document.getElementById('success-message');
+            if (allCorrect) {
+                successMessage.style.display = 'block';
+            } else {
+                successMessage.style.display = 'none';
+            }
+        }
+        
+        // Fonction pour réinitialiser la grille
+        function resetGrid() {
+            const inputs = document.querySelectorAll('.cell input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.style.color = 'black';
+            });
+            
+            document.getElementById('success-message').style.display = 'none';
+        }
+        
+        // Fonction pour afficher la solution
+        function showSolution() {
+            // Mots horizontaux
+            themes[currentTheme].words.horizontal.forEach(word => {
+                let startRow = -1;
+                let startCol = -1;
+                
+                for (let i = 0; i < currentGrid.length; i++) {
+                    for (let j = 0; j < currentGrid[i].length; j++) {
+                        if (currentGrid[i][j] === word.num) {
+                            startRow = i;
+                            startCol = j;
+                            break;
+                        }
+                    }
+                    if (startRow !== -1) break;
+                }
+                
+                for (let i = 0; i < word.answer.length; i++) {
+                    const input = document.querySelector(`.cell input[data-row="${startRow}"][data-col="${startCol + i}"]`);
+                    if (input) {
+                        input.value = word.answer[i];
+                        input.style.color = 'blue';
+                    }
+                }
+            });
+            
+            // Mots verticaux
+            themes[currentTheme].words.vertical.forEach(word => {
+                let startRow = -1;
+                let startCol = -1;
+                
+                for (let i = 0; i < currentGrid.length; i++) {
+                    for (let j = 0; j < currentGrid[i].length; j++) {
+                        if (currentGrid[i][j] === word.num) {
+                            startRow = i;
+                            startCol = j;
+                            break;
+                        }
+                    }
+                    if (startRow !== -1) break;
+                }
+                
+                for (let i = 0; i < word.answer.length; i++) {
+                    const input = document.querySelector(`.cell input[data-row="${startRow + i}"][data-col="${startCol}"]`);
+                    if (input) {
+                        input.value = word.answer[i];
+                        input.style.color = 'blue';
+                    }
+                }
+            });
+        }
+        
+        // Initialiser la grille au chargement
+        window.onload = function() {
+            renderCrossword();
+            
+            // Gérer le thème sombre/clair
+            const themeToggle = document.querySelector('.theme-toggle');
+            let isDark = localStorage.getItem('theme') === 'dark';
+            
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌓';
+            
+            themeToggle.addEventListener('click', () => {
+                isDark = !isDark;
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                themeToggle.textContent = isDark ? '☀️' : '🌓';
+            });
+        };
+    </script>
+</body>
+</html>
