@@ -36,6 +36,10 @@
       "dest": "/public/selectionner/$1"
     },
     {
+      "src": "/jeux/(.*)",
+      "dest": "/public/jeux/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.js"
     }
