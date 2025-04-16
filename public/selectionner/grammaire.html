@@ -221,6 +221,15 @@
             50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
             100% { opacity: 0; transform: scale(0.8) rotate(0deg); }
         }
+        .erreur-texte {
+            font-weight: bold;
+        }
+        .no-errors {
+            font-style: italic;
+        }
+        .error-message {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -298,35 +307,44 @@
                     }
 
                     const result = await response.json();
+
                     // Utilisation des résultats de l'API
                     texteCorrige.textContent = result.corrected;
 
+                    // Afficher la langue
+                    langueDetectee.textContent = result.language === 'fr' ? 'Français' :
+                        result.language === 'en' ? 'Anglais' :
+                        result.language === 'es' ? 'Espagnol' :
+                        result.language === 'de' ? 'Allemand' : 'Italien';
+
                     // Afficher les erreurs
-                    erreursDetails.innerHTML = '';
-                    const erreurs = result.errors || [];
-                    if (erreurs.length > 0) {
-                        erreursDetails.innerHTML = erreurs.map(error => `
-                            <div class="error-item">
-                                <strong>Erreur:</strong> ${error.message}<br>
-                                <strong>Texte incorrect:</strong> ${error.text}<br>
-                                <strong>Suggestions:</strong> ${error.suggestions.join(', ')}
-                            </div>
-                        `).join('');
+                    if (result.errors && result.errors.length > 0) {
+                        // Vider le conteneur d'erreurs
+                        erreursDetails.innerHTML = '';
+
+                        // Ajouter chaque erreur
+                        result.errors.forEach(erreur => {
+                            const erreurElement = document.createElement('div');
+                            erreurElement.classList.add('error-item');
+
+                            erreurElement.innerHTML = `
+                                <div class="erreur-texte">Texte incorrect: <span style="color: #ff6b6b;">${erreur.text}</span></div>
+                                <div class="erreur-message">Problème: ${erreur.message}</div>
+                                <div class="erreur-suggestions">Suggestions: <span style="color: #51cf66; font-weight: bold;">${erreur.suggestions.join(', ')}</span></div>
+                            `;
+
+                            erreursDetails.appendChild(erreurElement);
+                        });
                     } else {
-                        erreursDetails.innerHTML = '<p>Aucune erreur grammaticale détectée.</p>';
+                        erreursDetails.innerHTML = '<div class="no-errors">Aucune erreur grammaticale détectée.</div>';
                     }
-
-
-                    langueDetectee.textContent = langue === 'fr' ? 'Français' :
-                        langue === 'en' ? 'Anglais' :
-                            langue === 'es' ? 'Espagnol' :
-                                langue === 'de' ? 'Allemand' : 'Italien';
 
                     resultCard.style.display = 'block';
                     resultCard.scrollIntoView({ behavior: 'smooth' });
                 } catch (error) {
                     console.error('Erreur:', error);
-                    erreursDetails.innerHTML = `<p>Erreur: ${error.message}</p>`;
+                    texteCorrige.textContent = `Erreur: ${error.message}`;
+                    erreursDetails.innerHTML = '<div class="error-message">Une erreur est survenue.</div>';
                     resultCard.style.display = 'block';
                     resultCard.scrollIntoView({ behavior: 'smooth' });
                 }
