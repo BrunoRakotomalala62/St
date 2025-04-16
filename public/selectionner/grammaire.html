@@ -245,11 +245,36 @@
             <form id="grammar-form">
                 <textarea id="texte-input" placeholder="Entrez votre texte à corriger" required></textarea>
                 <select id="langue-select">
-                    <option value="fr">Français</option>
-                    <option value="en" selected>Anglais</option>
-                    <option value="es">Espagnol</option>
-                    <option value="de">Allemand</option>
-                    <option value="it">Italien</option>
+                    <optgroup label="Français">
+                        <option value="fr-FR">Français (France)</option>
+                    </optgroup>
+                    <optgroup label="Anglais">
+                        <option value="en-GB" selected>Anglais (Royaume-Uni)</option>
+                        <option value="en-US">Anglais (États-Unis)</option>
+                        <option value="en-ZA">Anglais (Afrique du Sud)</option>
+                        <option value="en-AU">Anglais (Australie)</option>
+                        <option value="en-NZ">Anglais (Nouvelle-Zélande)</option>
+                    </optgroup>
+                    <optgroup label="Allemand">
+                        <option value="de-DE">Allemand (Allemagne)</option>
+                        <option value="de-AT">Allemand (Autriche)</option>
+                        <option value="de-CH">Allemand (Suisse)</option>
+                    </optgroup>
+                    <optgroup label="Portugais">
+                        <option value="pt-PT">Portugais (Portugal)</option>
+                        <option value="pt-BR">Portugais (Brésil)</option>
+                    </optgroup>
+                    <optgroup label="Autres langues européennes">
+                        <option value="es-ES">Espagnol</option>
+                        <option value="it-IT">Italien</option>
+                        <option value="ru-RU">Russe</option>
+                        <option value="el-GR">Grec</option>
+                    </optgroup>
+                    <optgroup label="Langues asiatiques">
+                        <option value="ja-JP">Japonais</option>
+                        <option value="zh-CN">Chinois (Simplifié)</option>
+                        <option value="ar-AR">Arabe</option>
+                    </optgroup>
                 </select>
                 <button type="submit">Corriger la grammaire</button>
             </form>
@@ -312,10 +337,33 @@
                     texteCorrige.textContent = result.corrected;
 
                     // Afficher la langue
-                    langueDetectee.textContent = result.language === 'fr' ? 'Français' :
-                        result.language === 'en' ? 'Anglais' :
-                        result.language === 'es' ? 'Espagnol' :
-                        result.language === 'de' ? 'Allemand' : 'Italien';
+                    const langMap = {
+                        'fr-FR': 'Français (France)',
+                        'en-GB': 'Anglais (Royaume-Uni)',
+                        'en-US': 'Anglais (États-Unis)',
+                        'en-ZA': 'Anglais (Afrique du Sud)',
+                        'en-AU': 'Anglais (Australie)',
+                        'en-NZ': 'Anglais (Nouvelle-Zélande)',
+                        'de-DE': 'Allemand (Allemagne)',
+                        'de-AT': 'Allemand (Autriche)',
+                        'de-CH': 'Allemand (Suisse)',
+                        'pt-PT': 'Portugais (Portugal)',
+                        'pt-BR': 'Portugais (Brésil)',
+                        'es-ES': 'Espagnol',
+                        'it-IT': 'Italien',
+                        'ru-RU': 'Russe',
+                        'el-GR': 'Grec',
+                        'ja-JP': 'Japonais',
+                        'zh-CN': 'Chinois (Simplifié)',
+                        'ar-AR': 'Arabe',
+                        'fr': 'Français',
+                        'en': 'Anglais',
+                        'es': 'Espagnol',
+                        'de': 'Allemand',
+                        'it': 'Italien'
+                    };
+                    
+                    langueDetectee.textContent = langMap[result.language] || result.language;
 
                     // Afficher les erreurs
                     if (result.errors && result.errors.length > 0) {
