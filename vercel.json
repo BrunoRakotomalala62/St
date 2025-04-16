@@ -36,6 +36,10 @@
       "dest": "/public/photos/profil2.jpg"
     },
     {
+      "src": "/photos/(.*)",
+      "dest": "/public/photos/$1"
+    },
+    {
       "src": "/selectionner/(.*)",
       "dest": "/public/selectionner/$1"
     },
