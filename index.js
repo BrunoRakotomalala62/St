@@ -98,6 +98,30 @@ app.get('/cours/serieA/malagasy', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours/serieA/cours_Malagasy_SerieA.html'));
 });
 
+app.get('/cours/serieC', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieC/Cours_serie_C.html'));
+});
+
+app.get('/cours/serieC/malagasy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieC/cours_Malagasy_SerieC.html'));
+});
+
+app.get('/cours/serieC/philosophie', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieC/cours_Philosophie_SerieC.html'));
+});
+
+app.get('/cours/serieC/histoire-geographie', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieC/cours_Histoire_Geo_SerieC.html'));
+});
+
+app.get('/cours/serieC/francais', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieC/cours_Francais_SerieC.html'));
+});
+
+app.get('/cours/serieC/anglais', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieC/cours_Anglais_SerieC.html'));
+});
+
 app.get('/cours/malagasy5eme', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours', 'malagasy5eme', 'malagasy5eme.html'));
 });
