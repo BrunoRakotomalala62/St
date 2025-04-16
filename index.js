@@ -5,6 +5,14 @@ const path = require('path');
 const cors = require('cors');
 const axios = require('axios');
 
+// Vérification des variables d'environnement au démarrage
+if (!process.env.TEXTGEARS_API_KEY) {
+  console.warn('⚠️ La clé API TextGears n\'est pas définie. Les fonctionnalités de correction grammaticale seront limitées.');
+  // Si vous n'avez pas de clé API, utilisez la clé fournie pour les tests
+  process.env.TEXTGEARS_API_KEY = 'R3tpUnMT2b5fejZD'; 
+  console.info('✅ Utilisation d\'une clé API TextGears de test');
+}
+
 // Activer CORS pour toutes les requêtes
 app.use(cors());
 const gemini = require('./pilot/gemini');
@@ -245,6 +253,10 @@ app.get('/autres/tononkira/titre/page.html', (req, res) => {
 
 app.get('/autres/tononkira/song.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'autres/tononkira/song.html'));
+});
+
+app.get('/autres/quiz.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'autres/quiz.html'));
 });
 
 app.get('/autres/kabary/ALA_SARONA/ala_sarona.html', (req, res) => {
