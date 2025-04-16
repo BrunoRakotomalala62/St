@@ -231,11 +231,36 @@
             <form id="correction-form">
                 <textarea id="texte-input" placeholder="Entrez votre texte à corriger" required></textarea>
                 <select id="langue-select">
-                    <option value="fr" selected>Français</option>
-                    <option value="en">Anglais</option>
-                    <option value="es">Espagnol</option>
-                    <option value="de">Allemand</option>
-                    <option value="it">Italien</option>
+                    <optgroup label="Français">
+                        <option value="fr-FR">Français (France)</option>
+                    </optgroup>
+                    <optgroup label="Anglais">
+                        <option value="en-GB" selected>Anglais (Royaume-Uni)</option>
+                        <option value="en-US">Anglais (États-Unis)</option>
+                        <option value="en-ZA">Anglais (Afrique du Sud)</option>
+                        <option value="en-AU">Anglais (Australie)</option>
+                        <option value="en-NZ">Anglais (Nouvelle-Zélande)</option>
+                    </optgroup>
+                    <optgroup label="Allemand">
+                        <option value="de-DE">Allemand (Allemagne)</option>
+                        <option value="de-AT">Allemand (Autriche)</option>
+                        <option value="de-CH">Allemand (Suisse)</option>
+                    </optgroup>
+                    <optgroup label="Portugais">
+                        <option value="pt-PT">Portugais (Portugal)</option>
+                        <option value="pt-BR">Portugais (Brésil)</option>
+                    </optgroup>
+                    <optgroup label="Autres langues européennes">
+                        <option value="es-ES">Espagnol</option>
+                        <option value="it-IT">Italien</option>
+                        <option value="ru-RU">Russe</option>
+                        <option value="el-GR">Grec</option>
+                    </optgroup>
+                    <optgroup label="Langues asiatiques">
+                        <option value="ja-JP">Japonais</option>
+                        <option value="zh-CN">Chinois (Simplifié)</option>
+                        <option value="ar-AR">Arabe</option>
+                    </optgroup>
                 </select>
                 <button type="submit">Corriger le texte</button>
             </form>
@@ -277,7 +302,7 @@
                     // Récupérer la langue sélectionnée
                     const langueSelect = document.getElementById('langue-select');
                     const langue = langueSelect ? langueSelect.value : 'fr';
-                    
+
                     const response = await fetch('/api/grammar/correct', {
                         method: 'POST',
                         headers: {
@@ -291,7 +316,7 @@
                     }
 
                     const result = await response.json();
-                    
+
                     // Utilisation des résultats de l'API
                     texteCorrige.textContent = result.corrected;
 
