@@ -467,6 +467,26 @@ nav {
   left: 0;
   font-weight: bold;
   color: #4CAF50;
+
+/* Styles pour le bouton d'effacement de conversation dans AI21 */
+.ai-card-header .clear-chat {
+  background: linear-gradient(45deg, #6600cc, #9966ff);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.ai-card-header .clear-chat:hover {
+  background: linear-gradient(45deg, #9966ff, #6600cc);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(153, 102, 255, 0.5);
+}
+
 }
 
 .message h1, .message h2, .message h3 {

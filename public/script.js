@@ -120,7 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       // Effacer les messages affichés
       const chatMessages = document.querySelector('.chat-messages');
-      chatMessages.innerHTML = '';
+      if (chatMessages) {
+        chatMessages.innerHTML = '';
+      }
 
       // Réinitialiser la conversation côté serveur
       const response = await fetch('/chat/reset', {
@@ -134,6 +136,33 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
       console.error('Erreur:', error);
       addMessage('Désolé, une erreur s\'est produite lors de la réinitialisation.');
+    }
+  });
+  
+  // Gérer le bouton effacer pour AI21
+  document.querySelector('.clear-chat')?.addEventListener('click', async () => {
+    try {
+      // Effacer les messages affichés dans AI21
+      const chatContainer = document.querySelector('.ai21-chat-container');
+      if (chatContainer) {
+        const messagesContainer = chatContainer.querySelector('.messages-container');
+        if (messagesContainer) {
+          messagesContainer.innerHTML = '';
+        }
+      }
+
+      // Réinitialiser la conversation côté serveur pour AI21
+      const response = await fetch('/ai21/reset', {
+        method: 'POST'
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la réinitialisation');
+      }
+
+    } catch (error) {
+      console.error('Erreur:', error);
+      // Afficher une notification d'erreur si besoin
     }
   });
 

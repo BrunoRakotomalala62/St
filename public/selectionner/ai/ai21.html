@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -551,7 +550,21 @@
             opacity: 0.3;
             z-index: 0;
         }
+        .clear-chat {
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
 
+        .clear-chat:hover {
+            background-color: var(--button-hover);
+        }
         @media (max-width: 600px) {
             .container {
                 width: 100%;
@@ -576,11 +589,11 @@
 </head>
 <body>
     <div class="background-animation" id="background-animation"></div>
-    
+
     <button class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon"></i>
     </button>
-    
+
     <div class="container">
         <div class="header">
             <button class="back-button" onclick="window.location.href='/selectionner/ai.html'">
@@ -598,7 +611,7 @@
         <div class="chat-container">
             <div class="chat-background"></div>
             <div class="floating-particles" id="particles"></div>
-            
+
             <div class="chat-messages" id="chat-messages">
                 <div class="bot-message-container">
                     <div class="bot-avatar">J</div>
@@ -620,6 +633,8 @@
                 <button id="send-button" class="send-button">
                     <i class="fas fa-paper-plane send-icon"></i>
                 </button>
+                <button class="clear-chat" id="clear-chat-button">Effacer la conversation</button>
+
             </div>
         </div>
     </div>
@@ -632,19 +647,20 @@
             const typingIndicator = document.getElementById('typing-indicator');
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = themeToggle.querySelector('i');
-            
+            const clearChatButton = document.getElementById('clear-chat-button');
+
             // Vérifier si un thème est déjà enregistré
             const currentTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', currentTheme);
             updateThemeIcon(currentTheme);
-            
+
             // Génération des particules flottantes
             createParticles();
             createBackgroundBubbles();
-            
+
             // Générer un ID utilisateur unique pour cette session
             const uid = Date.now().toString();
-            
+
             // Historique de conversation
             let conversation = [];
 
@@ -656,12 +672,12 @@
                     themeIcon.className = 'fas fa-moon';
                 }
             }
-            
+
             // Événement pour le changement de thème
             themeToggle.addEventListener('click', function() {
                 const currentTheme = document.body.getAttribute('data-theme');
                 const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
+
                 document.body.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
                 updateThemeIcon(newTheme);
@@ -670,67 +686,67 @@
             // Fonction pour créer des particules flottantes
             function createParticles() {
                 const particles = document.getElementById('particles');
-                
+
                 for (let i = 0; i < 20; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('particle');
-                    
+
                     // Position aléatoire
                     const posX = Math.random() * 100;
                     const posY = Math.random() * 100;
                     particle.style.left = `${posX}%`;
                     particle.style.top = `${posY}%`;
-                    
+
                     // Taille aléatoire
                     const size = Math.random() * 5 + 3;
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
-                    
+
                     // Opacité aléatoire
                     particle.style.opacity = Math.random() * 0.5;
-                    
+
                     // Animation
                     const duration = Math.random() * 20 + 10;
                     const delay = Math.random() * 5;
-                    
+
                     particle.style.animation = `float ${duration}s ${delay}s infinite linear`;
-                    
+
                     particles.appendChild(particle);
                 }
             }
-            
+
             // Fonction pour créer les bulles d'arrière-plan
             function createBackgroundBubbles() {
                 const background = document.getElementById('background-animation');
-                
+
                 for (let i = 0; i < 15; i++) {
                     const bubble = document.createElement('div');
                     bubble.classList.add('floating-bubble');
-                    
+
                     // Taille aléatoire
                     const size = Math.random() * 300 + 50;
                     bubble.style.width = `${size}px`;
                     bubble.style.height = `${size}px`;
-                    
+
                     // Position aléatoire
                     const posX = Math.random() * 100;
                     const posY = Math.random() * 100;
                     bubble.style.left = `${posX}%`;
                     bubble.style.top = `${posY}%`;
-                    
+
                     // Opacité aléatoire
                     bubble.style.opacity = Math.random() * 0.2;
-                    
+
                     // Animation
                     const xMovement = Math.random() * 10 - 5;
                     const yMovement = Math.random() * 10 - 5;
                     const duration = Math.random() * 20 + 20;
-                    
+
                     bubble.style.animation = `float ${duration}s infinite alternate ease-in-out`;
                     bubble.style.transform = `translate(${xMovement}px, ${yMovement}px)`;
-                    
+
                     background.appendChild(bubble);
-                    
+
                     // Animation des bulles
                     setInterval(() => {
                         const newX = Math.random() * 10 - 5;
@@ -739,24 +755,24 @@
                     }, duration * 1000);
                 }
             }
-            
+
             // Fonction pour obtenir l'heure actuelle
             function getCurrentTime() {
                 const now = new Date();
                 let hours = now.getHours();
                 let minutes = now.getMinutes();
-                
+
                 // Ajouter un zéro devant les chiffres < 10
                 hours = hours < 10 ? '0' + hours : hours;
                 minutes = minutes < 10 ? '0' + minutes : minutes;
-                
+
                 return `${hours}:${minutes}`;
             }
 
             // Fonction pour ajouter un message à la conversation
             function addMessage(text, isUser) {
                 const time = getCurrentTime();
-                
+
                 if (isUser) {
                     const messageDiv = document.createElement('div');
                     messageDiv.classList.add('message', 'user-message');
@@ -764,80 +780,80 @@
                         ${text}
                         <span class="message-time">${time}</span>
                     `;
-                    
+
                     chatMessages.appendChild(messageDiv);
                 } else {
                     const container = document.createElement('div');
                     container.classList.add('bot-message-container');
-                    
+
                     const avatar = document.createElement('div');
                     avatar.classList.add('bot-avatar');
                     avatar.textContent = 'J';
-                    
+
                     const messageDiv = document.createElement('div');
                     messageDiv.classList.add('message', 'bot-message');
                     messageDiv.innerHTML = `
                         ${text}
                         <span class="message-time">${time}</span>
                     `;
-                    
+
                     container.appendChild(avatar);
                     container.appendChild(messageDiv);
-                    
+
                     chatMessages.appendChild(container);
                 }
 
                 // Faire défiler vers le bas automatiquement
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-                
+
                 // Ajouter au tableau de conversation
                 conversation.push({
                     role: isUser ? 'Utilisateur' : 'Bot',
                     text: text
                 });
-                
+
                 // Effet de particules lors de l'envoi du message
                 if (isUser) {
                     createMessageParticles();
                 }
             }
-            
+
             // Fonction pour créer des particules lors de l'envoi d'un message
             function createMessageParticles() {
                 const particles = document.getElementById('particles');
                 const button = document.getElementById('send-button');
                 const rect = button.getBoundingClientRect();
-                
+
                 for (let i = 0; i < 10; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('particle');
-                    
+
                     // Position initiale (bouton d'envoi)
                     particle.style.left = `${rect.left + rect.width/2}px`;
                     particle.style.top = `${rect.top + rect.height/2}px`;
-                    
+
                     // Taille aléatoire
                     const size = Math.random() * 8 + 2;
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
-                    
+
                     // Direction aléatoire
                     const angle = Math.random() * Math.PI * 2;
                     const distance = Math.random() * 100 + 50;
                     const xDestination = Math.cos(angle) * distance;
                     const yDestination = Math.sin(angle) * distance;
-                    
+
                     // Animation
                     particle.style.transition = 'all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)';
-                    
+
                     particles.appendChild(particle);
-                    
+
                     // Déclencher l'animation
                     setTimeout(() => {
                         particle.style.transform = `translate(${xDestination}px, ${yDestination}px)`;
                         particle.style.opacity = '0';
                     }, 10);
-                    
+
                     // Supprimer la particule
                     setTimeout(() => {
                         particles.removeChild(particle);
@@ -864,13 +880,13 @@
                     // Appel à notre API locale
                     const response = await fetch(`/api/ai21?prompt=${encodeURIComponent(message)}&uid=${uid}`);
                     const data = await response.json();
-                    
+
                     console.log("Réponse AI21:", data);
 
                     // Masquer l'indicateur de saisie après un délai aléatoire pour simuler la frappe
                     setTimeout(() => {
                         typingIndicator.style.display = 'none';
-                        
+
                         // Si la réponse est valide
                         if (data && data.message) {
                             // Afficher la réponse du bot
@@ -883,7 +899,7 @@
                             addMessage("Désolé, je n'ai pas pu comprendre votre demande. Pourriez-vous reformuler?", false);
                         }
                     }, Math.random() * 1000 + 500);
-                    
+
                 } catch (error) {
                     console.error("Erreur lors de l'envoi du message:", error);
                     setTimeout(() => {
@@ -903,9 +919,19 @@
                 }
             });
 
+            // Fonction pour effacer la conversation
+            function clearChat() {
+                chatMessages.innerHTML = '';
+                conversation = [];
+            }
+
+            // Événement pour effacer la conversation
+            clearChatButton.addEventListener('click', clearChat);
+
+
             // Focus sur le champ de saisie lors du chargement
             messageInput.focus();
-            
+
             // Styles d'animation pour les particules
             const style = document.createElement('style');
             style.textContent = `
