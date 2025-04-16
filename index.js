@@ -102,6 +102,18 @@ app.get('/cours/serieC', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours/serieC/Cours_serie_C.html'));
 });
 
+app.get('/cours/serieD/Cours_serie_D.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieD/Cours_serie_D.html'));
+});
+
+app.get('/cours/serieL/Cours_serie_L.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieL/Cours_serie_L.html'));
+});
+
+app.get('/cours/serieOSE/Cours_serie_OSE.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours/serieOSE/Cours_serie_OSE.html'));
+});
+
 app.get('/cours/serieC/malagasy', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours/serieC/cours_Malagasy_SerieC.html'));
 });
