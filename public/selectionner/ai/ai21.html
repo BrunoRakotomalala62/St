@@ -239,16 +239,12 @@
                 try {
                     console.log(`Envoi de la requête: ${message} avec uid ${uid}`);
 
-                    // Appel à l'API en utilisant fetch
-                    const response = await fetch(`/api/ai21/ai21`, {
-                        method: 'POST',
+                    // Appel direct à l'API externe pour éviter les problèmes de proxy
+                    const response = await fetch(`https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(message)}&uid=${uid}`, {
+                        method: 'GET',
                         headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            prompt: message,
-                            uid: uid
-                        })
+                            'Accept': 'application/json'
+                        }
                     });
 
                     const data = await response.json();

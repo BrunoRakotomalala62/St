@@ -2,7 +2,11 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 const path = require('path');
+const cors = require('cors');
 const ai21Router = require('./pilot/ai21'); // Added AI21 route
+
+// Activer CORS pour toutes les requêtes
+app.use(cors());
 const gemini = require('./pilot/gemini');
 const horoscopeRouter = require('./pilot/horoscope');
 const tempmailRouter = require('./pilot/tempmail');

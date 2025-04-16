@@ -25,10 +25,16 @@ router.get('/ai21', async (req, res) => {
         console.log(`Envoi de la requête à AI21 avec prompt: "${prompt}" et uid: ${conversationId}`);
         
         // Appel direct à l'API AI21 avec les bons paramètres
-        const response = await axios.get('https://ai21.vercel.app/ai21', {
+        const response = await axios({
+            method: 'get',
+            url: 'https://ai21.vercel.app/ai21',
             params: {
                 prompt: prompt,
                 uid: conversationId
+            },
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
         
