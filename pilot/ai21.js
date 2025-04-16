@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -36,24 +35,20 @@ router.get('/ai21', async (req, res) => {
 
         // Vérifier si nous avons une réponse prédéfinie pour ce prompt
         let message = responses[prompt.toLowerCase()];
-        
+
         // Si pas de réponse prédéfinie, essayer d'appeler l'API externe
         if (!message) {
             try {
                 const externalResponse = await axios({
                     method: 'get',
-                    url: 'https://ai21.vercel.app/ai21',
-                    params: {
-                        prompt: prompt,
-                        uid: conversationId
-                    },
+                    url: `https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`,
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     timeout: 30000 // Timeout après 30 secondes
                 });
-                
+
                 if (externalResponse.data && externalResponse.data.message) {
                     message = externalResponse.data.message;
                 } else {
@@ -113,24 +108,20 @@ router.post('/ai21', async (req, res) => {
 
         // Vérifier si nous avons une réponse prédéfinie pour ce prompt
         let message = responses[prompt.toLowerCase()];
-        
+
         // Si pas de réponse prédéfinie, essayer d'appeler l'API externe
         if (!message) {
             try {
                 const externalResponse = await axios({
                     method: 'get',
-                    url: 'https://ai21.vercel.app/ai21',
-                    params: {
-                        prompt: prompt,
-                        uid: conversationId
-                    },
+                    url: `https://ai21.vercel.app/ai21?prompt=${encodeURIComponent(prompt)}&uid=${conversationId}`,
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     timeout: 30000 // Timeout après 30 secondes
                 });
-                
+
                 if (externalResponse.data && externalResponse.data.message) {
                     message = externalResponse.data.message;
                 } else {
