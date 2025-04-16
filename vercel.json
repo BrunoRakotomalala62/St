@@ -35,6 +35,14 @@
       "dest": "/public/autres/quiz.html"
     },
     {
+      "src": "/autres/quizsimple/simple.html",
+      "dest": "/public/autres/quizsimple/simple.html"
+    },
+    {
+      "src": "/autres/quizscore/quizscore.html",
+      "dest": "/public/autres/quizscore/quizscore.html"
+    },
+    {
       "src": "/profil2.jpg",
       "dest": "/public/photos/profil2.jpg"
     },
