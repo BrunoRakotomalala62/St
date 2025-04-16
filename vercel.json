@@ -32,6 +32,10 @@
       "dest": "/public/script.js"
     },
     {
+      "src": "/selectionner/(.*)",
+      "dest": "/public/selectionner/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.js"
     }
