@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mathématiques Terminale S - Site Éducatif</title>
     <link rel="stylesheet" href="/styles.css">
     <style>
@@ -14,16 +14,24 @@
             color: white;
             font-family: 'Arial', sans-serif;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         main {
             padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .course-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .course-title {
@@ -39,6 +47,7 @@
             margin-bottom: 30px;
             text-align: left;
             line-height: 1.6;
+            flex: 1;
         }
         
         .course-description ul {
@@ -98,21 +107,55 @@
         .back-btn:hover {
             background: rgba(0, 0, 0, 0.5);
         }
+
+        /* Styles pour le mode plein écran */
+        .fullscreen-course {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .course-title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .course-description {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .file-name {
+                font-size: 1.2rem;
+            }
+            
+            .download-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
         <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
-        <button class="nav-btn exercises-btn">📚 Exercices</button>
-        <button class="nav-btn contest-btn">🏆 Concours</button>
-        <button class="nav-btn courses-btn">📖 Cours</button>
-        <button class="nav-btn pdf-btn">📁 Fichiers PDF</button>
-        <button class="nav-btn bacc-btn">📑 Sujet Bacc</button>
-        <button class="nav-btn contact-btn">📧 Contactez-nous</button>
+        <button class="nav-btn exercises-btn" onclick="window.location.href='/exercices/exercice.html'">📚 Exercices</button>
+        <button class="nav-btn courses-btn" onclick="window.location.href='/cours/cours.html'">📖 Cours</button>
+        <button class="nav-btn pdf-btn" onclick="window.location.href='/fichierPdf.html'">📁 Fichiers PDF</button>
+        <button class="nav-btn bacc-btn" onclick="window.location.href='/sujet.html'">📑 Sujet Bacc</button>
+        <button class="nav-btn contact-btn" onclick="window.location.href='/contact.html'">📧 Contact</button>
         <button class="theme-toggle">🌓</button>
     </nav>
 
-    <main>
+    <main class="fullscreen-course">
         <div class="course-content">
             <h2 class="course-title">Mathématiques - Terminale S</h2>
             
@@ -143,5 +186,16 @@
     </main>
 
     <script src="/script.js"></script>
+    <script>
+        // Ajuster la hauteur sur les appareils mobiles
+        function adjustFullscreenHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        // Exécuter au chargement et au redimensionnement
+        window.addEventListener('load', adjustFullscreenHeight);
+        window.addEventListener('resize', adjustFullscreenHeight);
+    </script>
 </body>
 </html>
