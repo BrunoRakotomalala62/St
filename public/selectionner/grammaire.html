@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,7 +17,7 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         .container {
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -31,7 +30,7 @@
             animation: fadeIn 1s ease-out;
             text-align: center;
         }
-        
+
         h1 {
             margin-bottom: 1.5rem;
             font-size: 2.5rem;
@@ -42,13 +41,13 @@
             color: transparent;
             position: relative;
         }
-        
+
         .nav-links {
             display: flex;
             justify-content: center;
             margin: 1rem 0;
         }
-        
+
         .nav-link {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -58,17 +57,17 @@
             text-decoration: none;
             transition: background 0.3s, transform 0.3s;
         }
-        
+
         .nav-link:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
         }
-        
+
         .nav-link.active {
             background: rgba(255, 255, 255, 0.4);
             font-weight: bold;
         }
-        
+
         .correction-form {
             background-color: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
@@ -77,7 +76,7 @@
             width: 100%;
             box-sizing: border-box;
         }
-        
+
         textarea {
             min-height: 150px;
             resize: vertical;
@@ -88,7 +87,7 @@
             width: 100%;
             box-sizing: border-box;
         }
-        
+
         select {
             padding: 0.8rem;
             margin: 0.5rem 0;
@@ -99,7 +98,7 @@
             background-color: white;
             color: #333;
         }
-        
+
         button {
             padding: 0.8rem;
             margin: 0.5rem 0;
@@ -113,12 +112,12 @@
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
+
         button:hover {
             transform: scale(1.02);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-        
+
         .result-card {
             background-color: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
@@ -127,7 +126,7 @@
             display: none;
             text-align: left;
         }
-        
+
         .label {
             display: inline-block;
             background-color: rgba(0, 0, 0, 0.2);
@@ -136,7 +135,7 @@
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
-        
+
         .language-badge {
             display: inline-block;
             padding: 0.4rem 1rem;
@@ -147,7 +146,7 @@
             margin: 1rem 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        
+
         .text-box {
             font-size: 1.2rem;
             margin: 1rem 0;
@@ -156,24 +155,24 @@
             background-color: rgba(0, 0, 0, 0.1);
             word-wrap: break-word;
         }
-        
+
         .error-details {
             margin: 1rem 0;
             padding: 1rem;
             border-radius: 8px;
             background-color: rgba(0, 0, 0, 0.1);
         }
-        
+
         .error-item {
             margin-bottom: 0.8rem;
             padding-bottom: 0.8rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .error-item:last-child {
             border-bottom: none;
         }
-        
+
         .back-btn {
             background: rgba(0, 0, 0, 0.3);
             color: white;
@@ -184,39 +183,39 @@
             margin-top: 1rem;
             transition: all 0.3s;
         }
-        
+
         .back-btn:hover {
             background: rgba(0, 0, 0, 0.5);
             transform: translateY(-2px);
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .sparkle {
             position: relative;
         }
-        
+
         .sparkle::before, .sparkle::after {
             content: "✨";
             position: absolute;
             font-size: 1.5rem;
         }
-        
+
         .sparkle::before {
             top: -10px;
             left: -15px;
             animation: sparkleAnimation 2s infinite;
         }
-        
+
         .sparkle::after {
             bottom: -10px;
             right: -15px;
             animation: sparkleAnimation 3s infinite 1s;
         }
-        
+
         @keyframes sparkleAnimation {
             0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
             50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
@@ -227,12 +226,12 @@
 <body>
     <div class="container">
         <h1 class="sparkle">✨ Correction Grammaticale ✨</h1>
-        
+
         <div class="nav-links">
             <a href="/selectionner/francais.html" class="nav-link">Correction de Texte</a>
             <a href="/selectionner/grammaire.html" class="nav-link active">Correction Grammaticale</a>
         </div>
-        
+
         <div class="correction-form">
             <form id="grammar-form">
                 <textarea id="texte-input" placeholder="Entrez votre texte à corriger" required></textarea>
@@ -246,26 +245,26 @@
                 <button type="submit">Corriger la grammaire</button>
             </form>
         </div>
-        
+
         <div id="result-card" class="result-card">
             <div class="label">Langue détectée</div>
             <div id="langue-detectee" class="language-badge">Anglais</div>
-            
+
             <div class="label">Texte original</div>
             <div id="texte-original" class="text-box"></div>
-            
+
             <div class="label">Texte corrigé</div>
             <div id="texte-corrige" class="text-box"></div>
-            
+
             <div class="label">Détails des erreurs</div>
             <div id="erreurs-details" class="error-details">
                 <!-- Les détails des erreurs seront injectés ici -->
             </div>
         </div>
-        
+
         <a href="/" class="back-btn">Retour à l'accueil</a>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('grammar-form');
@@ -274,519 +273,64 @@
             const texteCorrige = document.getElementById('texte-corrige');
             const langueDetectee = document.getElementById('langue-detectee');
             const erreursDetails = document.getElementById('erreurs-details');
-            
-            form.addEventListener('submit', function(e) {
+
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
+
                 const texte = document.getElementById('texte-input').value;
                 const langue = document.getElementById('langue-select').value;
-                
+
                 if (!texte) return;
-                
-                // Pour la démo, on simule une correction grammaticale
+
                 texteOriginal.textContent = texte;
-                
-                // Simulation d'une correction et d'erreurs
-                let correction = texte;
-                const erreurs = [];
-                
-                if (langue === 'en') {
-                    // Simulation pour l'anglais
-                    if (texte.includes('I is')) {
-                        correction = texte.replace('I is', 'I am');
-                        erreurs.push({
-                            description: 'Use a first-person singular verb.',
-                            bad: 'is',
-                            better: ['am']
-                        });
-                    }
-                    
-                    if (texte.includes('engeneer')) {
-                        correction = correction.replace('engeneer', 'engineer');
-                        erreurs.push({
-                            description: 'Did you mean "engineer"?',
-                            bad: 'engeneer',
-                            better: ['engineer']
-                        });
-                    }
-                } else if (langue === 'fr') {
-                    // Simulation pour le français
-                    if (texte.includes('je est')) {
-                        correction = texte.replace('je est', 'je suis');
-                        erreurs.push({
-                            description: 'Utilisez un verbe à la première personne du singulier.',
-                            bad: 'est',
-                            better: ['suis']
-                        });
-                    }
-                    
-                    if (texte.includes('je sui ')) {
-                        correction = correction.replace('je sui ', 'je suis ');
-                        erreurs.push({
-                            description: 'Corrigez l\'orthographe du verbe "être" à la première personne.',
-                            bad: 'sui',
-                            better: ['suis']
-                        });
-                    }
-                }
-                
-                // Afficher le texte corrigé
-                texteCorrige.textContent = correction;
-                
-                // Afficher les détails des erreurs
-                if (erreurs.length > 0) {
-                    erreursDetails.innerHTML = erreurs.map(error => `
-                        <div class="error-item">
-                            <strong>Erreur:</strong> ${error.description}<br>
-                            <strong>Texte incorrect:</strong> ${error.bad}<br>
-                            <strong>Suggestions:</strong> ${error.better.join(', ')}
-                        </div>
-                    `).join('');
-                } else {
-                    erreursDetails.innerHTML = '<p>Aucune erreur grammaticale détectée.</p>';
-                }
-                
-                // Mettre à jour la langue détectée
-                langueDetectee.textContent = langue === 'fr' ? 'Français' : 
-                                            langue === 'en' ? 'Anglais' : 
-                                            langue === 'es' ? 'Espagnol' : 
-                                            langue === 'de' ? 'Allemand' : 'Italien';
-                
-                // Afficher la carte de résultats
-                resultCard.style.display = 'block';
-                
-                // Faire défiler jusqu'au résultat
-                resultCard.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Correction Grammaticale</title>
-    <link rel="stylesheet" href="/styles.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .container {
-            max-width: 800px;
-            width: 90%;
-            padding: 2rem;
-            margin-top: 80px;
-        }
-        
-        .grammar-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        h1 {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        h2 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        textarea, select {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            background: white;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        select {
-            min-height: auto;
-            appearance: none;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1rem;
-        }
-        
-        .button {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .correct-btn {
-            background-color: #ff6b6b;
-            color: white;
-        }
-        
-        .correct-btn:hover {
-            background-color: #ff5252;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
-        }
-        
-        .json-btn {
-            background-color: #2ecc71;
-            color: white;
-        }
-        
-        .json-btn:hover {
-            background-color: #27ae60;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
-        }
-        
-        .result-box {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            text-align: center;
-        }
-        
-        .lang-pill {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: bold;
-            margin: 0.5rem;
-        }
-        
-        .detected-lang {
-            background-color: rgba(111, 66, 193, 0.7);
-        }
-        
-        .selected-lang {
-            background-color: #2ecc71;
-        }
-        
-        .text-section {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-        
-        .text-label {
-            background-color: rgba(111, 66, 193, 0.7);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        
-        .text-box {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #333;
-            padding: 1rem;
-            border-radius: 10px;
-            word-wrap: break-word;
-            text-align: left;
-            font-size: 1.1rem;
-        }
-        
-        .error-details {
-            margin-top: 2rem;
-            border-radius: 10px;
-            background-color: rgba(111, 66, 193, 0.7);
-            padding: 1.5rem;
-            text-align: left;
-        }
-        
-        .error-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .error-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .error-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #ffec99;
-        }
-        
-        .error-text {
-            margin-bottom: 0.5rem;
-        }
-        
-        .json-display {
-            background-color: #002b36;
-            color: #839496;
-            padding: 1.5rem;
-            border-radius: 10px;
-            overflow-x: auto;
-            max-height: 300px;
-            text-align: left;
-            font-family: monospace;
-            white-space: pre;
-            display: none;
-        }
-        
-        .back-btn {
-            display: block;
-            margin: 2rem auto;
-            padding: 0.8rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            width: 200px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: rgba(0, 0, 0, 0.5);
-            transform: translateY(-3px);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <button class="nav-btn home-btn">🏠 Accueil</button>
-        <button class="nav-btn exercises-btn">📚 Exercices</button>
-        <button class="nav-btn contest-btn">🏆 Concours</button>
-        <button class="nav-btn courses-btn">📖 Cours</button>
-        <button class="nav-btn pdf-btn">📁 Fichiers PDF</button>
-        <button class="nav-btn bacc-btn">📑 Sujet Bacc</button>
-        <button class="nav-btn contact-btn">📧 Contactez-nous</button>
-        <button class="nav-btn jeux-btn">🎮 Jeux</button>
-        <button class="nav-btn translation-btn">🌍 Traduction</button>
-        <button class="nav-btn educmad-btn">🎓 EducMad</button>
-        <button class="nav-btn calendar-btn">📅 Calendrier</button>
-        <button class="nav-btn autres-btn">🔍 Autres</button>
-        <button class="nav-btn chatbot-btn">🤖 Chatbot</button>
-        <button class="theme-toggle">🌓</button>
-    </nav>
 
-    <div class="container">
-        <h1>Correction de Texte <a href="/translate/translation.html" style="color: white; text-decoration: underline;">Correction Grammaticale</a></h1>
-        
-        <div class="grammar-card">
-            <div id="result-container" style="display: none;">
-                <div class="lang-section">
-                    <span class="lang-pill detected-lang">Langue détectée</span>
-                    <span class="lang-pill selected-lang" id="selected-language">Français</span>
-                </div>
-                
-                <div class="text-section">
-                    <div class="text-label">Texte original</div>
-                    <div class="text-box" id="original-text"></div>
-                </div>
-                
-                <div class="text-section">
-                    <div class="text-label">Texte corrigé</div>
-                    <div class="text-box" id="corrected-text"></div>
-                </div>
-                
-                <div id="error-details-container" class="error-details" style="display: none;">
-                    <h2>Détails des erreurs</h2>
-                    <div id="error-details"></div>
-                </div>
-                
-                <div id="json-display" class="json-display"></div>
-            </div>
-            
-            <div class="input-group">
-                <textarea id="text-input" placeholder="Entrez votre texte ici pour correction..."></textarea>
-                <select id="language-select">
-                    <option value="fr">Français</option>
-                    <option value="en">Anglais</option>
-                    <option value="es">Espagnol</option>
-                    <option value="de">Allemand</option>
-                    <option value="it">Italien</option>
-                    <option value="pt">Portugais</option>
-                </select>
-                <button id="correct-btn" class="button correct-btn">Corriger le texte</button>
-                <button id="json-btn" class="button json-btn">Voir la réponse JSON</button>
-            </div>
-        </div>
-        
-        <a href="/selectionner/francais.html" class="back-btn">← Retour au Français</a>
-    </div>
-
-    <script src="/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const textInput = document.getElementById('text-input');
-            const languageSelect = document.getElementById('language-select');
-            const correctBtn = document.getElementById('correct-btn');
-            const jsonBtn = document.getElementById('json-btn');
-            const resultContainer = document.getElementById('result-container');
-            const originalText = document.getElementById('original-text');
-            const correctedText = document.getElementById('corrected-text');
-            const selectedLanguage = document.getElementById('selected-language');
-            const errorDetailsContainer = document.getElementById('error-details-container');
-            const errorDetails = document.getElementById('error-details');
-            const jsonDisplay = document.getElementById('json-display');
-            
-            let currentResponse = null;
-            
-            // Fonction pour corriger le texte
-            async function correctText() {
-                const text = textInput.value.trim();
-                if (!text) {
-                    alert('Veuillez entrer un texte à corriger.');
-                    return;
-                }
-                
-                const language = languageSelect.value;
-                
                 try {
-                    const response = await fetch('/api/grammar/check', {
+                    const response = await fetch('/api/grammar/check', { // Placeholder API endpoint
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({
-                            text: text,
-                            language: language
-                        })
+                        body: JSON.stringify({ text: texte, language: langue })
                     });
-                    
-                    currentResponse = await response.json();
-                    
-                    // Afficher les résultats
-                    selectedLanguage.textContent = getLanguageName(language);
-                    originalText.textContent = text;
-                    correctedText.textContent = currentResponse.corrected || text;
-                    
-                    // Afficher les détails des erreurs s'il y en a
-                    if (currentResponse.errors && currentResponse.errors.length > 0) {
-                        errorDetailsContainer.style.display = 'block';
-                        errorDetails.innerHTML = '';
-                        
-                        currentResponse.errors.forEach(error => {
-                            const errorItem = document.createElement('div');
-                            errorItem.className = 'error-item';
-                            
-                            const errorTitle = document.createElement('div');
-                            errorTitle.className = 'error-title';
-                            errorTitle.textContent = 'Erreur: ' + error.message;
-                            
-                            const incorrectText = document.createElement('div');
-                            incorrectText.className = 'error-text';
-                            incorrectText.textContent = 'Texte incorrect: ' + error.text;
-                            
-                            const suggestions = document.createElement('div');
-                            suggestions.className = 'error-text';
-                            suggestions.textContent = 'Suggestions: ' + error.suggestions.join(', ');
-                            
-                            errorItem.appendChild(errorTitle);
-                            errorItem.appendChild(incorrectText);
-                            errorItem.appendChild(suggestions);
-                            
-                            errorDetails.appendChild(errorItem);
-                        });
-                    } else {
-                        errorDetailsContainer.style.display = 'none';
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    
-                    // Masquer l'affichage JSON et afficher les résultats
-                    jsonDisplay.style.display = 'none';
-                    resultContainer.style.display = 'block';
-                    
+
+                    const result = await response.json();
+                    // Utilisation des résultats de l'API
+                    texteCorrige.textContent = result.corrected;
+
+                    // Afficher les erreurs
+                    erreursDetails.innerHTML = '';
+                    const erreurs = result.errors || [];
+                    if (erreurs.length > 0) {
+                        erreursDetails.innerHTML = erreurs.map(error => `
+                            <div class="error-item">
+                                <strong>Erreur:</strong> ${error.message}<br>
+                                <strong>Texte incorrect:</strong> ${error.text}<br>
+                                <strong>Suggestions:</strong> ${error.suggestions.join(', ')}
+                            </div>
+                        `).join('');
+                    } else {
+                        erreursDetails.innerHTML = '<p>Aucune erreur grammaticale détectée.</p>';
+                    }
+
+
+                    langueDetectee.textContent = langue === 'fr' ? 'Français' :
+                        langue === 'en' ? 'Anglais' :
+                            langue === 'es' ? 'Espagnol' :
+                                langue === 'de' ? 'Allemand' : 'Italien';
+
+                    resultCard.style.display = 'block';
+                    resultCard.scrollIntoView({ behavior: 'smooth' });
                 } catch (error) {
                     console.error('Erreur:', error);
-                    alert('Une erreur est survenue lors de la correction du texte.');
-                }
-            }
-            
-            // Fonction pour afficher la réponse JSON
-            function showJsonResponse() {
-                if (!currentResponse) {
-                    alert('Veuillez d\'abord corriger un texte.');
-                    return;
-                }
-                
-                jsonDisplay.textContent = JSON.stringify(currentResponse, null, 2);
-                jsonDisplay.style.display = 'block';
-            }
-            
-            // Fonction pour obtenir le nom complet de la langue
-            function getLanguageName(code) {
-                const languages = {
-                    fr: 'Français',
-                    en: 'Anglais',
-                    es: 'Espagnol',
-                    de: 'Allemand',
-                    it: 'Italien',
-                    pt: 'Portugais'
-                };
-                
-                return languages[code] || code;
-            }
-            
-            // Événements
-            correctBtn.addEventListener('click', correctText);
-            jsonBtn.addEventListener('click', showJsonResponse);
-            
-            // Corriger le texte avec la touche Entrée
-            textInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    correctText();
+                    erreursDetails.innerHTML = `<p>Erreur: ${error.message}</p>`;
+                    resultCard.style.display = 'block';
+                    resultCard.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-            
-            // Si l'URL contient un paramètre 'text', pré-remplir le champ texte
-            const urlParams = new URLSearchParams(window.location.search);
-            const textParam = urlParams.get('text');
-            if (textParam) {
-                textInput.value = decodeURIComponent(textParam);
-            }
         });
     </script>
 </body>
