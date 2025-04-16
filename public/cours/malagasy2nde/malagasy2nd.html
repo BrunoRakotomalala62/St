@@ -36,3 +36,80 @@
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             color: var(--text-highlight);
+        }
+        
+        .course-description {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .download-section {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .pdf-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .download-btn:hover {
+            background: var(--btn-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn courses-btn" onclick="window.location.href='/cours'">📖 Retour aux cours</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main>
+        <div class="course-container">
+            <h1 class="course-title">✨ Teny Malagasy - Kilasy Faharoa ✨</h1>
+            
+            <div class="course-description">
+                <h2>📚 Tongasoa eto amin'ny fampianarana Teny Malagasy!</h2>
+                <p>Ity lesona ity dia natokana ho an'ny mpianatra ao amin'ny kilasy faharoa mba hampivoatra ny fahaizany amin'ny teny sy ny kolontsaina Malagasy.</p>
+                <p>Hampianarantsika amin'ny fomba mora sy mahafinaritra ny:</p>
+                <ul>
+                    <li>🎯 Fahaizana mamaky sy manoratra tsara</li>
+                    <li>📝 Fahaizana mampiasa ny raki-tsoratra Malagasy</li>
+                    <li>🎭 Literatiora sy haisoratra Malagasy</li>
+                    <li>🌟 Ohabolana sy hainteny Malagasy</li>
+                    <li>🎨 Famoronana sy fanehoana hevitra</li>
+                </ul>
+            </div>
+            
+            <div class="download-section">
+                <h2>📥 Documentation du cours</h2>
+                <p class="pdf-title">📄 Lesona Malagasy Seconde</p>
+                <a href="/Attachement/malagasy2nde/Lesona_malagasy_second.pdf" download class="download-btn">
+                    ⬇️ Télécharger le cours (PDF)
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>
