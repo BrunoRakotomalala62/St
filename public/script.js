@@ -77,33 +77,36 @@ async function handleSendMessage() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     // Navigation buttons
     const homeBtn = document.querySelector('.home-btn');
     const exercisesBtn = document.querySelector('.exercises-btn');
     const bacc = document.querySelector('.bacc-btn');
-    const contact = document.querySelector('.contact-btn');
-    const translation = document.querySelector('.translation-btn');
+    const contactBtn = document.querySelector('.contact-btn');
+    const translationBtn = document.querySelector('.translation-btn');
     const cours = document.querySelector('.courses-btn');
     const fichier = document.querySelector('.pdf-btn');
     const educmad = document.querySelector('.educmad-btn');
     const calendar = document.querySelector('.calendar-btn');
     const autres = document.querySelector('.autres-btn');
     const chatbot = document.querySelector('.chatbot-btn');
+    const jeuxBtn = document.querySelector('.jeux-btn'); // Added jeux button
 
     // Event listeners for navigation
     if (homeBtn) homeBtn.addEventListener('click', () => window.location.href = '/');
     if (exercisesBtn) exercisesBtn.addEventListener('click', () => window.location.href = '/exercices');
     if (bacc) bacc.addEventListener('click', () => window.location.href = '/sujet');
-    if (contact) contact.addEventListener('click', () => window.location.href = '/contact');
-    if (translation) translation.addEventListener('click', () => window.location.href = '/translate');
+    if (contactBtn) contactBtn.addEventListener('click', () => window.location.href = '/contact');
+    if (translationBtn) translationBtn.addEventListener('click', () => window.location.href = '/translate');
     if (cours) cours.addEventListener('click', () => window.location.href = '/cours');
     if (fichier) fichier.addEventListener('click', () => window.location.href = '/fichierPdf');
     if (educmad) educmad.addEventListener('click', () => window.location.href = '/educmad');
     if (calendar) calendar.addEventListener('click', () => window.location.href = '/calendar');
     if (autres) autres.addEventListener('click', () => window.location.href = '/autres');
     if (chatbot) chatbot.addEventListener('click', () => window.location.href = '/Chatbot/chatbot');
-    
+    if (jeuxBtn) jeuxBtn.addEventListener('click', () => window.location.href = '/jeux/game.html'); // Added jeux button event listener
+
+
     // Gestionnaire pour le nouveau chemin Chatbot
     const chatbotNewPath = document.querySelector('.chatbot-new-path');
     if (chatbotNewPath) chatbotNewPath.addEventListener('click', () => window.location.href = '/Chatbot/chatbot');
@@ -191,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/autres';
       } else if (button.classList.contains('educmad-btn')) {
         window.location.href = '/educmad';
+      } else if (button.classList.contains('jeux-btn')) {
+        window.location.href = '/jeux/game.html';
       }
     });
   });
