@@ -32,6 +32,10 @@
       "dest": "/public/script.js"
     },
     {
+      "src": "/profil2.jpg",
+      "dest": "/public/photos/profil2.jpg"
+    },
+    {
       "src": "/selectionner/(.*)",
       "dest": "/public/selectionner/$1"
     },
