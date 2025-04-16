@@ -16,11 +16,9 @@ router.post('/ai21', async (req, res) => {
         const conversationId = uid || Date.now().toString();
         
         // Appel à l'API AI21
-        const response = await axios.get(`https://ai21.vercel.app/ai21`, {
-            params: {
-                prompt: prompt,
-                uid: conversationId
-            }
+        const response = await axios.post(`https://ai21.vercel.app/ai21`, {
+            prompt: prompt,
+            uid: conversationId
         });
         
         // Renvoyer la réponse au client
