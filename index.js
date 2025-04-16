@@ -3,7 +3,7 @@ const app = express();
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
-const ai21Router = require('./pilot/ai21'); // Added AI21 route
+const axios = require('axios');
 
 // Activer CORS pour toutes les requêtes
 app.use(cors());
@@ -15,7 +15,7 @@ const ohabolanaRouter = require('./pilot/ohabolana');
 const translationRouter = require('./pilot/translation');
 const tononkiraRouter = require('./pilot/tononkira');
 const grammarRouter = require('./pilot/grammar'); // Added grammar route
-
+const ai21Router = require('./pilot/ai21'); // Added AI21 route
 
 app.use('/api/horoscope', horoscopeRouter);
 app.use('/api/tempmail', tempmailRouter);
