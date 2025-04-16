@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohabolana Malagasy</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .ohabolana-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, #FF6B6B, #FFE66D);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 0 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+            }
+            .search-input, .search-btn {
+                width: 100%;
+            }
+            .ohabolana-container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        .search-btn {
+            padding: 1rem 2rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .search-btn:hover {
+            background: #45a049;
+        }
+        .results-container {
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .ohabolana-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            color: #000;
+            font-weight: bold;
+        }
+        .titre-recherche {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .author-info {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        .timestamp {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn autres-btn" onclick="window.location.href='/autres'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="ohabolana-container">
+        <h1>📚 Ohabolana Malagasy</h1>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="Ampidiro ny teny hotadiavina...">
+            <button onclick="searchOhabolana()" class="search-btn">🔍 Tadiavo</button>
+        </div>
+
+        <div id="results" class="results-container"></div>
+        <div id="pagination" class="pagination-container" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+            <button id="prevPage" onclick="changePage(-1)" class="search-btn" style="display: none;">⬅️ Page précédente</button>
+            <span id="pageInfo" style="align-self: center;"></span>
+            <button id="nextPage" onclick="changePage(1)" class="search-btn" style="display: none;">Page suivante ➡️</button>
+        </div>
+    </main>
+
+    <script>
+        let currentPage = 1;
+        let totalPages = 1;
+        async function searchOhabolana(page = 1) {
+            const searchTerm = document.getElementById('search-input').value;
+            if (!searchTerm) return;
+            currentPage = page;
+
+            try {
+                const response = await fetch(`/api/ohabolana/recherche?terme=${searchTerm}&page=${page}`);
+                const data = await response.json();
+                
+                const resultsDiv = document.getElementById('results');
+                
+                if (data && data.resultats && data.resultats.length > 0) {
+                    resultsDiv.innerHTML = `
+                        <div class="titre-recherche">${data.titre || ''}</div>
+                        <div class="author-info">${data.Auteur || ''}</div>
+                        ${data.resultats.map(result => `
+                            <div class="ohabolana-item">${result}</div>
+                        `).join('')}
+                        <div class="timestamp">${data.timestamp || ''}</div>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = '<div class="ohabolana-item">Tsy misy valiny...</div>';
+                    document.getElementById('pagination').style.display = 'none';
+                }
+
+                // Update pagination buttons
+                const prevBtn = document.getElementById('prevPage');
+                const nextBtn = document.getElementById('nextPage');
+                const pageInfo = document.getElementById('pageInfo');
+                
+                if (data.resultats && data.resultats.length === 30) {
+                    document.getElementById('pagination').style.display = 'flex';
+                    prevBtn.style.display = currentPage > 1 ? 'block' : 'none';
+                    nextBtn.style.display = 'block';
+                    pageInfo.textContent = `Page ${currentPage}`;
+                } else {
+                    document.getElementById('pagination').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('results').innerHTML = 
+                    '<div class="ohabolana-item">Misy olana ny fikatsahana...</div>';
+                document.getElementById('pagination').style.display = 'none';
+            }
+        }
+
+        function changePage(delta) {
+            searchOhabolana(currentPage + delta);
+        }
+        
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchOhabolana(1);
+        });
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>

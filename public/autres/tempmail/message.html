@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempMail - Messages</title>
+    <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/autres/tempmail.html'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="tempmail-container">
+        <h1>📥 Boîte de Messages</h1>
+        
+        <div class="search-box">
+            <input type="email" id="email-input" placeholder="✉️ Entrez l'adresse email temporaire" class="search-input">
+            <button onclick="checkInbox()" class="search-btn">🔍 Rechercher</button>
+        </div>
+
+        <div id="messages" class="messages-container"></div>
+    </main>
+
+    <script src="../../../script.js"></script>
+    <script>
+        async function checkInbox() {
+            const email = document.getElementById('email-input').value;
+            if (!email) return;
+
+            try {
+                const response = await fetch(`/api/tempmail/inbox?email=${encodeURIComponent(email)}`);
+                const data = await response.json();
+                
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.innerHTML = '';
+
+                if (data.emails && data.emails.length > 0) {
+                    data.emails.forEach(email => {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'message-card';
+                        messageDiv.innerHTML = `
+                            <div class="message-header">
+                                <h3>📧 ${email.subject || 'Sans objet'}</h3>
+                                <div class="message-info">
+                                    <span>👤 De: ${email.from}</span>
+                                    <span>📅 Date: ${new Date(email.date).toLocaleString()}</span>
+                                </div>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-details">
+                                    <p><strong>📧 À:</strong> ${email.to}</p>
+                                    <p><strong>📎 ID du message:</strong> ${email.id}</p>
+                                    ${email.cc ? `<p><strong>👥 CC:</strong> ${email.cc}</p>` : ''}
+                                    ${email.bcc ? `<p><strong>👥 BCC:</strong> ${email.bcc}</p>` : ''}
+                                </div>
+                                <div class="message-body">
+                                    <h4>📝 Contenu du message:</h4>
+                                    <div class="message-text">${formatMessageBody(email.body)}</div>
+                                    ${email.attachments && email.attachments.length > 0 ? 
+                                        `<div class="attachments">
+                                            <h4>📎 Pièces jointes:</h4>
+                                            <ul>${email.attachments.map(att => 
+                                                `<li>${att.filename} (${formatFileSize(att.size)})</li>`
+                                            ).join('')}</ul>
+                                        </div>` : ''
+                                    }
+                                </div>
+                            </div>
+                        `;
+                        messagesContainer.appendChild(messageDiv);
+                    });
+                } else {
+                    messagesContainer.innerHTML = '<div class="no-messages">📭 Aucun message trouvé</div>';
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('messages').innerHTML = '<div class="error-message">❌ Erreur lors de la récupération des messages</div>';
+            }
+        }
+
+        function formatMessageBody(body) {
+            // Convertit les liens en liens cliquables
+            body = body.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+            // Convertit les retours à la ligne en balises <br>
+            return body.replace(/\n/g, '<br>');
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    </script>
+</body>
+</html>

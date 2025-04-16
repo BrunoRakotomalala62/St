@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paroles - Tononkira</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .song-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .song-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .song-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .song-header .artist-name {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .song-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .artist-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .artist-image img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .lyrics {
+            white-space: pre-wrap;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: #e74c3c;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .song-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .lyrics {
+                font-size: 1rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button id="back-btn" class="nav-btn autres-btn">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="song-container">
+        <div id="loading" class="loading">
+            Chargement des paroles...
+        </div>
+        
+        <div id="error-message" class="error-message" style="display: none;">
+            Une erreur s'est produite lors du chargement des paroles.
+        </div>
+        
+        <div id="song-content" style="display: none;">
+            <div class="song-header">
+                <h1 id="song-title"></h1>
+                <div id="artist-name" class="artist-name"></div>
+            </div>
+            
+            <div class="song-content">
+                <div id="artist-image" class="artist-image">
+                    <!-- L'image sera ajoutée ici par JavaScript -->
+                </div>
+                
+                <div id="audio-player" class="audio-player">
+                    <!-- Le lecteur audio sera ajouté ici par JavaScript -->
+                </div>
+                
+                <div id="lyrics" class="lyrics">
+                    <!-- Les paroles seront ajoutées ici par JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les paramètres de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const artiste = urlParams.get('artiste');
+            const lohateny = urlParams.get('lohateny');
+            
+            if (!artiste || !lohateny) {
+                window.location.href = '/autres/tononkira/lohateny.html';
+                return;
+            }
+            
+            // Configurer le bouton retour
+            document.getElementById('back-btn').addEventListener('click', function() {
+                window.history.back();
+            });
+            
+            // Charger les paroles de la chanson
+            fetchSongLyrics(artiste, lohateny);
+        });
+        
+        async function fetchSongLyrics(artiste, lohateny) {
+            try {
+                const response = await fetch(`/api/tononkira/hira?artiste=${encodeURIComponent(artiste)}&lohateny=${encodeURIComponent(lohateny)}`);
+                const data = await response.json();
+                
+                if (data.error) {
+                    showError(data.error);
+                    return;
+                }
+                
+                // Masquer le chargement
+                document.getElementById('loading').style.display = 'none';
+                
+                // Afficher les informations de la chanson
+                displaySong(data);
+                
+            } catch (error) {
+                console.error('Erreur lors du chargement des paroles:', error);
+                showError('Une erreur s\'est produite lors du chargement des paroles.');
+            }
+        }
+        
+        function displaySong(songData) {
+            document.title = `${songData.titre} - Tononkira`;
+            
+            // Mettre à jour les informations de la chanson
+            document.getElementById('song-title').textContent = songData.titre;
+            document.getElementById('artist-name').textContent = extractArtistName(songData.titre);
+            
+            // Afficher l'image de l'artiste si disponible
+            if (songData.url_photo) {
+                const imgElement = document.createElement('img');
+                imgElement.src = songData.url_photo;
+                imgElement.alt = 'Photo de l\'artiste';
+                document.getElementById('artist-image').appendChild(imgElement);
+            } else {
+                document.getElementById('artist-image').style.display = 'none';
+            }
+            
+            // Afficher le lecteur audio si disponible
+            if (songData.url_audio) {
+                const audioElement = document.createElement('audio');
+                audioElement.controls = true;
+                audioElement.src = songData.url_audio;
+                document.getElementById('audio-player').appendChild(audioElement);
+            } else {
+                document.getElementById('audio-player').style.display = 'none';
+            }
+            
+            // Afficher les paroles
+            document.getElementById('lyrics').textContent = songData.tononkira;
+            
+            // Afficher le contenu
+            document.getElementById('song-content').style.display = 'block';
+        }
+        
+        function extractArtistName(songTitle) {
+            // Extraire le nom de l'artiste du titre si possible
+            const match = songTitle.match(/\(([^)]+)\)/);
+            return match ? match[1] : '';
+        }
+        
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Horoscope</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn autres-btn" onclick="window.location.href='/horoscope'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="horoscope-container">
+        <div class="language-buttons">
+            <button id="fr-btn" class="lang-btn active">🇫🇷 Version Française</button>
+            <button id="mg-btn" class="lang-btn">🇲🇬 Version Malagasy</button>
+        </div>
+        <div id="horoscope-result">
+            <h2 class="date">📅 Horoscope du <span id="date"></span></h2>
+            
+            <div class="prediction-card">
+                <h3>❤️ Amour</h3>
+                <p id="amour"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>💰 Argent</h3>
+                <p id="argent"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>🏥 Santé</h3>
+                <p id="sante"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>💼 Travail</h3>
+                <p id="travail"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>👨‍👩‍👧‍👦 Famille</h3>
+                <p id="famille"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>👥 Vie Sociale</h3>
+                <p id="vie_sociale"></p>
+            </div>
+
+            <div class="extra-info">
+                <p>🎲 Nombre chance : <span id="nombre_chance"></span></p>
+                <p>💫 Citation du jour : <span id="citation"></span></p>
+                <p>👁️ Clin d'oeil : <span id="clin_doeil"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../script.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const signe = urlParams.get('signe');
+        let currentData = null;
+        let currentLang = 'fr';
+
+        async function loadHoroscope() {
+            try {
+                const response = await fetch(`/api/horoscope/rechercher?signe=${signe}`);
+                currentData = await response.json();
+                updateContent();
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        function updateContent() {
+            if (!currentData) return;
+            
+            document.getElementById('date').textContent = currentData.date;
+            document.getElementById('amour').textContent = currentData.amour[currentLang];
+            document.getElementById('argent').textContent = currentData.argent[currentLang];
+            document.getElementById('sante').textContent = currentData.sante[currentLang];
+            document.getElementById('travail').textContent = currentData.travail[currentLang];
+            document.getElementById('famille').textContent = currentData.famille[currentLang];
+            document.getElementById('vie_sociale').textContent = currentData.vie_sociale[currentLang];
+            document.getElementById('nombre_chance').textContent = currentData.nombre_de_chance[currentLang];
+            document.getElementById('citation').textContent = currentData.citation_du_jour[currentLang];
+            document.getElementById('clin_doeil').textContent = currentData.clin_doeil[currentLang];
+        }
+
+        document.getElementById('fr-btn').addEventListener('click', () => {
+            currentLang = 'fr';
+            document.getElementById('fr-btn').classList.add('active');
+            document.getElementById('mg-btn').classList.remove('active');
+            updateContent();
+        });
+
+        document.getElementById('mg-btn').addEventListener('click', () => {
+            currentLang = 'mg';
+            document.getElementById('mg-btn').classList.add('active');
+            document.getElementById('fr-btn').classList.remove('active');
+            updateContent();
+        });
+
+        loadHoroscope();
+    </script>
+</body>
+</html>

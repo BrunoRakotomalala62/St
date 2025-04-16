@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dontany sy Kapotandroka</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dontany-header {
+            position: relative;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+        }
+        
+        .background-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .header-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .decoration:nth-child(1) {
+            top: -50px;
+            left: -50px;
+        }
+        
+        .decoration:nth-child(2) {
+            top: -30px;
+            right: 20%;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .decoration:nth-child(3) {
+            bottom: -70px;
+            right: -50px;
+        }
+        
+        .decoration:nth-child(4) {
+            bottom: 20px;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .dontany-title {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .kabary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .kabary-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .kabary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .kabary-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--text);
+        }
+        
+        .kabary-text p {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .kabary-text p::before {
+            content: "❖";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .footer {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .corner-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .top-left {
+            top: 0;
+            left: 0;
+            border-top: 3px solid var(--accent);
+            border-left: 3px solid var(--accent);
+            border-top-left-radius: 10px;
+        }
+        
+        .top-right {
+            top: 0;
+            right: 0;
+            border-top: 3px solid var(--accent);
+            border-right: 3px solid var(--accent);
+            border-top-right-radius: 10px;
+        }
+        
+        .bottom-left {
+            bottom: 0;
+            left: 0;
+            border-bottom: 3px solid var(--accent);
+            border-left: 3px solid var(--accent);
+            border-bottom-left-radius: 10px;
+        }
+        
+        .bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom: 3px solid var(--accent);
+            border-right: 3px solid var(--accent);
+            border-bottom-right-radius: 10px;
+        }
+        
+        .return-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .return-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .mpikabary {
+            font-weight: bold;
+            color: blue;
+        }
+        
+        .elanelana {
+            font-weight: bold;
+            color: green;
+        }
+        
+        @media (max-width: 768px) {
+            .dontany-title {
+                font-size: 3rem;
+            }
+            .kabary-container {
+                padding: 1rem;
+            }
+            .kabary-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <nav>
+            <div class="nav-buttons">
+                <button class="nav-btn home-btn" onclick="window.location.href='/'">
+                    <span>🏠</span> Accueil
+                </button>
+                <button class="nav-btn back-btn" onclick="window.location.href='/autres/Kabary/kabary.html'">
+                    <span>↩️</span> Retour
+                </button>
+            </div>
+            <button class="theme-toggle">🌓</button>
+        </nav>
+
+        <header class="dontany-header">
+            <div class="background-gradient"></div>
+            <div class="header-decorations">
+                <div class="decoration"></div>
+                <div class="decoration"></div>
+                <div class="decoration"></div>
+                <div class="decoration"></div>
+            </div>
+            <h1 class="dontany-title">III. DONTANY SY KAPOTANDROKA</h1>
+        </header>
+
+        <main class="kabary-container">
+            <div class="kabary-card">
+                <div class="corner-decoration top-left"></div>
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="corner-decoration bottom-right"></div>
+                
+                <div class="kabary-text">
+                    <p>Resaka feno sariteny sy ohabolana ifampihatsian'ny olon-droa ary faranan'ny olona iray fahatelo atao hoe: elanelam-panahy</p>
+                    
+                    <p><span class="mpikabary">1-</span> Fa ahoana izato izy, Raondriana, no jerena toa farimanga tsy lany hamamiana kanjo toa tahon-katsaka afa-baby? Borôna maniry ambony vatolampy sa vitsika rava votry no toy valala voatango ka very fanahy mbola velona?</p>
+                    
+                    <p><span class="mpikabary">2-</span> Tsy Andriamatoa! Takatra amorom-parihy aho: tsy matory fa mieri-panahy. Lasa ny eritreritro mahita anao, sao dia ianao no nikasa hitaina anjavidy ka sendra borôna, sao dia ianao no vitsika momba kitay ka harivariva aty an-tanin'olona, sao dia ianao no valala tsy ampoky ny ahitra ka mifiaka ny antsoro maina? Sa voalavo sasatry ny miaina ka saka matory no alàm-bolom-bava?</p>
+                    
+                    <p><span class="mpikabary">1-</span> Toa aviavy fanantona re izato izy e? toa mivatravatra fiavy? Aoka itsy fa sakaipilo ny aty ka tsy leon'ny sakamalao, fananolahy za-dririnina ka tsy miraika amin'izay tora-bato. Ny sokina no mivonkina raha tohinina, ny mihorongorona no mikainkina raha voakasika fa ny aty mahatanando ka raha sahy ny moka mipetaha, raha vonona ny lalitra mitsocofa.</p>
+                    
+                    <p><span class="mpikabary">2-</span> E! izato rño tapa-tsiny: nahotsako dia mikobana, izato ronono patana: tanehiko dia mandroatra, vary kely an-daona: totoiko dia mitsamboamboatra, afo ka tsofiko dia midedadeda ary setroka ka tama-misavoana.</p>
+                    
+                    <p><span class="elanelana">Elanelam-panahy:</span> Iny ranomasina iny, re olona, manonja fa tsy mety tondraka, misamboaravara fa tsy mihoa-tsiraka; fa izato Andriamatoa kosa, rano malahelo miandry tonon-taona: ririnina hampaladia, fahavaratra mihoa-pefiloha kanefa aza misondrovadrova-poana sao zavona manin'Ankaratra, janao zavona ianao harana, saronanao aho ka takona, far aha avy ny masoandro, izaho tsy mihontsona fa vaomaika mamiratra fa ianao kosa misondrotra avo dia levona.</p>
+                    
+                    <p><span class="mpikabary">1-</span> Vovon'alika ny anao, Raondriana: tsy hery fa tahotra. Nikasa hanitsaka atrik'afon'ampombo ka tsy sahy: hitshina aho mahamay, helezina aho mandoro. Be nangy mitsoka ovy ny havako anio kany kibo voky tsy misy mpahalala fa ny ny nangy mitombo no hitan'ny olona. Zavona maninan-karana marina aho nefa tsy levona araka ny hevitrao fa mivongovongo ho rahona saingy tsy hirotsaka orana aho fa hiraraka ho havandra, ary tsy ialohan-kotroka fa harahim-baratra. Koa miomana fa hihorohoro ny lanitra ary hihovitrovitra ny tany. Raha tsy ho vatoampy ampy handihizako tsinona ka tsy tanety ampy hielezako, mialà dieny mbola tsy maninonaninona; songomby miditra an-trano aho anio ka tsy vitan-kalady ary voay miandry fitana ka tsy mahamasim-panidy.</p>
+                    
+                    <p><span class="mpikabary">2-</span> Tsy adin'ombalahin'ny mpianakavy intsony ity ka hoe: ny resy tsy akoraina, ny mahery tsy hobiana, fa adin'akoholahy vorombato: sanatria ahy anefa izay ho torotoro fa ianao no ho disadisaka. Ahy ianao anio! Ianao angidina miriorio, izaho hady tsy andalovana; ianao trondro mahay mitsipelika, izaho vovo miandry mahazo; ianao fody mahay mikopaka, izaho dity tsy mamela mivalo, ianao kibobo mahay manjohy izaho tady vavarana tsara petraka. Dorana aho ka may kanefa ianao afo, izaho vanja: raha mirehitra ianao, mipoaka aho! Isafelehanao aho kanefa ianao famahanan-tenona, izaho fanantana: izay asosonao ganiko! Ambananao aho ka taitra nefa ianao afo, izaho rano: raha tsy mahatankina ahy ianao matiko!</p>
+                    
+                    <p><span class="elanelana">Elanelam-panahy:</span> Lozan-tany, lozan-danitra ity, ry vahoaka, fa tsintsina no hifaoka vantotr'akoho, renisahona no hisahala habe amin'ny reniomby, basy no hiaika varatra, vovoka no hisetra tadio ary antsanga no hanoha riana. Kanefa tsy hisy izany! Ny kankana no mivoaka ho faty, ny vorondolo miseho andro no mitranga hohohaina, ny lolo fotsy no mitono tena, fa Andriamatoa toa ity akangalahy miditra ala: miandry</p>
+                    
+                    <p><span class="mpikabary">1-</span> ny oran-kisava vao sendra ny ora-mikija ka maizina ny tany aman-danitra. Ela nitoratorahana ka nahavoa mason'angatra, ela namintanana ka sendra ny amalon-javatra, ela nihadiana ka tojo saonjom-vazimba. Tahotry ny tolona tsy omby tratra ka misohika eo am-pisavihana, nanantena hameiy amin'ny ambadika ka voan'ny kapatokana. Fotaka an-keniheny ny aty ka mitovy ditra amin'ny honahona; latsaka anivony ianao izao mioira amin'izay hioiranao fa hateliko hatrany an-tampon-doha. Lainbolahy manitsa-dongoa ka mahatantesa ny fitrebiky ny tsatòka, namono biby tsy nahafaty ka ifoteran'ny rambony.</p>
+                    
+                    <p><span class="mpikabary">2-</span> Mba eía renao moa ny kotro-bara-dririnina? Maba efa hitanao moa ny antsanga tsy aman'orana? Mba efa tsinjonao moa ny masoandro misasak'alina? Mba efa niompy akoho manatody roa indray andro moa ianao? Raha misy ireo dia laninao tsara aho anio. Avia, ray sidintsidina, fa hasidintsidiko tahaka ny volom-borona ity havanareo! Avia, ray vorondreo, fa hitoreo ny ady tsy ahia-mahatratra Andriamatca! Avia, ray takatra, fa takatry ny tsy nampoizina izy, tojo ny tsy nantenaina! Avia, ray tararaka, fa raraka ny oran-kanondra-drano fa hafa ny erikerika omaly! Adray, ry ilay sinibe vakin-jinga! Andray, ry zana-mamba natelin-dreniny! Nanao hila tombony ka hatombiny, nanac hila sitrany ka hasitriny. Sarangoty izay ho sarangotinao fa mby amin'ny antara masia-dranomody ianao izao ka hatamboliny.</p>
+                    
+                    <p><span class="elanelana">Elanelam-panahy:</span> E, ray vanaka! E, ray ambany lanitra! Papango lahy anaty katsaka ireto ka izay mitranga babany avokoa. Tsy nampoiziko velively ho toy izao ianareo roa lahy! Hay sarim-bavy mahay beso ka midobo-peo vao zendana izahay! Koa izaho no izy: tantanana sy riandriana ianarto roa lahy ka tsy matahotra izay hifandona, zanaky ny efa mangotraka sy taranaky ny efa mandevy ka tsy misy matahotra izay mangorovitsika, vaton-doso ka tsy misy maivana sy mavesatra, vakin-tsaonjo roa ka tsy misy ivoasana, akondro kambana avara-tanana: tazanina tsy misy kely sy lehibe, rangavina tsy misy avo sy iva.</p>
+                    
+                    <p><span class="elanelana">Elanelam-panahy:</span> Fa etsy ange: Ny iray Tsaratanàna mandrindrina avy avaratra, ny iray kosa Andringitra mijoalajoala avy atsimo ka aoka aho ho Ankaratra anivon-tany. Ny iray Andriandahifotsin'ny sakalava, ny iray kosa Ratsimilao ny Betsimisaraka ka aoka aho ho Andrianampoinimerina elanelam-panahy. Ady sahala iny androany iny fa ny iray lalomena mitrena am-parihy, ny iray kosa ombalahy mitrena an-tanety. Vita ny androany fa miomàna ho amin'ny ampitso. Aza mandraraka ilo mby an-doha, aza misy resy an-kabary; izay maninaninana anareo roa lahy, ataovy farim-peo an-danonana, ataovy vaky amponga an-tsehatra, ataovy tsy mahazaka lamba, ataovy tsy maharay tena, fa ianareo roa lahy no tompondaka hatramin'izao.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <button class="return-btn" onclick="window.location.href='/autres/Kabary/kabary.html'">Retour à Kabary</button>
+        </footer>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

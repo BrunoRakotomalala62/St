@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Testez vos connaissances</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .quiz-btn {
+            background: linear-gradient(135deg, #2193b0, #6dd5ed);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 147, 176, 0.3);
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33, 147, 176, 0.4);
+            background: linear-gradient(135deg, #1c7a94, #5bc0de);
+        }
+
+        .quiz-mode-card {
+            background: rgba(33, 147, 176, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-mode-card:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn autres-btn" onclick="window.location.href='/autres'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="quiz-container">
+        <h1>🎮 Choisissez votre mode de quiz</h1>
+        <div class="quiz-description">
+            <p>Testez vos connaissances avec nos quiz interactifs et amusants !</p>
+        </div>
+
+        <div class="quiz-modes">
+            <div class="quiz-mode-card">
+                <h2>✅ Quiz Simple 🌻</h2>
+                <p>Répondez à des questions une par une</p>
+                <button onclick="window.location.href='/autres/quizsimple/simple.html'" class="quiz-btn">Quiz Simple 🏡</button>
+            </div>
+
+            <div class="quiz-mode-card">
+                <h2>Quiz avec Score 🌴</h2>
+                <p>Relevez le défi des 20 questions</p>
+                <button onclick="window.location.href='/autres/quizscore/quizscore.html'" class="quiz-btn">Quiz avec Score 🏆</button>
+            </div>
+        </div>
+    </main>
+    <script src="/script.js"></script>
+</body>
+</html>

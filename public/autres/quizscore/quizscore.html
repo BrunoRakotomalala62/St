@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz avec Score</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn quiz-btn" onclick="window.location.href='/autres/quiz.html'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+        <div class="lang-buttons">
+            <button id="fr-btn" class="lang-btn active" onclick="setLanguage('fr')">🇫🇷 Français</button>
+            <button id="en-btn" class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
+        </div>
+    </nav>
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <h1>🎯 Quiz avec Score</h1>
+            <div class="quiz-progress">Question <span id="current-question">1</span>/20</div>
+            <div class="quiz-score">Score: <span id="score">0</span>/20</div>
+        </div>
+
+        <div id="quiz-content">
+            <div id="question-container"></div>
+            <div id="options-container" class="options-container"></div>
+            <button id="submit-btn" class="submit-btn" onclick="checkAnswer()">✨ Envoyer la réponse 🎯</button>
+            <div id="result-container" class="result-container"></div>
+        </div>
+
+        <div id="final-result" style="display: none;">
+            <h2>Quiz terminé !</h2>
+            <p>Votre score final : <span id="final-score"></span>/20</p>
+            <p id="final-message"></p>
+            <button onclick="restartQuiz()" class="restart-btn">Recommencer le Quiz</button>
+        </div>
+    </main>
+
+    <script>
+        let currentQuestion = null;
+        let questionNumber = 1;
+        let score = 0;
+
+        let currentLang = 'fr';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('fr-btn').classList.toggle('active', lang === 'fr');
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            if (currentQuestion) {
+                displayQuestion(currentQuestion);
+            }
+        }
+
+        async function getNewQuestion() {
+            if (questionNumber > 20) {
+                showFinalResult();
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/quiz/getQuiz');
+                const data = await response.json();
+                currentQuestion = data;
+                displayQuestion(data);
+                document.getElementById('current-question').textContent = questionNumber;
+                document.getElementById('result-container').innerHTML = '';
+                document.getElementById('submit-btn').style.display = 'block';
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        function displayQuestion(data) {
+            const responseText = currentLang === 'fr' ? data.translated.response : data.original.response;
+            const lines = responseText.split('\n');
+            const questionText = lines[0].replace('🎉 Question : ', '');
+            const correctAnswer = lines[lines.length - 1].replace('🔑 Réponse correcte : ', '').trim();
+            const allOptions = lines.filter(line => line.match(/^\d\./))
+                               .map(line => line.replace(/^\d\.\s*/, ''));
+            let options;
+            if (currentLang === 'en') {
+                options = allOptions;
+            } else {
+                options = allOptions.includes(correctAnswer) ? allOptions : [...allOptions, correctAnswer];
+            }
+            currentQuestion = { options, correctAnswer };
+
+            document.getElementById('question-container').innerHTML = `<p>${questionText}</p>`;
+
+            const optionsHtml = options.map(option => `
+                <div class="option">
+                    <input type="radio" name="quiz" value="${option}" id="${option}">
+                    <label for="${option}">${option}</label>
+                </div>
+            `).join('');
+
+            document.getElementById('options-container').innerHTML = optionsHtml;
+        }
+
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="quiz"]:checked');
+            if (!selected) {
+                alert('Veuillez sélectionner une réponse');
+                return;
+            }
+
+            const selectedAnswer = selected.value;
+            let correctAnswer = currentQuestion.correctAnswer.trim();
+            // Remove "Correct answer:" prefix if present
+            correctAnswer = correctAnswer.replace('Correct answer: ', '');
+            const isCorrect = selectedAnswer === correctAnswer;
+            console.log('Selected:', selectedAnswer, 'Correct:', currentQuestion.correctAnswer);
+
+            const resultContainer = document.getElementById('result-container');
+            const messages = {
+                fr: {
+                    correct: "✅ Bravo ! C'est la bonne réponse !",
+                    incorrect: "❌ Désolé, ce n'est pas la bonne réponse.",
+                    correctAnswer: "La bonne réponse était : "
+                },
+                en: {
+                    correct: "✅ Correct answer!",
+                    incorrect: "❌ Bad response",
+                    correctAnswer: "The correct answer is: "
+                }
+            };
+
+            const lang = currentLang === 'fr' ? 'fr' : 'en';
+            if (isCorrect) {
+                score++;
+                document.getElementById('score').textContent = score;
+                resultContainer.innerHTML = `<div class="correct">${messages[lang].correct}</div>`;
+            } else {
+                resultContainer.innerHTML = `
+                    <div class="incorrect">${messages[lang].incorrect}</div>
+                    <div class="correct-answer">${messages[lang].correctAnswer}${correctAnswer}</div>
+                `;
+            }
+
+            document.getElementById('submit-btn').style.display = 'none';
+
+            setTimeout(() => {
+                questionNumber++;
+                if (questionNumber <= 20) {
+                    getNewQuestion();
+                } else {
+                    showFinalResult();
+                }
+            }, 2000);
+        }
+
+        function showFinalResult() {
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('final-result').style.display = 'block';
+            document.getElementById('final-score').textContent = score;
+
+            const message = score >= 10 ? 
+                '🎉 Félicitations ! Vous avez réussi le quiz !' : 
+                '😔 Dommage ! Vous pouvez faire mieux la prochaine fois.';
+            document.getElementById('final-message').textContent = message;
+        }
+
+        function restartQuiz() {
+            questionNumber = 1;
+            score = 0;
+            document.getElementById('score').textContent = '0';
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('final-result').style.display = 'none';
+            getNewQuestion();
+        }
+
+        // Charger la première question au chargement de la page
+        window.onload = getNewQuestion;
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>

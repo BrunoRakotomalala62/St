@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de Chansons par Artiste - Tononkira</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .lohateny-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .search-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .search-section h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+            color: var(--text-color);
+        }
+        
+        .search-btn {
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-btn:hover {
+            background-color: var(--primary-color-dark);
+        }
+        
+        .examples {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .examples h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .example-tag {
+            padding: 8px 15px;
+            background-color: var(--bg-secondary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .example-tag:hover {
+            background-color: var(--primary-color-light);
+        }
+        
+        @media (max-width: 600px) {
+            .search-section h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn autres-btn" onclick="window.location.href='/autres/tononkira/tononkira.html'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="lohateny-container">
+        <div class="search-section">
+            <h1>Rechercher un artiste</h1>
+            
+            <div class="search-box">
+                <input type="text" id="artist-input" class="search-input" placeholder="Entrez le nom de l'artiste..." autocomplete="off">
+                <button id="search-btn" class="search-btn">🔍 Rechercher</button>
+            </div>
+            
+            <div class="examples">
+                <h3>Exemples d'artistes populaires :</h3>
+                <div class="example-tags">
+                    <div class="example-tag" onclick="selectArtist('Ambondrona')">Ambondrona</div>
+                    <div class="example-tag" onclick="selectArtist('Mahaleo')">Mahaleo</div>
+                    <div class="example-tag" onclick="selectArtist('Bodo')">Bodo</div>
+                    <div class="example-tag" onclick="selectArtist('Rossy')">Rossy</div>
+                    <div class="example-tag" onclick="selectArtist('Jerry Marcoss')">Jerry Marcoss</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function selectArtist(artist) {
+            document.getElementById('artist-input').value = artist;
+        }
+        
+        document.getElementById('search-btn').addEventListener('click', function() {
+            searchArtist();
+        });
+        
+        document.getElementById('artist-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchArtist();
+            }
+        });
+        
+        function searchArtist() {
+            const artist = document.getElementById('artist-input').value.trim();
+            if (artist) {
+                // Enregistrer l'artiste dans le localStorage pour l'utiliser sur la page suivante
+                localStorage.setItem('currentArtist', artist);
+                window.location.href = `/autres/tononkira/titre.html?artiste=${encodeURIComponent(artist)}&page=1`;
+            }
+        }
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>

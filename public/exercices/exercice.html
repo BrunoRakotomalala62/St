@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .exercise-card {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+        .exercise-title {
+            color: #60a5fa;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .exercise-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .exercise-button {
+            background: #3b82f6;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .exercise-button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="exercise-container">
+        <div class="exercise-card">
+            <h2 class="exercise-title">🎓 Examen Blanc</h2>
+            <p class="exercise-description">
+                Préparez-vous efficacement aux examens avec nos examens blancs soigneusement conçus. 
+                Ces tests simulent les conditions réelles d'examen et vous permettent d'évaluer votre niveau de préparation.
+            </p>
+            <button class="exercise-button" onclick="window.location.href='/exercices/exercice/examen.html'">Commencer l'Examen Blanc</button>
+        </div>
+
+        <div class="exercise-card">
+            <h2 class="exercise-title">📝 Exercices Pratiques</h2>
+            <p class="exercise-description">
+                Renforcez vos connaissances avec notre collection d'exercices pratiques.
+                Ces exercices sont conçus pour vous aider à maîtriser les concepts clés et améliorer vos compétences.
+            </p>
+            <button class="exercise-button">Accéder aux Exercices</button>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    let isDark = localStorage.getItem('theme') === 'dark';
+    
+    // Apply theme on load
+    document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    themeToggle.textContent = isDark ? '☀️' : '🌓';
+
+    themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeToggle.textContent = isDark ? '☀️' : '🌓';
+    });
+});
+</script>
+</body>
+</html>

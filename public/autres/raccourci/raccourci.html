@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RACCOURCIS CLAVIER ORDINATEUR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #8a2be2, #4b0082, #9400d3, #8a2be2);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+            transition: background-color 0.3s ease; /* Added for smooth theme transition */
+        }
+        body[data-theme='dark'] {
+            background-color: #333; /* Dark background */
+            color: #eee; /* Light text */
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #ffff00;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.05);}
+            100% {transform: scale(1);}
+        }
+
+        h2 {
+            color: #00ffff;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 8px;
+            font-size: 24px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .shortcuts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .shortcut-item {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .shortcut-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .key {
+            color: #ff6ec7;
+            font-weight: bold;
+            width: 120px;
+            font-size: 16px;
+        }
+
+        .description {
+            color: #ffffff;
+            flex-grow: 1;
+        }
+
+        .special-chars {
+            margin-top: 20px;
+        }
+
+        .special-chars .shortcut-item {
+            background-color: rgba(230, 230, 250, 0.15);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #ffcccc;
+            font-style: italic;
+            animation: colorChange 5s infinite;
+        }
+
+        @keyframes colorChange {
+            0% {color: #ffcccc;}
+            25% {color: #ccffcc;}
+            50% {color: #ccccff;}
+            75% {color: #ffffcc;}
+            100% {color: #ffcccc;}
+        }
+
+        @media (max-width: 768px) {
+            .shortcuts {
+                grid-template-columns: 1fr;
+            }
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .buttons-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .theme-toggle {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons-container">
+            <button onclick="window.location.href='/autres/autres.html';">Retour</button>
+            <span class="theme-toggle">🌓</span> </div>
+        <h1>RACCOURCIS CLAVIER ORDINATEUR</h1>
+
+        <div class="section">
+            <h2>Système de touches de raccourci important</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+A</div>
+                    <div class="description">Sélectionner tous</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+C</div>
+                    <div class="description">Copie</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+X</div>
+                    <div class="description">Coupe</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+V</div>
+                    <div class="description">Coller</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Z</div>
+                    <div class="description">Annuler</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+G</div>
+                    <div class="description">Audacieux</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+U</div>
+                    <div class="description">Souligner</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+I</div>
+                    <div class="description">Italique</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F1</div>
+                    <div class="description">Aide</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F2</div>
+                    <div class="description">Renommer L'objet sélectionné</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F3</div>
+                    <div class="description">Trouver tous les fichiers</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F4</div>
+                    <div class="description">Ouvre le drop-Down de la liste de fichiers dans les boîtes de dialogue</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F5</div>
+                    <div class="description">Rafraîchir la fenêtre actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F6</div>
+                    <div class="description">Changement de focus dans Windows explorer</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F10</div>
+                    <div class="description">Active les options de la barre de menu</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+Tab</div>
+                    <div class="description">Cycles entre applications ouvertes</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+F4</div>
+                    <div class="description">Quitter le programme, fermer la fenêtre actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+F6</div>
+                    <div class="description">Basculer entre les fenêtres du programme actuel</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+Entrée</div>
+                    <div class="description">Ouvre la boîte de dialogue des propriétés</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+Space</div>
+                    <div class="description">Menu du système pour la fenêtre actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+¢</div>
+                    <div class="description">Ouvre des listes de drop-Down dans les boîtes de dialogue</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Retour en arrière</div>
+                    <div class="description">Passer au dossier parent</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Esc</div>
+                    <div class="description">Ouvre le menu de démarrage</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Alt+Suppr</div>
+                    <div class="description">Ouvre le gestionnaire de tâches, redémarre l'ordinateur</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Tab</div>
+                    <div class="description">Déplacez-vous à travers les onglets de propriété</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Shift+Drag</div>
+                    <div class="description">Créer un raccourci (aussi un clic droit, glisser)</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Drag</div>
+                    <div class="description">Copier le fichier</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ces</div>
+                    <div class="description">Annuler la dernière fonction</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Quart de travail</div>
+                    <div class="description">Appuyez / maintenez le poste, insérez le CD-Rom pour contourner l'auto-Play</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Shift+Drag</div>
+                    <div class="description">Déplacer le fichier</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Maj+F10</div>
+                    <div class="description">Ouvre le menu contextuel (même que le clic droit)</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Maj+Suppr</div>
+                    <div class="description">Effacement complet supprimer (contourner la poubelle de recyclage)</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt+lettre soulignée</div>
+                    <div class="description">Ouvre le menu correspondant</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Contrôle du curseur de document</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">À la maison</div>
+                    <div class="description">Au début de la ligne ou à l'extrême gauche du champ ou de l'écran</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Fin</div>
+                    <div class="description">À la fin de la ligne, ou à l'extrême droite du champ ou de l'écran</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Début</div>
+                    <div class="description">Au sommet</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+End</div>
+                    <div class="description">Au fond</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Page up</div>
+                    <div class="description">Déplace le document ou la boîte de dialogue sur une page</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Page en bas</div>
+                    <div class="description">Déplace le document ou la boîte de dialogue en bas d'une page</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Les clés de la flèche</div>
+                    <div class="description">Déplacez-vous dans les documents, les boîtes de dialogue, etc.</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+ ></div>
+                    <div class="description">Prochain mot</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl+Shift+ ></div>
+                    <div class="description">Sélectionne Le mot</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Contrôle de l'arbre de Windows explorer</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">Clavier numérique *</div>
+                    <div class="description">Agrandir tout sous la sélection actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Clavier numérique +</div>
+                    <div class="description">Élargit la sélection actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Clavier numérique -</div>
+                    <div class="description">Effondre la sélection actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">→</div>
+                    <div class="description">Développez la sélection actuelle ou allez au premier enfant</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">←</div>
+                    <div class="description">Effondrement de la sélection actuelle ou allez chez parent</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Personnages spéciaux</h2>
+            <div class="shortcuts special-chars">
+                <div class="shortcut-item">
+                    <div class="key">Alt 0145</div>
+                    <div class="description">' ouverture de la citation unique</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0146</div>
+                    <div class="description">' fermeture de la citation unique</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0147</div>
+                    <div class="description">" ouverture de la double citation</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0148</div>
+                    <div class="description">" fermeture de la double citation</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0150</div>
+                    <div class="description">– un tableau de bord</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0151</div>
+                    <div class="description">— à dash</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0133</div>
+                    <div class="description">... Ellipse</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0149</div>
+                    <div class="description">• Balle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0174</div>
+                    <div class="description">® marque d'inscription</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0169</div>
+                    <div class="description">© droit d'auteur</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0153</div>
+                    <div class="description">™ marque de commerce</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0176</div>
+                    <div class="description">° symbole de degré</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0162</div>
+                    <div class="description">¢ Signe de centimes</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0188</div>
+                    <div class="description">¼</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0189</div>
+                    <div class="description">½</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0190</div>
+                    <div class="description">¾</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Caractères accentués</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">Alt 0233</div>
+                    <div class="description">é</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0201</div>
+                    <div class="description">É</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0241</div>
+                    <div class="description">ñ</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt 0247</div>
+                    <div class="description">÷</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Options de menu de fichier dans le programme actuel</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">Alt + e</div>
+                    <div class="description">Modifier les options dans le programme actuel</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F1</div>
+                    <div class="description">Aide universelle (pour tous les programmes)</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + a</div>
+                    <div class="description">Sélectionner tout le texte</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + x</div>
+                    <div class="description">Coupe de l'article sélectionné</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">MAJ + del</div>
+                    <div class="description">Cut item sélectionné</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + c</div>
+                    <div class="description">Copier l'article sélectionné</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + ins</div>
+                    <div class="description">Copier l'article sélectionné</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + v</div>
+                    <div class="description">Coller</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Shift + ins</div>
+                    <div class="description">Coller</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">À la maison</div>
+                    <div class="description">Allez au début de la ligne actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + home</div>
+                    <div class="description">Aller au début du document</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Fin</div>
+                    <div class="description">Aller à la fin de la ligne actuelle</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + fin</div>
+                    <div class="description">Aller à la fin du document</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">MAJ + home</div>
+                    <div class="description">Mise à jour de la position actuelle au début de la ligne</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">MAJ + fin</div>
+                    <div class="description">Mise en avant de la position actuelle jusqu'à la fin de la ligne</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + f</div>
+                    <div class="description">Déplace un mot à gauche à la fois</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + g</div>
+                    <div class="description">Déplace un mot à la droite à la fois</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Les clés de raccourci Microsoft Windows</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">Alt + onglet</div>
+                    <div class="description">Switch entre les applications ouvertes</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt + Shift + onglet</div>
+                    <div class="description">Basculer à l'envers entre ouvert Applications</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt + impression Écran</div>
+                    <div class="description">Créer une photo d'écran pour le programme actuel</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + Alt + Del</div>
+                    <div class="description">Reboot / Windows Gestionnaire de tâches</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + ESC</div>
+                    <div class="description">Apporte le menu de départ</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt + ESC</div>
+                    <div class="description">Switch entre les applications dans la barre des tâches</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F2</div>
+                    <div class="description">Renommer l'icône sélectionnée</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F3</div>
+                    <div class="description">Commence à trouver depuis le bureau</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F4</div>
+                    <div class="description">Ouvre la sélection de drive lors de la navigation</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">F5</div>
+                    <div class="description">Contenu de rafraîchissement</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt + F4</div>
+                    <div class="description">Fermeture du programme ouvert</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + F4</div>
+                    <div class="description">Fermeture de la fenêtre dans le programme</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Ctrl + plus Clé</div>
+                    <div class="description">Ajuster automatiquement les largeurs de toutes les colonnes Dans Windows explorer</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Alt + entrez</div>
+                    <div class="description">La fenêtre des propriétés ouvertes de l'icône sélectionnée Ou programme</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Shift + F10</div>
+                    <div class="description">Simuler un clic droit sur un article sélectionné</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">MAJ + del</div>
+                    <div class="description">Supprimer les programmes / fichiers en permanence</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Changement de garde Pendant le démarrage</div>
+                    <div class="description">Les fichiers du système de sécurité de démarrage ou de contournement</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Changement de garde Pendant le démarrage</div>
+                    <div class="description">Lors de la mise en place d'un CD Audio, vous pourrez prévenir Lecteur CD de jouer</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Raccourcis winkey</h2>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <div class="key">Winkey + d</div>
+                    <div class="description">Apporte le bureau au sommet des autres fenêtres</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + m</div>
+                    <div class="description">Minimise toutes les fenêtres</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + Shift + m</div>
+                    <div class="description">Annuler le minimiser fait par winkey + m Et Winkey + d</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + e</div>
+                    <div class="description">Ouvert Microsoft Explorer</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + TAB</div>
+                    <div class="description">CYCLE à travers des programmes ouverts sur la barre des tâches</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + f</div>
+                    <div class="description">Afficher la fonctionnalité de recherche / recherche windows</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + Ctrl + f</div>
+                    <div class="description">Afficher la fenêtre de recherche d'ordinateurs</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + F1</div>
+                    <div class="description">Afficher l'aide Microsoft Windows</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + R</div>
+                    <div class="description">Ouvre la fenêtre de course</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + Pause/pause</div>
+                    <div class="description">Ouvrez la fenêtre des propriétés du système</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + u</div>
+                    <div class="description">Open utilitaire manager</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="key">Winkey + l</div>
+                    <div class="description">Verrouille l'ordinateur (Windows Xp & plus tard)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+                                
+                <div class="shortcut-item">
+                    <div> 
+ <h2>Outlook raccourcis clavier</h2>
+<div class="shortcuts">
+    <div class="shortcut-item">
+        <div class="key">Alt + s</div>
+        <div class="description">Envoyez l'e-mail</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + c</div>
+        <div class="description">Copie texte sélectionné</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + x</div>
+        <div class="description">Coupe le texte sélectionné</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + p</div>
+        <div class="description">Boîte de dialogue d'impression ouverte</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + k</div>
+        <div class="description">Nom complet / e-mail tapé dans la barre d'adresse</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + b</div>
+        <div class="description">Audacieuse sélection mise en évidence</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + i</div>
+        <div class="description">Italicize sélection mise en avant</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + u</div>
+        <div class="description">Souligne la sélection mise en avant</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + r</div>
+        <div class="description">Réponse à un e-mail</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + f</div>
+        <div class="description">En avant un e-mail</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + n</div>
+        <div class="description">Crée un nouvel e-mail</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + shift + a</div>
+        <div class="description">Créer un nouveau rendez-vous à votre calendrier</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + shift + o</div>
+        <div class="description">Ouvre la boîte d'envoi</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + shift + i</div>
+        <div class="description">Ouvre la boîte de réception</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + shift + k</div>
+        <div class="description">Ajouter une nouvelle tâche</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + shift + c</div>
+        <div class="description">Crée un nouveau contact</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + shift + j</div>
+        <div class="description">Crée une nouvelle entrée de journal</div>
+    </div>
+</div>
+
+<h2>Word raccourcis clavier</h2>
+<div class="shortcuts">
+    <div class="shortcut-item">
+        <div class="key">Ctrl + a</div>
+        <div class="description">Sélectionner tous les contenus de la page</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + b</div>
+        <div class="description">Audacieuse sélection mise en évidence</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + c</div>
+        <div class="description">Copie texte sélectionné</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + x</div>
+        <div class="description">Coupe le texte sélectionné</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + n</div>
+        <div class="description">Ouvert nouveau / document blanc</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + o</div>
+        <div class="description">Options ouvertes</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + p</div>
+        <div class="description">Ouvre la fenêtre d'impression</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + f</div>
+        <div class="description">Open trouver boîte</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + i</div>
+        <div class="description">Italicize sélection mise en avant</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + k</div>
+        <div class="description">Insérer le lien</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + u</div>
+        <div class="description">Souligne la sélection mise en avant</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + v</div>
+        <div class="description">Coller</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + y</div>
+        <div class="description">Refaire la dernière action exécutée</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + z</div>
+        <div class="description">Annuler la dernière action</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + g</div>
+        <div class="description">Trouve et remplace les options</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + h</div>
+        <div class="description">Trouver et remplacer les options</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + j</div>
+        <div class="description">Justifie l'alignement du paragraphe</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + l</div>
+        <div class="description">Aligner le texte ou la ligne sélectionné sur la gauche</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + q</div>
+        <div class="description">Aligner le paragraphe sélectionné sur la gauche</div>
+    </div>
+    <div class="shortcut-item">
+        <div class="key">Ctrl + e</div>
+        <div class="description">Alignement sélectionné</div>
+    </div>
+</div>               
+
+        <div class="footer">
+            © 2025 RACCOURCIS CLAVIER ORDINATEUR. Tous droits réservés.
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        let isDark = localStorage.getItem('theme') === 'dark';
+
+        // Apply theme on load
+        document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeToggle.textContent = isDark ? '☀️' : '🌓';
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌓';
+        });
+    </script>
+</body>
+</html>

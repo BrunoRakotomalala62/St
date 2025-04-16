@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Blanc BACC - Mathématiques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.4;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .exercice {
+            margin-bottom: 30px;
+        }
+        .exercice-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .points {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        body[data-theme='dark'] {
+            background-color: #333;
+            color: #eee;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle">🌓</button>
+    <div class="header">
+        DELEGATION NATIONALE DES ECOLES LIBRES DE MADAGASCAR<br>
+        2015 EXAMEN BLANC BACC - MATHÉMATIQUES
+    </div>
+
+    <div class="exercice">
+        <div class="exercice-title">EXERCICE 1 :</div>
+        <p>
+            Un sac contient 12 vêtements tous confectionnés avec un même tissu dont la répartition suivant la couleur et l'article est donnée par le tableau suivant
+        </p>
+        <table>
+            <tr>
+                <th></th>
+                <th>pantalon</th>
+                <th>Jupe</th>
+                <th>Chemise</th>
+            </tr>
+            <tr>
+                <td>Blanche</td>
+                <td>0</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Rouge</td>
+                <td>2</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Noire</td>
+                <td>1</td>
+                <td>2</td>
+                <td>1</td>
+            </tr>
+        </table>
+        <p>Chaque vêtement a la même probabilité d'être tiré</p>
+        <div class="question">
+            1) On choisit au hasard 2 vêtements du sac. Calculer la probabilité de chacun des événements suivants :
+            <div style="margin-left: 20px;">
+                A : « obtenir une jupe et une chemise blanche »<br>
+                B : « obtenir au moins un pantalon rouge »
+            </div>
+        </div>
+        <div class="question">
+            2) On tire successivement 3 vêtements du sac sans remettre dans le sac le vêtement qui a été tiré.
+            <div style="margin-left: 20px;">
+                a) Déterminer le nombre de cas possibles.<br>
+                b) Calculer la probabilité de :<br>
+                C : « les trois vêtements sont de même couleur »<br>
+                D : « on obtient 1 pantalon, une jupe et une chemise dans cet ordre »
+            </div>
+        </div>
+        <div class="question">
+            3) On tire successivement avec remise 3 vêtements du sac. Calculer les probabilités suivantes :
+            <div style="margin-left: 20px;">
+                E : « obtenir 3 chemises de même couleur »<br>
+                F : « obtenir 3 jupes de couleurs toutes différentes »
+            </div>
+        </div>
+    </div>
+
+    <div class="exercice">
+        <div class="exercice-title">EXERCICE 2 :</div>
+        <p>
+            Soit la suite u la suite définie par 
+            \(
+            \begin{cases}
+            u_0 = -1 \\
+            u_{n+1} = u_n - 5
+            \end{cases}
+            \)
+        </p>
+        <p>
+            On considère la suite v définie pour tout entier naturel n par v<sub>n</sub> = 3u<sub>n</sub> + 5
+        </p>
+        <div class="question">
+            1) Calculer u<sub>1</sub>, u<sub>2</sub> et v<sub>0</sub>.
+        </div>
+        <div class="question">
+            2) Montrer que v est une suite géométrique dont on précisera la raison et le premier terme.
+        </div>
+        <div class="question">
+            3) Exprimer v<sub>n</sub> en fonction de n.
+        </div>
+        <div class="question">
+            En déduire l'expression de u<sub>n</sub> en fonction de n.
+        </div>
+        <div class="question">
+            4) On pose S<sub>n</sub> = v<sub>0</sub> + v<sub>1</sub> + ... + v<sub>n-1</sub><br>
+            Calculer S<sub>n</sub> en fonction de n.
+        </div>
+    </div>
+
+    <div class="exercice">
+        <div class="exercice-title">PROBLEME:</div>
+        <p>
+            On considère la fonction f définie par f(x) = -x+2/x + 2ln x
+        </p>
+        <p>
+            On désigne par (C) sa courbe représentative dans un repère orthonormé (O; i, j) d'unité 1cm.
+        </p>
+        <div class="question">
+            1) Déterminer l'ensemble de définition D de f
+        </div>
+        <div class="question">
+            2) a) Montrer que pour tout x > 0, on a: f(x) = -x+2/x+2ln x
+        </div>
+        <div class="question">
+            b) Sachant que lim x→0+ xln x = 0, calculer lim x→0+ f(x)<br>
+            Interpréter graphiquement le résultat
+        </div>
+        <div class="question">
+            3) Calculer lim x→+∞ f(x).
+        </div>
+        <div class="question">
+            4) a) Calculer la dérivée f'(x) et montrer que pour tout x > 0, f'(x) = 2x-2/x²
+        </div>
+        <div class="question">
+            b) Étudier suivant les valeurs de x le signe de f'(x).
+        </div>
+        <div class="question">
+            c) Dresser le tableau de variation de f
+        </div>
+        <div class="question">
+            5) Montrer que le point d'abscisse 2 est un point d'inflexion de la courbe (C).<br>
+            Donner une équation de la tangente (T) à (C) en ce point
+        </div>
+        <div class="question">
+            6) On admet que lim x→0+ f(x)/x = 0. Étudier la branche infinie de (C) en +∞
+        </div>
+        <div class="question">
+            7) Tracer la courbe (C) et la tangente (T).
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <button id="prev-page-btn" class="nav-button" onclick="window.location.href='/exercices/exercice/baccBlanc.html'">« Page d'accueil</button>
+        <button id="next-page-btn" class="nav-button" onclick="window.location.href='/exercices/exercice/baccblanc/mathematiques2.html'">Page Mathématiques 2 »</button>
+        <button id="physics-page-btn" class="nav-button" onclick="window.location.href='/exercices/exercice/baccblanc/physique.html'">Page Physique »</button>
+    </div>
+
+    <div id="page2" style="display: none;">
+        <div class="header">
+            Lycée Privé Ampinga d'Or<br>
+            Antanjombe ambony Ambohimanarina<br>
+            <span style="float: right;">Année scolaire : 2024-2025<br>Durée: 2h</span>
+        </div>
+        <div class="header">
+            Examen : MATHÉMATIQUES Classe 5<sup>ème</sup><br>
+            Prof: M<sup>r</sup> Bruno
+        </div>
+
+        <div class="exercice">
+            <div class="exercice-title">EXERCICE 01 : ACTIVITES NUMERIQUES <span style="float: right;">10 points</span></div>
+            <div class="question">
+                1) Comparer les nombres suivants en utilisant les symboles < ou > : <span class="points">(2 points)</span>
+                <div style="margin-left: 20px;">
+                    a) −0,33 et −25,25<br>
+                    b) <sup>3</sup>/<sub>4</sub> et <sup>3</sup>/<sub>5</sub>
+                </div>
+            </div>
+            <div class="question">
+                2) Ranger les fractions suivantes par ordre croissant : <span class="points">(2 points)</span>
+                <div style="margin-left: 20px;">
+                    <sup>2</sup>/<sub>3</sub>, <sup>2</sup>/<sub>5</sub>, <sup>4</sup>/<sub>7</sub>
+                </div>
+            </div>
+            <div class="question">
+                3) Calculer l'expression suivante et donner le résultat sous forme de fraction irréductible : <span class="points">(2 points)</span>
+                <div style="margin-left: 20px;">
+                    A = <sup>4</sup>/<sub>3</sub> − <sup>2</sup>/<sub>5</sub> × <sup>5</sup>/<sub>6</sub>
+                </div>
+            </div>
+            <div class="question">
+                4) Encadrer les fractions suivantes entre deux nombres entiers consécutifs : <span class="points">(4 points)</span>
+                <div style="margin-left: 20px;">
+                    <sup>4</sup>/<sub>3</sub> et <sup>17</sup>/<sub>5</sub>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercice">
+            <div class="exercice-title">EXERCICE 02 : ACTIVITES GEOMETRIQUES <span style="float: right;">10 points</span></div>
+            <div class="question">
+                1) Tracer une droite et placer deux points A et B sur cette droite, tels que AB = 6cm. <span class="points">(2 points)</span>
+            </div>
+            <div class="question">
+                2) Construire la médiatrice du segment [AB]. <span class="points">(2 points)</span>
+            </div>
+            <div class="question">
+                3) Placer un point C situé sur la médiatrice de [AB] et qui n'appartient pas au segment [AB]. <span class="points">(2 points)</span>
+            </div>
+            <div class="question">
+                4) Tracer le triangle ABC en reliant les trois points entre eux. Pour chaque côté du triangle ABC, construire sa médiatrice. Que remarques-tu concernant ces trois médiatrices ? <span class="points">(2 points)</span>
+            </div>
+            <div class="question">
+                5) Construire le cercle qui passe par les trois points sommets du triangle ABC. Ce cercle est appelé le cercle circonscrit au triangle ABC. <span class="points">(2 points)</span>
+            </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <button id="prev-page-btn" class="nav-button">Page Précédente</button>
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        let isDark = localStorage.getItem('theme') === 'dark';
+
+        // Apply theme on load
+        document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeToggle.textContent = isDark ? '☀️' : '🌓';
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌓';
+        });
+
+        // Page navigation logic
+        const page1Elements = document.querySelectorAll('body > *:not(#page2):not(script):not(.theme-toggle)');
+        const page2 = document.getElementById('page2');
+        const nextPageBtn = document.getElementById('next-page-btn');
+        const prevPageBtn = document.getElementById('prev-page-btn');
+
+        nextPageBtn.addEventListener('click', () => {
+            page1Elements.forEach(el => el.style.display = 'none');
+            page2.style.display = 'block';
+        });
+
+        prevPageBtn.addEventListener('click', () => {
+            page1Elements.forEach(el => el.style.display = '');
+            page2.style.display = 'none';
+        });
+    </script>
+
+    <style>
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .nav-button {
+            padding: 10px 20px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .nav-button:hover {
+            background-color: #2563eb;
+        }
+        .points {
+            display: inline-block;
+            font-style: italic;
+            margin-left: 10px;
+        }
+    </style>
+</body>
+</html>

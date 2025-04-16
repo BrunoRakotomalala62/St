@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabary - Art Oratoire Malgache</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .kabary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .kabary-title {
+            color: #ff0000;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .chapter-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            text-align: left;
+            background: #64B5F6;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .chapter-btn:hover {
+            background: #42A5F5;
+            transform: translateX(10px);
+        }
+        .torotakila-title {
+            color: #4CAF50;
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 3rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .chapter-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            text-align: left;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .chapter-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(10px);
+        }
+        .sub-section {
+            margin-left: 2rem;
+            padding: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn autres-btn" onclick="window.location.href='/autres'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="kabary-container">
+        <h1 class="kabary-title">NY TENA KABARY</h1>
+        
+        <ul class="kabary-list">
+            <li>AM-PANAMBADIANA</li>
+            <li>AM-PANDEVENANA</li>
+            <li>AM-PAMADIHANA</li>
+            <li>FAMANGIANA</li>
+            <li>DONTANY SY KAPOTANDROKA</li>
+        </ul>
+
+        <h1 class="torotakila-title">TOROTAKILA</h1>
+
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/ALA_SARONA/ala_sarona.html'">I. Alasarona</button>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/fanambadiana/fanambadiana.html'">II. Kabary am-panambadiana</button>
+        <div class="sub-section">
+            <p>◦ Fialan-tsiny</p>
+            <p>👉 Ohatra voalohany</p>
+            <p>👉 Ohatra faharoa</p>
+            <p>◦ Fiarahabana</p>
+            <p>◦ Ranjan-kabary</p>
+        </div>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/dontany/dontany.html'">III. Dontany sy kapotandroka</button>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/famadihana/famadihana.html'">IV. Kabary am-pamadihana</button>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/famangiana/famangiana.html'">V. Fanaladiana (famangiana mana-manjo)</button>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/fandevenana/fandevenana.html'">VI. Kabary am-pandevenana</button>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/fanasana/fanasana.html'">VII. Lahateny fanao amin'ny fanasana</button>
+        <button class="chapter-btn" onclick="window.location.href='/autres/kabary/jobily/jobily.html'">VIII. Lahateny fanao amin'ny jobily</button>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>

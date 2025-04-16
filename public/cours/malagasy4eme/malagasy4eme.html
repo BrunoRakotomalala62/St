@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malagasy 4ème - Site Éducatif</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .course-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .download-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(76, 175, 80, 0.1);
+        }
+        .pdf-title {
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn courses-btn" onclick="window.location.href='/cours'">📖 Retour aux cours</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main>
+        <div class="course-content">
+            <h1>✨ Teny Malagasy - Kilasy Fahaefatra ✨</h1>
+            
+            <div class="course-description">
+                <h2>📚 Tongasoa eto amin'ny Fampianarana Teny Malagasy!</h2>
+                <p>Ity lesona ity dia natao manokana ho anao mpianatra kilasy fahaefatra, mba hanatsarana ny fahalalanao ny teny sy ny kolontsaina Malagasy.</p>
+                <p>Inona no hianaranao eto?</p>
+                <ul>
+                    <li>🌟 Ny fomba fiteny tsara sy mahazatra</li>
+                    <li>📝 Ny fomba fanoratra ara-dalàna</li>
+                    <li>🎭 Ny literatiora Malagasy mahafinaritra</li>
+                    <li>🎨 Ny famoronana sy fanehoana hevitra</li>
+                    <li>💫 Ny ohabolana sy ny fitenenana mampianatra</li>
+                </ul>
+            </div>
+            
+            <div class="download-section">
+                <h2>📥 Documentation du cours</h2>
+                <p class="pdf-title">📄 Lesona Malagasy 4ème</p>
+                <a href="/Attachement/malagasy4eme/lesona_malagasy_4eme.pdf" download class="download-btn">
+                    ⬇️ Télécharger le cours (PDF)
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>

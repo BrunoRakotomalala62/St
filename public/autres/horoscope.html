@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horoscope Quotidien</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn autres-btn" onclick="window.location.href='/autres'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main class="horoscope-container">
+        <h1>✨ Votre Horoscope du Jour ✨</h1>
+        
+        <div class="horoscope-description">
+            <p>🌟 Découvrez ce que les astres vous réservent pour aujourd'hui ! Sélectionnez votre signe et laissez-vous guider par les prédictions célestes. 🌠</p>
+        </div>
+
+        <div class="signs-grid">
+            <button class="sign-btn" data-signe="belier">♈ Bélier</button>
+            <button class="sign-btn" data-signe="taureau">♉ Taureau</button>
+            <button class="sign-btn" data-signe="gemeaux">♊ Gémeaux</button>
+            <button class="sign-btn" data-signe="cancer">♋ Cancer</button>
+            <button class="sign-btn" data-signe="lion">♌ Lion</button>
+            <button class="sign-btn" data-signe="vierge">♍ Vierge</button>
+            <button class="sign-btn" data-signe="balance">♎ Balance</button>
+            <button class="sign-btn" data-signe="scorpion">♏ Scorpion</button>
+            <button class="sign-btn" data-signe="sagittaire">♐ Sagittaire</button>
+            <button class="sign-btn" data-signe="capricorne">♑ Capricorne</button>
+            <button class="sign-btn" data-signe="verseau">♒ Verseau</button>
+            <button class="sign-btn" data-signe="poissons">♓ Poissons</button>
+        </div>
+
+        <div id="horoscope-result" class="horoscope-result" style="display: none;">
+            <h2 class="date">📅 Horoscope du <span id="date"></span></h2>
+            
+            <div class="prediction-card">
+                <h3>❤️ Amour</h3>
+                <p id="amour"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>💰 Argent</h3>
+                <p id="argent"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>🏥 Santé</h3>
+                <p id="sante"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>💼 Travail</h3>
+                <p id="travail"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>👨‍👩‍👧‍👦 Famille</h3>
+                <p id="famille"></p>
+            </div>
+
+            <div class="prediction-card">
+                <h3>👥 Vie Sociale</h3>
+                <p id="vie_sociale"></p>
+            </div>
+
+            <div class="extra-info">
+                <p>🎲 Nombre chance : <span id="nombre_chance"></span></p>
+                <p>💫 Citation du jour : <span id="citation"></span></p>
+                <p>👁️ Clin d'oeil : <span id="clin_doeil"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+    <script>
+        document.querySelectorAll('.sign-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const signe = button.dataset.signe;
+            window.location.href = `/horoscope/dynamique.html?signe=${signe}`;
+        });
+    });
+    </script>
+</body>
+</html>

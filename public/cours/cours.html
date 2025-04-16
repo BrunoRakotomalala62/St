@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours - Site Éducatif</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn exercises-btn">📚 Exercices</button>
+        <button class="nav-btn contest-btn">🏆 Concours</button>
+        <button class="nav-btn courses-btn">📖 Cours</button>
+        <button class="nav-btn pdf-btn">📁 Fichiers PDF</button>
+        <button class="nav-btn bacc-btn">📑 Sujet Bacc</button>
+        <button class="nav-btn contact-btn">📧 Contactez-nous</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main>
+        <div class="courses-container">
+            <h2>Choisissez votre niveau</h2>
+            <div class="course-buttons">
+                <button class="course-btn college-btn" onclick="showCollegeLevels()">🏫 COURS Collège</button>
+                <button class="course-btn lycee-btn" onclick="showLyceeLevels()">🎓 Cours Lycée</button>
+            </div>
+
+            <div id="college-levels" class="level-buttons" style="display: none;">
+                <h3>Niveaux Collège</h3>
+                <button class="level-btn" onclick="showSubjects('sixieme')">Sixième</button>
+                <button class="level-btn" onclick="showSubjects('cinquieme')">Cinquième</button>
+                <button class="level-btn" onclick="showSubjects('quatrieme')">Quatrième</button>
+                <button class="level-btn" onclick="showSubjects('troisieme')">Troisième</button>
+            </div>
+
+            <div id="lycee-levels" class="level-buttons" style="display: none;">
+                <h3>Niveaux Lycée</h3>
+                <button class="level-btn" onclick="showLyceeSubjects('seconde')">Seconde</button>
+                <button class="level-btn" onclick="showLyceeSubjects('premiere')">Première</button>
+                <button class="level-btn" onclick="showTerminaleSeries()">Terminale</button>
+            </div>
+
+            <div id="subjects-container" class="subjects-buttons" style="display: none;">
+                <h3 id="selected-level">Matières</h3>
+                <button class="subject-btn" onclick="handleMalagasyClick()">Malagasy</button>
+                <button class="subject-btn">Mathématiques</button>
+                <button class="subject-btn" onclick="handlePhysicsClick()">Physique-chimie</button>
+                <button class="subject-btn">Français</button>
+                <button class="subject-btn">Histoire et Géographie</button>
+                <button class="subject-btn">Anglais</button>
+                <button class="subject-btn">SVT</button>
+                <button class="back-btn" onclick="hideSubjects()">Retour</button>
+            </div>
+
+            <div id="series-container" class="subjects-buttons" style="display: none;">
+                <h3>Séries Terminale</h3>
+                <button class="subject-btn" onclick="window.location.href='/cours/serieA'">Série A</button>
+                <button class="subject-btn">Série C</button>
+                <button class="subject-btn">Série D</button>
+                <button class="subject-btn">Série L</button>
+                <button class="subject-btn">Série S</button>
+                <button class="subject-btn">Série OSE</button>
+                <button class="back-btn" onclick="hideSeries()">Retour</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentLevel = '';
+        
+        function handleMalagasyClick() {
+            if (currentLevel === 'sixieme') {
+                window.location.href = '/cours/malagasy6eme';
+            } else if (currentLevel === 'troisieme') {
+                window.location.href = '/cours/malagasy3eme';
+            } else if (currentLevel === 'quatrieme') {
+                window.location.href = '/cours/malagasy4eme';
+            } else if (currentLevel === 'cinquieme') {
+                window.location.href = '/cours/malagasy5eme';
+            }
+        }
+
+        function handlePhysicsClick() {
+            if (currentLevel === 'troisieme') {
+                window.location.href = '/cours/3eme/physique';
+            }
+        }
+
+        function showCollegeLevels() {
+            document.getElementById('college-levels').style.display = 'block';
+            document.getElementById('lycee-levels').style.display = 'none';
+            document.getElementById('subjects-container').style.display = 'none';
+        }
+
+        function showLyceeLevels() {
+            document.getElementById('college-levels').style.display = 'none';
+            document.getElementById('lycee-levels').style.display = 'block';
+            document.getElementById('subjects-container').style.display = 'none';
+        }
+
+        function showSubjects(level) {
+            currentLevel = level;
+            document.getElementById('college-levels').style.display = 'none';
+            document.getElementById('subjects-container').style.display = 'block';
+            const levelNames = {
+                'sixieme': 'Sixième',
+                'cinquieme': 'Cinquième',
+                'quatrieme': 'Quatrième',
+                'troisieme': 'Troisième'
+            };
+            document.getElementById('selected-level').textContent = `Matières - ${levelNames[level]}`;
+        }
+
+        function hideSubjects() {
+            if (document.getElementById('college-levels').style.display === 'none') {
+                document.getElementById('lycee-levels').style.display = 'block';
+            } else {
+                document.getElementById('college-levels').style.display = 'block';
+            }
+            document.getElementById('subjects-container').style.display = 'none';
+        }
+
+        function showLyceeSubjects(level) {
+            document.getElementById('lycee-levels').style.display = 'none';
+            document.getElementById('subjects-container').style.display = 'block';
+            const levelNames = {
+                'seconde': 'Seconde',
+                'premiere': 'Première'
+            };
+            document.getElementById('selected-level').textContent = `Matières - ${levelNames[level]}`;
+        }
+
+        function showTerminaleSeries() {
+            document.getElementById('lycee-levels').style.display = 'none';
+            document.getElementById('series-container').style.display = 'block';
+        }
+
+        function hideSeries() {
+            document.getElementById('lycee-levels').style.display = 'block';
+            document.getElementById('series-container').style.display = 'none';
+        }
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="chatbot-container">
+        <!-- Bulles animées -->
+        <div id="floating-bubbles"></div>
+
+        <div class="chatbot-header">
+            <h2 class="neon-text">CHATBOT</h2>
+            <div class="creator-info">
+                <span>créateur :</span>
+                <span class="creator-name">✅Bruno</span>
+            </div>
+            <button class="clear-chat">Effacer la conversation</button>
+        </div>  
+        <div class="chat-messages"></div>
+        <div class="chat-input-container">
+            <label for="file-upload" class="file-upload-btn">
+                <span class="attachment-icon">📎</span>
+            </label>
+            <input type="file" id="file-upload" accept="image/*,.pdf" hidden>
+            <input type="text" id="message-input" placeholder="Écrivez votre message ici...">
+            <button class="send-message">
+                <span class="send-icon">▶</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Créer des bulles animées
+        function createBubbles() {
+            const container = document.getElementById('floating-bubbles');
+            const containerWidth = window.innerWidth;
+
+            // Créer 15 bulles avec des propriétés aléatoires
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('floating-bubble');
+
+                // Taille aléatoire entre 20 et 80px
+                const size = Math.random() * 60 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Position horizontale aléatoire
+                bubble.style.left = `${Math.random() * 100}%`;
+
+                // Durée d'animation aléatoire entre 15 et 30 secondes
+                const duration = Math.random() * 15 + 15;
+                bubble.style.animationDuration = `${duration}s`;
+
+                // Délai d'animation aléatoire
+                bubble.style.animationDelay = `${Math.random() * 10}s`;
+
+                container.appendChild(bubble);
+            }
+        }
+
+        // Exécuter la fonction après chargement de la page
+        document.addEventListener('DOMContentLoaded', createBubbles);
+    </script>
+
+    <script src="/script.js"></script>
+</body>
+</html>

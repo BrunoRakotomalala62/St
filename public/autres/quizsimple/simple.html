@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Simple</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .next-btn {
+            background-color: purple; /* Added purple background color */
+            color: white;             /* Added white text color for better contrast */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn quiz-btn" onclick="window.location.href='/autres/quiz.html'">↩️ Retour</button>
+        <button class="theme-toggle">🌓</button>
+        <div class="lang-buttons">
+            <button id="fr-btn" class="lang-btn active" onclick="setLanguage('fr')">🇫🇷 Français</button>
+            <button id="en-btn" class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
+        </div>
+    </nav>
+
+    <main class="quiz-container">
+        <div id="quiz-content">
+            <h1>❓ Question</h1>
+            <div id="question-container"></div>
+            <div id="options-container" class="options-container"></div>
+            <button id="submit-btn" class="submit-btn" onclick="checkAnswer()">✨ Envoyer la réponse 🎯</button>
+            <div id="result-container" class="result-container"></div>
+            <button id="next-btn" class="next-btn" onclick="getNewQuestion()" style="display: none;">✨ Question suivante 🎯</button>
+        </div>
+    </main>
+
+    <script>
+        let currentQuestion = null;
+        let selectedAnswer = null;
+
+        let currentLang = 'fr';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('fr-btn').classList.toggle('active', lang === 'fr');
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            if (currentQuestion) {
+                displayQuestion(currentQuestion);
+            }
+        }
+
+        async function getNewQuestion() {
+            try {
+                const response = await fetch('/api/quiz/getQuiz');
+                const data = await response.json();
+                currentQuestion = data;
+                displayQuestion(data);
+                document.getElementById('result-container').innerHTML = '';
+                document.getElementById('submit-btn').style.display = 'block';
+                document.getElementById('next-btn').style.display = 'none';
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        function displayQuestion(data) {
+            const responseText = currentLang === 'fr' ? data.translated.response : data.original.response;
+            const lines = responseText.split('\n');
+            const questionText = lines[0].replace('🎉 Question : ', '');
+            const correctAnswer = lines[lines.length - 1].replace('🔑 Réponse correcte : ', '').trim();
+            const options = lines.filter(line => line.match(/^\d\./))
+                               .map(line => line.replace(/^\d\.\s*/, ''));
+            currentQuestion = { options, correctAnswer };
+
+            document.getElementById('question-container').innerHTML = `<p>${questionText}</p>`;
+
+            const optionsHtml = options.map(option => `
+                <div class="option">
+                    <input type="radio" name="quiz" value="${option}" id="${option}">
+                    <label for="${option}">${option}</label>
+                </div>
+            `).join('');
+
+            document.getElementById('options-container').innerHTML = optionsHtml;
+        }
+
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="quiz"]:checked');
+            if (!selected) {
+                alert('Veuillez sélectionner une réponse');
+                return;
+            }
+
+            const selectedAnswer = selected.value.trim();
+            let correctAnswer = currentQuestion.correctAnswer.trim();
+            // Remove "Correct answer:" prefix if present
+            correctAnswer = correctAnswer.replace('Correct answer: ', '');
+            const isCorrect = selectedAnswer === correctAnswer;
+            console.log('Selected:', selectedAnswer, 'Correct:', correctAnswer);
+
+            const resultContainer = document.getElementById('result-container');
+            const messages = {
+                fr: {
+                    correct: "✅ Bravo ! C'est la bonne réponse !",
+                    incorrect: "❌ Désolé, ce n'est pas la bonne réponse.",
+                    correctAnswer: "La bonne réponse était : "
+                },
+                en: {
+                    correct: "✅ Correct answer!",
+                    incorrect: "❌ Bad response",
+                    correctAnswer: "The correct answer is: "
+                }
+            };
+
+            const lang = currentLang === 'fr' ? 'fr' : 'en';
+            if (isCorrect) {
+                resultContainer.innerHTML = `<div class="correct">${messages[lang].correct}</div>`;
+            } else {
+                resultContainer.innerHTML = `
+                    <div class="incorrect">${messages[lang].incorrect}</div>
+                    <div class="correct-answer">${messages[lang].correctAnswer}${correctAnswer}</div>
+                `;
+            }
+
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        // Charger la première question au chargement de la page
+        window.onload = getNewQuestion;
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>
