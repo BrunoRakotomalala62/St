@@ -32,7 +32,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npx kill-port 5000 && node index.js"
+args = "node index.js"
 
 [[ports]]
 localPort = 3000

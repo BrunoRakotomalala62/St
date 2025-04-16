@@ -332,6 +332,8 @@
             typingIndicator.classList.add('active');
             
             try {
+                console.log(`Envoi de la requête: ${message} avec uid ${uid}`);
+                
                 // Envoyer la requête à l'API en utilisant POST
                 const response = await fetch(`/api/ai21/ai21`, {
                     method: 'POST',
@@ -344,7 +346,9 @@
                     })
                 });
                 
+                console.log('Statut de la réponse:', response.status);
                 const data = await response.json();
+                console.log('Données reçues:', data);
                 
                 // Mettre à jour l'ID de conversation si nécessaire
                 if (data.conversation_id) {
@@ -361,6 +365,8 @@
                 console.error('Erreur:', error);
                 typingIndicator.classList.remove('active');
                 addMessage('Désolé, une erreur s\'est produite lors de la communication avec l\'API: ' + error.message, false);
+                // Affichage d'instructions de dépannage
+                addMessage('Vérifiez la console pour plus de détails. Assurez-vous que le serveur fonctionne correctement.', false);
             }
         }
         
