@@ -367,7 +367,6 @@ app.get('/api/ai21/test', async (req, res) => {
       error: 'Une erreur s\'est produite lors de la communication avec l\'API AI21',
       message: 'Désolé, je n\'ai pas pu traiter votre demande. Veuillez réessayer plus tard.'
     });
-    });
   }
 });
 
