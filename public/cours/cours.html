@@ -53,7 +53,7 @@
             <div id="subjects-container" class="subjects-buttons" style="display: none;">
                 <h3 id="selected-level">Matières</h3>
                 <button class="subject-btn" onclick="handleMalagasyClick()">Malagasy</button>
-                <a class="subject-btn" id="math-btn" href="/cours/math6eme/math6eme.html">Mathématiques</a>
+                <a class="subject-btn" id="math-btn" href="/cours/math5eme/math5eme.html">Mathématiques</a>
                 <button class="subject-btn" onclick="handlePhysicsClick()">Physique-chimie</button>
                 <button class="subject-btn">Français</button>
                 <button class="subject-btn">Histoire et Géographie</button>
@@ -92,8 +92,31 @@
             }
         }
 
+        const mathPages = {
+            sixieme: '/cours/math6eme/math6eme.html',
+            cinquieme: '/cours/math5eme/math5eme.html'
+        };
+
         function handleMathClick() {
-            window.location.href = '/cours/math6eme/math6eme.html';
+            const url = mathPages[currentLevel];
+            if (url) {
+                window.location.href = url;
+            }
+        }
+
+        function updateMathLink() {
+            const mathBtn = document.getElementById('math-btn');
+            if (!mathBtn) return;
+            const url = mathPages[currentLevel];
+            if (url) {
+                mathBtn.setAttribute('href', url);
+                mathBtn.style.pointerEvents = 'auto';
+                mathBtn.style.opacity = '1';
+            } else {
+                mathBtn.removeAttribute('href');
+                mathBtn.style.pointerEvents = 'none';
+                mathBtn.style.opacity = '0.55';
+            }
         }
 
         function handlePhysicsClick() {
@@ -125,6 +148,7 @@
                 'troisieme': 'Troisième'
             };
             document.getElementById('selected-level').textContent = `Matières - ${levelNames[level]}`;
+            updateMathLink();
         }
 
         function hideSubjects() {
@@ -145,6 +169,7 @@
                 'premiere': 'Première'
             };
             document.getElementById('selected-level').textContent = `Matières - ${levelNames[level]}`;
+            updateMathLink();
         }
 
         function showTerminaleSeries() {

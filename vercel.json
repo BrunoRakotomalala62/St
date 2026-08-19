@@ -71,6 +71,14 @@
       "dest": "/public/cours/math6eme/math6eme.html"
     },
     {
+      "src": "/cours/math5eme/math5eme.html",
+      "dest": "/public/cours/math5eme/math5eme.html"
+    },
+    {
+      "src": "/cours/math5eme",
+      "dest": "/public/cours/math5eme/math5eme.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.js"
     }
