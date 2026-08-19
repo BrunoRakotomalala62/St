@@ -145,6 +145,14 @@ app.get('/cours/math5eme/math5eme.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours', 'math5eme', 'math5eme.html'));
 });
 
+app.get('/cours/math4eme', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours', 'math4eme', 'math4eme.html'));
+});
+
+app.get('/cours/math4eme/math4eme.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours', 'math4eme', 'math4eme.html'));
+});
+
 app.get('/cours/3eme/physique', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours/3eme/coursPhysique3eme.html'));
 });
