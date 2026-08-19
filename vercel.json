@@ -28,6 +28,10 @@
       "dest": "/public/styles.css"
     },
     {
+      "src": "/theme.css",
+      "dest": "/public/theme.css"
+    },
+    {
       "src": "/script.js",
       "dest": "/public/script.js"
     },{
@@ -57,6 +61,14 @@
     {
       "src": "/jeux/(.*)",
       "dest": "/public/jeux/$1"
+    },
+    {
+      "src": "/cours/math6eme/math6eme.html",
+      "dest": "/public/cours/math6eme/math6eme.html"
+    },
+    {
+      "src": "/cours/math6eme",
+      "dest": "/public/cours/math6eme/math6eme.html"
     },
     {
       "src": "/(.*)",

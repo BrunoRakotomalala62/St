@@ -129,6 +129,14 @@ app.get('/cours/malagasy6eme', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours', 'malagasy6eme', 'malagasy6eme.html'));
 });
 
+app.get('/cours/math6eme', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours', 'math6eme', 'math6eme.html'));
+});
+
+app.get('/cours/math6eme/math6eme.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cours', 'math6eme', 'math6eme.html'));
+});
+
 app.get('/cours/3eme/physique', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cours/3eme/coursPhysique3eme.html'));
 });

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathématiques 6ème - EDUCMAD</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/theme.css">
+    <style>
+        .course-description {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            box-shadow: 0 16px 36px rgba(7, 17, 31, 0.12);
+        }
+        .pdf-title {
+            color: var(--primary);
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .pdf-preview {
+            width: 100%;
+            min-height: 70vh;
+            border: 0;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 16px 36px rgba(7, 17, 31, 0.12);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-btn home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+        <button class="nav-btn courses-btn" onclick="window.location.href='/cours'">📖 Retour aux cours</button>
+        <button class="theme-toggle">🌓</button>
+    </nav>
+
+    <main>
+        <div class="course-content">
+            <h1>Mathématiques — 6ème</h1>
+
+            <div class="course-description">
+                <h2>Leçon de mathématiques</h2>
+                <p>Cours de mathématiques pour les élèves de 6ème, avec leçons structurées et exercices pour progresser au collège.</p>
+            </div>
+
+            <div class="download-section">
+                <h2>Documentation du cours</h2>
+                <p class="pdf-title">Leçon math 6ème (PDF)</p>
+                <a href="/Attachement/math6eme/Lecon-math-6eme.pdf" download class="download-btn">
+                    Télécharger le cours (PDF)
+                </a>
+            </div>
+
+            <iframe class="pdf-preview" title="Leçon de mathématiques 6ème" src="/Attachement/math6eme/Lecon-math-6eme.pdf"></iframe>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>
