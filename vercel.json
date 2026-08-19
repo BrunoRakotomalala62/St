@@ -28,6 +28,10 @@
       "dest": "/public/styles.css"
     },
     {
+      "src": "/theme.css",
+      "dest": "/public/theme.css"
+    },
+    {
       "src": "/script.js",
       "dest": "/public/script.js"
     },{
