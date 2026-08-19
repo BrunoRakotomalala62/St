@@ -3,1099 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Éducatif</title>
+    <title>EDUCMAD — Plateforme éducative premium</title>
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 100;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-content,
-        .dropdown.active .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .dropdown-item {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            border: none;
-            background: transparent;
-            text-align: left;
-            width: 100%;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-
-        .dropdown-item:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateX(5px);
-        }
-
-        .dropdown-item.francais {
-            background-color: rgba(46, 204, 64, 0.7); /* Vert */
-        }
-
-        .dropdown-item.divers {
-            background-color: rgba(255, 65, 54, 0.7); /* Rouge */
-        }
-
-        .dropdown-item.culture {
-            background-color: rgba(255, 133, 27, 0.7); /* Orange */
-        }
-
-        .dropdown-item.sciences {
-            background-color: rgba(0, 116, 217, 0.7); /* Bleu */
-        }
-
-        .dropdown-item.ia {
-            background-color: rgba(136, 14, 79, 0.7); /* Violet */
-        }
-
-        .dropdown-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Styles spécifiques à l'index */
-        .hero {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            padding: 4rem 1rem;
-            text-align: center;
-            border-radius: 0 0 50px 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-            color: white;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"%3E%3Cpolygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/%3E%3C/svg%3E');
-            background-size: cover;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(0) rotate(360deg);
-                opacity: 0.8;
-            }
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .cta-btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .primary-btn {
-            background: linear-gradient(45deg, #FF512F, #DD2476);
-            color: white;
-        }
-
-        .primary-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 20px rgba(0,0,0,0.3);
-        }
-
-        .secondary-btn {
-            background: linear-gradient(45deg, #00C9FF, #92FE9D);
-            color: #333;
-        }
-
-        .secondary-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 20px rgba(0,0,0,0.3);
-        }
-
-        .content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-            height: 100%;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: all 0.5s ease;
-        }
-
-        .card:hover img {
-            transform: scale(1.1);
-        }
-
-        .card-img-container {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-img-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 30px 20px 15px;
-            color: white;
-        }
-
-        .card-img-overlay h3 {
-            margin: 0;
-            font-size: 1.4rem;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.6rem;
-            color: var(--primary);
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card p {
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .card-btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .card-btn:hover {
-            background: #6c5ce7;
-            transform: translateX(5px);
-        }
-
-        .feature-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(45deg, #fdfbfb 0%, #ebedee 100%);
-            margin-top: 3rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(45deg, #2575fc, #6a11cb);
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            max-height: 450px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        [data-theme="dark"] .feature-card {
-            background: #222;
-            color: white;
-        }
-
-        [data-theme="light"] .feature-card {
-            background: #f0e6ff;
-            color: #333;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .feature-card h3 {
-            margin: 0 0 1rem;
-            font-size: 1.4rem;
-            color: inherit;
-        }
-
-        .feature-card p {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-            color: inherit;
-        }
-
-        .about-section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.5;
-            animation: bgAnimation 20s linear infinite;
-            background: linear-gradient(45deg, #ffeff5, #f5f7ff);
-        }
-
-        @keyframes bgAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .site-description-text, .admin-description {
-            color: var(--text);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            padding: 1.5rem;
-            border-radius: 15px;
-            background: var(--card-bg);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .site-description-text:hover, .admin-description:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .expertise-list {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
-        }
-
-        .expertise-item {
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .expertise-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .expertise-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            z-index: 3;
-            color: white;
-            font-size: 2rem;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-15px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-7px) translateX(-50%);
-            }
-        }
-
-        .testimonials {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-top: 3rem;
-        }
-
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"%3E%3Cpolygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/%3E%3C/svg%3E');
-            background-size: cover;
-            z-index: 1;
-        }
-
-        .testimonials-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial-slider {
-            margin-top: 3rem;
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            padding: 1rem 0 2rem;
-            scrollbar-width: none;
-        }
-
-        .testimonial-slider::-webkit-scrollbar {
-            display: none;
-        }
-
-        .testimonial-card {
-            flex: 0 0 auto;
-            width: 300px;
-            margin: 0 1rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            scroll-snap-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .testimonial-quote {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: left;
-        }
-
-        .footer-section h3 {
-            margin-top: 0;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin: 10px 0;
-        }
-
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px);
-            background: var(--primary);
-        }
-
-        .footer-bottom {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #444;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .cta-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .testimonial-card {
-                width: 250px;
-            }
-        }
-    </style>
+    <link rel="icon" href="/photos/educmad-emblem.png">
 </head>
-<body>
-    <div class="animated-bg"></div>
+<body class="lux-page">
+    <header class="site-header" id="site-header">
+        <a class="brand" href="/">
+            <img src="/photos/educmad-emblem.png" alt="Emblème EDUCMAD">
+            <div class="brand-name">EDUCMAD<span>Mampianatra · Mampivoatra · Mandroso</span></div>
+        </a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu"><i class="fas fa-bars"></i></button>
+        <nav class="site-nav">
+            <button class="nav-btn home-btn">Accueil</button>
+            <button class="nav-btn courses-btn">Cours</button>
+            <button class="nav-btn exercises-btn">Exercices</button>
+            <button class="nav-btn pdf-btn">PDF</button>
+            <button class="nav-btn bacc-btn">Sujet Bacc</button>
+            <button class="nav-btn jeux-btn">Jeux</button>
+            <button class="nav-btn translation-btn">Traduction</button>
+            <button class="nav-btn educmad-btn">EducMad</button>
+            <button class="nav-btn calendar-btn">Calendrier</button>
+            <button class="nav-btn autres-btn">Autres</button>
+            <button class="nav-btn chatbot-btn">Chatbot</button>
+            <button class="nav-btn contact-btn">Contact</button>
+            <div class="dropdown">
+                <button class="nav-btn dropdown-btn">Sélectionner <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content">
+                    <button class="dropdown-item francais" data-page="francais">FRANÇAIS</button>
+                    <button class="dropdown-item divers" data-page="divers">DIVERS</button>
+                    <button class="dropdown-item culture" data-page="culture">CULTURE</button>
+                    <button class="dropdown-item sciences" data-page="sciences">SCIENCES</button>
+                    <button class="dropdown-item ia" data-page="ai">INTELLIGENCE ARTIFICIELLE</button>
+                </div>
+            </div>
+            <button class="theme-toggle">🌓</button>
+        </nav>
+    </header>
 
-    <nav>
-        <button class="nav-btn home-btn">🏠 Accueil</button>
-        <button class="nav-btn exercises-btn">📚 Exercices</button>
-        <button class="nav-btn contest-btn">🏆 Concours</button>
-        <button class="nav-btn courses-btn">📖 Cours</button>
-        <button class="nav-btn pdf-btn">📁 Fichiers PDF</button>
-        <button class="nav-btn bacc-btn">📑 Sujet Bacc</button>
-        <button class="nav-btn contact-btn">📧 Contactez-nous</button>
-        <button class="nav-btn jeux-btn">🎮 Jeux</button>
-        <button class="nav-btn translation-btn">🌍 Traduction</button>
-        <button class="nav-btn educmad-btn">🎓 EducMad</button>
-        <button class="nav-btn calendar-btn">📅 Calendrier</button>
-        <button class="nav-btn autres-btn">🔍 Autres</button>
-        <button class="nav-btn chatbot-btn">🤖 Chatbot</button>
-
-        <div class="dropdown">
-            <button class="nav-btn dropdown-btn">📋 Sélectionner <i class="fas fa-chevron-down"></i></button>
-            <div class="dropdown-content">
-                <button class="dropdown-item francais" data-page="francais">FRANCAIS</button>
-                <button class="dropdown-item divers" data-page="divers">DIVERS</button>
-                <button class="dropdown-item culture" data-page="culture">CULTURE</button>
-                <button class="dropdown-item sciences" data-page="sciences">SCIENCES</button>
-                <button class="dropdown-item ia" data-page="ai">INTELLIGENCE ARTIFICIELLE</button>
+    <section class="lux-hero">
+        <div class="lux-hero-bg"></div>
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="orb orb-c"></div>
+        <div class="lux-hero-inner">
+            <div class="eyebrow"><i class="fas fa-gem"></i> Plateforme éducative malgache</div>
+            <h1>Élever <em>l’excellence</em><br>à Madagascar</h1>
+            <div class="gold-rule"></div>
+            <p class="lead">Cours, examens blancs, chatbot intelligent et culture malgache — une expérience d’apprentissage lumineuse, précieuse et conçue pour réussir le BEPC et le BAC.</p>
+            <div class="cta-row">
+                <a class="btn-gold exercises-btn" href="/exercices"><i class="fas fa-book-open"></i> Explorer les exercices</a>
+                <a class="btn-ghost chatbot-btn" href="/chatbot"><i class="fas fa-robot"></i> Parler à l’IA</a>
+            </div>
+            <div class="stat-row">
+                <div class="stat"><b>BEPC & BAC</b><span>Examens blancs et annales</span></div>
+                <div class="stat"><b>6e → Tle</b><span>Cours par niveau et série</span></div>
+                <div class="stat"><b>IA + Culture</b><span>Gemini, kabary, tononkira</span></div>
             </div>
         </div>
+    </section>
 
-        <button class="theme-toggle">🌓</button>
-    </nav>
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>Malagasy</span><span>Mathématiques</span><span>Physique-Chimie</span><span>Philosophie</span><span>Français</span><span>Anglais</span><span>Histoire-Géo</span><span>SVT</span><span>Kabary</span><span>Ohabolana</span>
+            <span>Malagasy</span><span>Mathématiques</span><span>Physique-Chimie</span><span>Philosophie</span><span>Français</span><span>Anglais</span><span>Histoire-Géo</span><span>SVT</span><span>Kabary</span><span>Ohabolana</span>
+        </div>
+    </div>
 
-    <main>
-        <section class="hero">
-            <div class="floating-shapes">
-                <div class="shape" style="top: 20%; left: 10%; width: 80px; height: 80px; animation-duration: 18s;"></div>
-                <div class="shape" style="top: 60%; left: 20%; width: 60px; height: 60px; animation-duration: 22s;"></div>
-                <div class="shape" style="top: 30%; left: 80%; width: 100px; height: 100px; animation-duration: 15s;"></div>
-                <div class="shape" style="top: 70%; left: 70%; width: 70px; height: 70px; animation-duration: 20s;"></div>
-                <div class="shape" style="top: 10%; left: 50%; width: 90px; height: 90px; animation-duration: 17s;"></div>
-            </div>
+    <section class="section" id="main-content">
+        <p class="section-kicker">Parcours</p>
+        <h2>Trois portes vers la réussite</h2>
+        <div class="lux-grid">
+            <article class="lux-card shine">
+                <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=80" alt="Formation">
+                <div class="body">
+                    <h3>Formation d’or</h3>
+                    <p>Cours structurés du collège au lycée, séries A, C, D, L, S et OSE, pensés pour le programme national.</p>
+                    <a class="btn-gold" href="/cours">Voir les cours</a>
+                </div>
+            </article>
+            <article class="lux-card shine">
+                <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80" alt="Ressources">
+                <div class="body">
+                    <h3>Ressources rares</h3>
+                    <p>PDF, sujets Ampinga, examens blancs BEPC et BAC pour réviser avec la précision d’un atelier.</p>
+                    <a class="btn-gold" href="/exercices">Explorer</a>
+                </div>
+            </article>
+            <article class="lux-card shine">
+                <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=1200&q=80" alt="Intelligence artificielle">
+                <div class="body">
+                    <h3>Assistant IA</h3>
+                    <p>Un chatbot qui explique, corrige et accompagne — même avec vos fichiers et vos questions de cours.</p>
+                    <a class="btn-gold" href="/chatbot">Discuter</a>
+                </div>
+            </article>
+        </div>
+    </section>
 
-            <div class="hero-content">
-                <h1>✨ Bienvenue sur notre plateforme éducative ✨</h1>
-                <p>Découvrez un environnement d'apprentissage complet et innovant pour réussir vos études. Accédez à des ressources pédagogiques de qualité, des exercices interactifs et des outils qui faciliteront votre parcours éducatif.</p>
+    <section class="section" style="padding-top:0">
+        <p class="section-kicker">Atelier</p>
+        <h2>Tout ce qu’il faut, en un geste</h2>
+        <div class="features-lux">
+            <div class="feat"><i class="fas fa-file-pdf"></i><h3>Bibliothèque PDF</h3><p>Leçons de malagasy, physique TA et sujets d’examen prêts à télécharger.</p></div>
+            <div class="feat"><i class="fas fa-laptop-code"></i><h3>Quiz & jeux</h3><p>Entraînement interactif, memory malagasy et défis mathématiques.</p></div>
+            <div class="feat"><i class="fas fa-feather-alt"></i><h3>Culture vivante</h3><p>Kabary, ohabolana et tononkira pour garder la langue au cœur du savoir.</p></div>
+            <div class="feat"><i class="fas fa-language"></i><h3>Outils précieux</h3><p>Traduction, calendrier, mail temporaire et correction grammaticale.</p></div>
+        </div>
+    </section>
 
-                <div class="cta-buttons">
-                    <button class="cta-btn primary-btn exercises-btn"><i class="fas fa-book-open"></i> Découvrir les exercices</button>
-                    <button class="cta-btn secondary-btn chatbot-btn"><i class="fas fa-robot"></i> Essayer notre IA</button>
+    <section class="section" style="padding-top:0">
+        <div class="split">
+            <div class="panel">
+                <p class="section-kicker">À propos</p>
+                <h2>Une école ouverte, même loin des grandes villes</h2>
+                <p>EDUCMAD réunit pédagogie et technologies modernes pour offrir un environnement stimulant, adapté à chaque niveau, et fidèle au programme scolaire malgache.</p>
+                <div class="chip-list">
+                    <div class="chip"><i class="fas fa-chalkboard-teacher"></i> Cours de qualité supérieure</div>
+                    <div class="chip"><i class="fas fa-tasks"></i> Exercices pratiques et examens blancs</div>
+                    <div class="chip"><i class="fas fa-robot"></i> Chatbot intelligent pour débloquer</div>
+                    <div class="chip"><i class="fas fa-globe-africa"></i> Valorisation de la culture malgache</div>
                 </div>
             </div>
-
-            <div class="scroll-down" id="scroll-down">
-                <i class="fas fa-chevron-down"></i>
+            <div class="panel founder">
+                <img src="/photos/profil2.jpg" alt="Bruno Rakotomalala">
+                <h2>Bruno Rakotomalala</h2>
+                <p>Fondateur · Étudiant à l’École Supérieure Polytechnique · Professeur de mathématiques et physique-chimie · Développeur full stack à Ankatso, Antananarivo.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="content" id="main-content">
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Formation de qualité">
-                    <div class="card-img-overlay">
-                        <h3>Formation</h3>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h2><i class="fas fa-graduation-cap"></i> Formation de qualité</h2>
-                    <p>Accédez à des cours bien structurés et des ressources pédagogiques adaptées à tous les niveaux. Nos formations sont conçues pour vous aider à progresser efficacement.</p>
-                    <a href="/cours" class="card-btn">Voir les cours <i class="fas fa-arrow-right"></i></a>
-                </div>
+    <section class="band">
+        <div class="section">
+            <p class="section-kicker" style="color:#f3d27a">Voix des élèves</p>
+            <h2>Ce que l’on raconte</h2>
+            <div class="quotes">
+                <article class="quote"><p>« Les ressources sont exceptionnelles. Un vrai gain de temps pour mes révisions. »</p><b>Rakoto R. · Terminale</b></article>
+                <article class="quote"><p>« L’IA m’a fait comprendre la physique que je n’arrivais pas à saisir. »</p><b>Noro L. · Lycéenne</b></article>
+                <article class="quote"><p>« Je recommande cette plateforme à tous mes élèves. »</p><b>Jean M. · Professeur</b></article>
+                <article class="quote"><p>« Les annales et le chatbot m’aident pour mon BEPC. »</p><b>Faly T. · Collégien</b></article>
             </div>
+        </div>
+    </section>
 
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80" alt="Ressources complètes">
-                    <div class="card-img-overlay">
-                        <h3>Ressources</h3>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h2><i class="fas fa-book"></i> Ressources complètes</h2>
-                    <p>Notre bibliothèque numérique regorge de documents, exercices et supports pédagogiques pour enrichir vos connaissances et faciliter vos révisions.</p>
-                    <a href="/exercices" class="card-btn">Explorer les ressources <i class="fas fa-arrow-right"></i></a>
-                </div>
+    <section class="cta-band band">
+        <p class="section-kicker" style="color:#f3d27a">Commencer</p>
+        <h2>Votre prochaine leçon commence ici</h2>
+        <div class="cta-row">
+            <a class="btn-gold" href="/cours"><i class="fas fa-graduation-cap"></i> Entrer dans les cours</a>
+            <a class="btn-ghost" href="/contact"><i class="fas fa-envelope"></i> Écrire à Bruno</a>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h3>EDUCMAD</h3>
+                <p>Mampianatra, Mampivoatra, Mandroso. Une plateforme pour démocratiser l’éducation à Madagascar.</p>
             </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Assistant IA">
-                    <div class="card-img-overlay">
-                        <h3>Intelligence Artificielle</h3>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h2><i class="fas fa-robot"></i> Assistant IA</h2>
-                    <p>Bénéficiez de l'aide de notre chatbot intelligent pour répondre à vos questions, vous accompagner dans vos exercices et optimiser votre apprentissage.</p>
-                    <a href="/chatbot" class="card-btn">Discuter avec l'IA <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <section class="feature-section">
-            <h2 class="section-title">Nos fonctionnalités</h2>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>Bibliothèque de documents</h3>
-                    <p>Accédez à une vaste collection de documents pédagogiques téléchargeables pour faciliter vos études.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Plateforme interactive</h3>
-                    <p>Profitez d'une expérience d'apprentissage interactive avec des exercices pratiques et des quiz.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Calendrier scolaire</h3>
-                    <p>Restez organisé grâce à notre calendrier intégré pour suivre les dates importantes et planifier vos révisions.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <h3>Outils de traduction</h3>
-                    <p>Utilisez nos outils de traduction pour faciliter la compréhension des contenus dans différentes langues.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-section">
-            <div class="site-description">
-                <h2>✨ À propos de notre plateforme ✨</h2>
-                <p>Découvrez une plateforme éducative innovante conçue pour vous accompagner dans votre parcours d'apprentissage ! 📚</p>
-
-                <div class="site-description-text">
-                    Notre plateforme combine expertise pédagogique et technologies modernes pour créer un environnement d'apprentissage stimulant et efficace. Nous nous engageons à fournir des ressources éducatives de haute qualité, adaptées aux besoins de chaque apprenant, tout en favorisant l'interaction et l'engagement actif dans le processus d'apprentissage.
-                </div>
-
-                <ul class="expertise-list">
-                    <li class="expertise-item">
-                        <div class="expertise-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <span>Cours de qualité supérieure</span>
-                    </li>
-                    <li class="expertise-item">
-                        <div class="expertise-icon"><i class="fas fa-tasks"></i></div>
-                        <span>Exercices pratiques et interactifs</span>
-                    </li>
-                    <li class="expertise-item">
-                        <div class="expertise-icon"><i class="fas fa-chart-line"></i></div>
-                        <span>Ressources pédagogiques complètes</span>
-                    </li>
-                    <li class="expertise-item">
-                        <div class="expertise-icon"><i class="fas fa-robot"></i></div>
-                        <span>Chatbot intelligent pour vous assister</span>
-                    </li>
-                    <li class="expertise-item">
-                        <div class="expertise-icon"><i class="fas fa-tools"></i></div>
-                        <span>Outils innovants pour optimiser votre apprentissage</span>
-                    </li>
+            <div>
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="/cours">Cours</a></li>
+                    <li><a href="/exercices">Exercices</a></li>
+                    <li><a href="/fichierPdf">Ressources PDF</a></li>
+                    <li><a href="/chatbot">Chatbot IA</a></li>
                 </ul>
             </div>
-
-            <div class="admin-profile">
-                <h2>👨‍🏫 Notre Administrateur</h2>
-
-                <div class="admin-info">
-                    <h3>Bruno Rakotomalala</h3>
-
-                    <div class="admin-description">
-                        Passionné par l'innovation pédagogique, je m'engage à créer des expériences d'apprentissage numériques efficaces et engageantes. Mon approche combine des méthodes d'enseignement traditionnelles avec les dernières technologies éducatives pour offrir un apprentissage personnalisé et interactif.
-                    </div>
-
-                    <ul class="expertise-list">
-                        <li class="expertise-item">
-                            <div class="expertise-icon"><i class="fas fa-user-graduate"></i></div>
-                            <span>Étudiant à l'École Supérieure Polytechnique</span>
-                        </li>
-                        <li class="expertise-item">
-                            <div class="expertise-icon"><i class="fas fa-book"></i></div>
-                            <span>Professeur de Mathématiques et Physique-Chimie (6ème à Terminale)</span>
-                        </li>
-                        <li class="expertise-item">
-                            <div class="expertise-icon"><i class="fas fa-laptop-code"></i></div>
-                            <span>Développeur Web passionné</span>
-                        </li>
-                        <li class="expertise-item">
-                            <div class="expertise-icon"><i class="fas fa-globe"></i></div>
-                            <span>Spécialisé en développement Full Stack</span>
-                        </li>
-                        <li class="expertise-item">
-                            <div class="expertise-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <span>Résidence : Ankatso, Antananarivo</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials">
-            <div class="testimonials-content">
-                <h2 class="section-title" style="color: white;">Ce que disent nos utilisateurs</h2>
-
-                <div class="testimonial-slider">
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            "Cette plateforme a transformé ma façon d'étudier. Les ressources sont exceptionnelles et l'interface est intuitive. Un vrai gain de temps pour mes révisions !"
-                        </div>
-                        <div class="testimonial-author">Rakoto R., Étudiant en Terminale S</div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            "L'assistant IA est révolutionnaire ! Il m'a aidé à comprendre des concepts difficiles en physique que je n'arrivais pas à saisir malgré des heures de travail."
-                        </div>
-                        <div class="testimonial-author">Noro L., Lycéenne</div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            "En tant qu'enseignant, je recommande cette plateforme à tous mes élèves. Les cours sont très bien structurés et les exercices parfaitement adaptés."
-                        </div>
-                        <div class="testimonial-author">Jean M., Professeur de mathématiques</div>
-                    </div>
-
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            "J'utilise ce site pour préparer mon BEPC. Les exercices et les annales sont très utiles, et le chatbot m'aide quand je suis bloqué !"
-                        </div>
-                        <div class="testimonial-author">Faly T., Collégien</div>                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Navigation rapide</h3>
-                <ul class="footer-links">
-                    <li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
-                    <li><a href="/cours"><i class="fas fa-book-open"></i> Cours</a></li>
-                    <li><a href="/exercices"><i class="fas fa-pencil-alt"></i> Exercices</a></li>
-                    <li><a href="/fichierPdf"><i class="fas fa-file-pdf"></i> Ressources PDF</a></li>
-                    <li><a href="/chatbot"><i class="fas fa-robot"></i> Chatbot IA</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="/sujet"><i class="fas fa-clipboard"></i> Sujets d'examens</a></li>
-                    <li><a href="/translate"><i class="fas fa-language"></i> Traduction</a></li>
-                    <li><a href="/autres"><i class="fas fa-puzzle-piece"></i> Autres services</a></li>
-                    <li><a href="/calendar"><i class="fas fa-calendar-alt"></i> Calendrier</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
+            <div>
                 <h3>Contact</h3>
-                <ul class="footer-links">
-                    <li><a href="/contact"><i class="fas fa-envelope"></i> Contactez-nous</a></li>
-                    <li><a href="#"><i class="fas fa-phone"></i> +261 34 12 345 67</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Ankatso, Antananarivo</a></li>
+                <ul>
+                    <li><a href="/contact">Contactez-nous</a></li>
+                    <li>Ankatso, Antananarivo</li>
+                    <li>+261 33 25 683 69</li>
                 </ul>
-
-                <div class="social-links">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                </div>
             </div>
         </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Plateforme Éducative. Tous droits réservés. | Conçu par Bruno Rakotomalala</p>
-        </div>
+        <div class="legal">© 2026 EDUCMAD · Conçu par Bruno Rakotomalala</div>
     </footer>
 
     <script src="/script.js"></script>
     <script>
-        // Configuration du dropdown dynamique
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdown = document.querySelector('.dropdown');
-            const dropdownItems = document.querySelectorAll('.dropdown-item');
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('site-header');
+            const toggle = document.getElementById('nav-toggle');
+            toggle.addEventListener('click', () => header.classList.toggle('open'));
 
-            // Toggle dropdown sur mobile
-            dropdown.querySelector('.dropdown-btn').addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.querySelector('.dropdown-btn').addEventListener('click', (e) => {
                 dropdown.classList.toggle('active');
                 e.stopPropagation();
             });
-
-            // Fermer le dropdown quand on clique ailleurs
-            document.addEventListener('click', function() {
-                dropdown.classList.remove('active');
-            });
-
-            // Action sur les éléments du dropdown
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const selectedOption = this.textContent;
-                    const pageTarget = this.dataset.page;
-                    console.log(`Option sélectionnée: ${selectedOption}`);
-
-                    // Redirection vers la page correspondante
-                    window.location.href = `/selectionner/${pageTarget}.html`;
+            document.addEventListener('click', () => dropdown.classList.remove('active'));
+            document.querySelectorAll('.dropdown-item').forEach((item) => {
+                item.addEventListener('click', () => {
+                    window.location.href = `/selectionner/${item.dataset.page}.html`;
                 });
             });
-        });
-
-        // Ajout d'effet de défilement fluide pour le bouton scroll-down
-        document.getElementById('scroll-down').addEventListener('click', () => {
-            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Génération dynamique des formes flottantes
-        const floatingShapes = document.querySelector('.floating-shapes');
-        for (let i = 0; i < 5; i++) {
-            const shape = document.createElement('div');
-            shape.classList.add('shape');
-            shape.style.top = `${Math.random() * 100}%`;
-            shape.style.left = `${Math.random() * 100}%`;
-            shape.style.width = `${Math.random() * 60 + 40}px`;
-            shape.style.height = `${Math.random() * 60 + 40}px`;
-            shape.style.animationDuration = `${Math.random() * 10 + 10}s`;
-            floatingShapes.appendChild(shape);
-        }
-
-        // Animation des cartes au défilement
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.card, .feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(card);
-        });
-
-        // Navigation automatique pour le témoignage slider
-        const slider = document.querySelector('.testimonial-slider');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });
-
-        // Auto-scroll pour les témoignages
-        let scrollAmount = 0;
-        const testimonialsInterval = setInterval(() => {
-            slider.scrollTo({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-
-            scrollAmount += 340;
-
-            // Revenir au début quand on atteint la fin
-            if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
-                scrollAmount = 0;
-            }
-        }, 5000);
-
-        // Arrêter l'auto-scroll quand l'utilisateur interagit avec le slider
-        slider.addEventListener('mousedown', () => {
-            clearInterval(testimonialsInterval);
-        });
-
-        // Adapter les boutons CTA pour la navigation
-        document.querySelector('.cta-btn.exercises-btn').addEventListener('click', () => {
-            window.location.href = '/exercices';
-        });
-
-        document.querySelector('.cta-btn.chatbot-btn').addEventListener('click', () => {
-            window.location.href = '/chatbot';
         });
     </script>
 </body>
