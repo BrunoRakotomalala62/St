@@ -6,6 +6,8 @@
     <title>Mathématiques 6ème - EDUCMAD</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/theme.css">
+    <!-- PDF.js pour convertir PDF en images -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         .course-description {
             background: var(--card-bg);
@@ -22,11 +24,53 @@
         }
         .pdf-preview {
             width: 100%;
-            min-height: 70vh;
-            border: 0;
-            border-radius: 16px;
             background: #fff;
             box-shadow: 0 16px 36px rgba(7, 17, 31, 0.12);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .pdf-page {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .pdf-page canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .page-number {
+            text-align: center;
+            padding: 10px;
+            background: #f5f5f5;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--primary);
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: #e74c3c;
+            background: #fdf2f2;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -49,15 +93,84 @@
             <div class="download-section">
                 <h2>Documentation du cours</h2>
                 <p class="pdf-title">Leçon math 6ème (PDF)</p>
-                <a href="/Attachement/math6eme/Lecon-math-6eme.pdf" download class="download-btn">
+                <a href="/Attachement/math6eme/Le%C3%A7on-math-6eme.pdf" download class="download-btn">
                     Télécharger le cours (PDF)
                 </a>
             </div>
 
-            <iframe class="pdf-preview" title="Leçon de mathématiques 6ème" src="/Attachement/math6eme/Lecon-math-6eme.pdf"></iframe>
+            <div id="pdf-preview" class="pdf-preview">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Chargement du PDF...</p>
+                </div>
+            </div>
         </div>
     </main>
 
     <script src="/script.js"></script>
+    <script>
+        // Configure PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        async function renderPDF() {
+            const container = document.getElementById('pdf-preview');
+            
+            try {
+                // Charger le PDF avec le bon encodage
+                const pdfUrl = '/Attachement/math6eme/Le%C3%A7on-math-6eme.pdf';
+                const loadingTask = pdfjsLib.getDocument(pdfUrl);
+                const pdf = await loadingTask.promise;
+                
+                const numPages = pdf.numPages;
+                let htmlContent = '';
+                
+                // Rendre chaque page du PDF comme une image (canvas)
+                for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    
+                    // Calculer l'échelle pour une taille correcte
+                    const scale = 1.5;
+                    const viewport = page.getViewport({ scale });
+                    
+                    // Créer un canvas pour chaque page
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    
+                    // Rendre la page
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+                    
+                    // Convertir le canvas en image
+                    const imgData = canvas.toDataURL('image/png');
+                    
+                    htmlContent += `
+                        <div class="pdf-page">
+                            <img src="${imgData}" alt="Page ${pageNum}" style="width:100%;height:auto;">
+                            <div class="page-number">Page ${pageNum} sur ${numPages}</div>
+                        </div>
+                    `;
+                }
+                
+                container.innerHTML = htmlContent;
+                
+            } catch (error) {
+                console.error('Erreur lors du chargement du PDF:', error);
+                container.innerHTML = `
+                    <div class="error-message">
+                        <p>⚠️ Impossible de charger le PDF.</p>
+                        <p>Erreur: ${error.message}</p>
+                        <p>Vous pouvez <a href="/Attachement/math6eme/Le%C3%A7on-math-6eme.pdf" download>télécharger le PDF</a> directement.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Lancer le rendu du PDF au chargement de la page
+        document.addEventListener('DOMContentLoaded', renderPDF);
+    </script>
 </body>
 </html>
