@@ -6,6 +6,14 @@
     <title>Cours - EDUCMAD</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../theme.css">
+    <style>
+        a.subject-btn {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            line-height: 1.3;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -45,7 +53,7 @@
             <div id="subjects-container" class="subjects-buttons" style="display: none;">
                 <h3 id="selected-level">Matières</h3>
                 <button class="subject-btn" onclick="handleMalagasyClick()">Malagasy</button>
-                <button class="subject-btn" onclick="handleMathClick()">Mathématiques</button>
+                <a class="subject-btn" id="math-btn" href="/cours/math6eme/math6eme.html">Mathématiques</a>
                 <button class="subject-btn" onclick="handlePhysicsClick()">Physique-chimie</button>
                 <button class="subject-btn">Français</button>
                 <button class="subject-btn">Histoire et Géographie</button>
@@ -85,9 +93,7 @@
         }
 
         function handleMathClick() {
-            if (currentLevel === 'sixieme') {
-                window.location.href = '/cours/math6eme';
-            }
+            window.location.href = '/cours/math6eme/math6eme.html';
         }
 
         function handlePhysicsClick() {
