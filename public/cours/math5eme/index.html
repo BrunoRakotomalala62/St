@@ -91,20 +91,20 @@
             <h1>Mathématiques — 5ème</h1>
 
             <div class="course-description">
-                <h2>Leçon de mathématiques</h2>
-                <p>Cours de mathématiques pour les élèves de 5ème (kilasy fahadimy), avec leçons structurées, exemples résolus et exercices corrigés.</p>
+                <h2>Cahier de leçons, d'activités et d'exercices</h2>
+                <p>Cours de mathématiques pour les élèves de 5ème (kilasy fahadimy) — Collège Ampinga d'Or Ambohimanarina. Activités numériques et activités géométriques, année scolaire 2026–2027.</p>
                 <ul>
-                    <li>Nombres relatifs et fractions</li>
-                    <li>Calcul littéral et proportionnalité</li>
-                    <li>Angles, triangles et parallélogrammes</li>
-                    <li>Aires, périmètres et statistiques</li>
+                    <li>Division euclidienne, fractions, multiples</li>
+                    <li>Nombres décimaux relatifs, puissances, proportionnalité</li>
+                    <li>Angles, distances, symétrie et médiatrice</li>
+                    <li>Parallélogramme, polygones, prisme et triangles</li>
                 </ul>
             </div>
 
             <div class="download-section">
                 <h2>Documentation du cours</h2>
-                <p class="pdf-title">Leçon math 5ème (PDF)</p>
-                <a href="/Attachement/math5eme/Lecon-math-5eme.pdf" download class="download-btn">
+                <p class="pdf-title">Cours maths 5ème (PDF)</p>
+                <a href="/Attachement/math5eme/Cours_maths_5eme.pdf" download class="download-btn">
                     Télécharger le cours (PDF)
                 </a>
             </div>
@@ -127,7 +127,7 @@
             const container = document.getElementById('pdf-preview');
 
             try {
-                const pdfUrl = '/Attachement/math5eme/Lecon-math-5eme.pdf';
+                const pdfUrl = '/Attachement/math5eme/Cours_maths_5eme.pdf';
                 const loadingTask = pdfjsLib.getDocument(pdfUrl);
                 const pdf = await loadingTask.promise;
 
@@ -168,7 +168,7 @@
                     <div class="error-message">
                         <p>⚠️ Impossible de charger le PDF.</p>
                         <p>Erreur: ${error.message}</p>
-                        <p>Vous pouvez <a href="/Attachement/math5eme/Lecon-math-5eme.pdf" download>télécharger le PDF</a> directement.</p>
+                        <p>Vous pouvez <a href="/Attachement/math5eme/Cours_maths_5eme.pdf" download>télécharger le PDF</a> directement.</p>
                     </div>
                 `;
             }
